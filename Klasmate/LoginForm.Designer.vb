@@ -30,6 +30,7 @@ Partial Class LoginForm
         Me.LoginButton = New System.Windows.Forms.Button()
         Me.CancelLoginButton = New System.Windows.Forms.Button()
         Me.IDLabel = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'KlassmateLoginLabel
@@ -113,11 +114,21 @@ Partial Class LoginForm
         Me.IDLabel.Text = "Label_ID"
         Me.IDLabel.Visible = False
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(231, 29)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 10
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(294, 255)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.IDLabel)
         Me.Controls.Add(Me.CancelLoginButton)
         Me.Controls.Add(Me.LoginButton)
@@ -142,4 +153,5 @@ Partial Class LoginForm
     Friend WithEvents LoginButton As Button
     Friend WithEvents CancelLoginButton As Button
     Friend WithEvents IDLabel As Label
+    Friend WithEvents Button1 As Button
 End Class
