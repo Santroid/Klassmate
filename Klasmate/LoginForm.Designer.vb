@@ -30,6 +30,7 @@ Partial Class LoginForm
         Me.LoginButton = New System.Windows.Forms.Button()
         Me.CancelLoginButton = New System.Windows.Forms.Button()
         Me.IDLabel = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'KlassmateLoginLabel
@@ -38,9 +39,10 @@ Partial Class LoginForm
         Me.KlassmateLoginLabel.AutoSize = True
         Me.KlassmateLoginLabel.Font = New System.Drawing.Font("Microsoft Tai Le", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KlassmateLoginLabel.ForeColor = System.Drawing.Color.Blue
-        Me.KlassmateLoginLabel.Location = New System.Drawing.Point(90, 9)
+        Me.KlassmateLoginLabel.Location = New System.Drawing.Point(120, 11)
+        Me.KlassmateLoginLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.KlassmateLoginLabel.Name = "KlassmateLoginLabel"
-        Me.KlassmateLoginLabel.Size = New System.Drawing.Size(110, 27)
+        Me.KlassmateLoginLabel.Size = New System.Drawing.Size(146, 34)
         Me.KlassmateLoginLabel.TabIndex = 0
         Me.KlassmateLoginLabel.Text = "Klassmate"
         Me.KlassmateLoginLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -48,9 +50,10 @@ Partial Class LoginForm
         'RegisterLinkLabel
         '
         Me.RegisterLinkLabel.AutoSize = True
-        Me.RegisterLinkLabel.Location = New System.Drawing.Point(43, 136)
+        Me.RegisterLinkLabel.Location = New System.Drawing.Point(57, 167)
+        Me.RegisterLinkLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.RegisterLinkLabel.Name = "RegisterLinkLabel"
-        Me.RegisterLinkLabel.Size = New System.Drawing.Size(67, 26)
+        Me.RegisterLinkLabel.Size = New System.Drawing.Size(88, 34)
         Me.RegisterLinkLabel.TabIndex = 3
         Me.RegisterLinkLabel.TabStop = True
         Me.RegisterLinkLabel.Text = "Eres nuevo?" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Registrate"
@@ -59,9 +62,10 @@ Partial Class LoginForm
         'ForgotPasswordLinkLabel
         '
         Me.ForgotPasswordLinkLabel.AutoSize = True
-        Me.ForgotPasswordLinkLabel.Location = New System.Drawing.Point(134, 136)
+        Me.ForgotPasswordLinkLabel.Location = New System.Drawing.Point(179, 167)
+        Me.ForgotPasswordLinkLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ForgotPasswordLinkLabel.Name = "ForgotPasswordLinkLabel"
-        Me.ForgotPasswordLinkLabel.Size = New System.Drawing.Size(113, 13)
+        Me.ForgotPasswordLinkLabel.Size = New System.Drawing.Size(150, 17)
         Me.ForgotPasswordLinkLabel.TabIndex = 4
         Me.ForgotPasswordLinkLabel.TabStop = True
         Me.ForgotPasswordLinkLabel.Text = "Olvido su contraseña?"
@@ -70,35 +74,39 @@ Partial Class LoginForm
         'EmailLoginTextBox
         '
         Me.EmailLoginTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.EmailLoginTextBox.Location = New System.Drawing.Point(46, 59)
+        Me.EmailLoginTextBox.Location = New System.Drawing.Point(61, 73)
+        Me.EmailLoginTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.EmailLoginTextBox.Name = "EmailLoginTextBox"
-        Me.EmailLoginTextBox.Size = New System.Drawing.Size(195, 20)
+        Me.EmailLoginTextBox.Size = New System.Drawing.Size(259, 23)
         Me.EmailLoginTextBox.TabIndex = 5
         Me.EmailLoginTextBox.Text = "Correo"
         '
         'PasswordLoginTextBox
         '
         Me.PasswordLoginTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PasswordLoginTextBox.Location = New System.Drawing.Point(46, 97)
+        Me.PasswordLoginTextBox.Location = New System.Drawing.Point(61, 119)
+        Me.PasswordLoginTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PasswordLoginTextBox.Name = "PasswordLoginTextBox"
-        Me.PasswordLoginTextBox.Size = New System.Drawing.Size(195, 20)
+        Me.PasswordLoginTextBox.Size = New System.Drawing.Size(259, 23)
         Me.PasswordLoginTextBox.TabIndex = 6
         Me.PasswordLoginTextBox.Text = "Contraseña"
         '
         'LoginButton
         '
-        Me.LoginButton.Location = New System.Drawing.Point(46, 186)
+        Me.LoginButton.Location = New System.Drawing.Point(61, 229)
+        Me.LoginButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.LoginButton.Name = "LoginButton"
-        Me.LoginButton.Size = New System.Drawing.Size(90, 34)
+        Me.LoginButton.Size = New System.Drawing.Size(120, 42)
         Me.LoginButton.TabIndex = 7
         Me.LoginButton.Text = "Acceder"
         Me.LoginButton.UseVisualStyleBackColor = True
         '
         'CancelLoginButton
         '
-        Me.CancelLoginButton.Location = New System.Drawing.Point(151, 186)
+        Me.CancelLoginButton.Location = New System.Drawing.Point(201, 229)
+        Me.CancelLoginButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CancelLoginButton.Name = "CancelLoginButton"
-        Me.CancelLoginButton.Size = New System.Drawing.Size(90, 34)
+        Me.CancelLoginButton.Size = New System.Drawing.Size(120, 42)
         Me.CancelLoginButton.TabIndex = 8
         Me.CancelLoginButton.Text = "Cancelar"
         Me.CancelLoginButton.UseVisualStyleBackColor = True
@@ -106,18 +114,29 @@ Partial Class LoginForm
         'IDLabel
         '
         Me.IDLabel.AutoSize = True
-        Me.IDLabel.Location = New System.Drawing.Point(140, 236)
+        Me.IDLabel.Location = New System.Drawing.Point(187, 290)
+        Me.IDLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.IDLabel.Name = "IDLabel"
-        Me.IDLabel.Size = New System.Drawing.Size(50, 13)
+        Me.IDLabel.Size = New System.Drawing.Size(64, 17)
         Me.IDLabel.TabIndex = 9
         Me.IDLabel.Text = "Label_ID"
         Me.IDLabel.Visible = False
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(305, 22)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 10
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'LoginForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(294, 255)
+        Me.ClientSize = New System.Drawing.Size(392, 314)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.IDLabel)
         Me.Controls.Add(Me.CancelLoginButton)
         Me.Controls.Add(Me.LoginButton)
@@ -126,6 +145,7 @@ Partial Class LoginForm
         Me.Controls.Add(Me.ForgotPasswordLinkLabel)
         Me.Controls.Add(Me.RegisterLinkLabel)
         Me.Controls.Add(Me.KlassmateLoginLabel)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "LoginForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Klassmate"
@@ -142,4 +162,5 @@ Partial Class LoginForm
     Friend WithEvents LoginButton As Button
     Friend WithEvents CancelLoginButton As Button
     Friend WithEvents IDLabel As Label
+    Friend WithEvents Button1 As Button
 End Class
