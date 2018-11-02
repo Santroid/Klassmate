@@ -122,5 +122,4 @@ Public Class LoginForm
         PasswordLoginTextBox.UseSystemPasswordChar = False
     End Sub
 
-
 End Class
