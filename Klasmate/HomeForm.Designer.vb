@@ -55,13 +55,13 @@ Partial Class HomeForm
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
-        Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
-        Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
-        Me.LineShape2 = New Microsoft.VisualBasic.PowerPacks.LineShape()
-        Me.LineShape3 = New Microsoft.VisualBasic.PowerPacks.LineShape()
-        Me.RectangleShape3 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
-        Me.LineShape7 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.LineShape8 = New Microsoft.VisualBasic.PowerPacks.LineShape()
+        Me.LineShape7 = New Microsoft.VisualBasic.PowerPacks.LineShape()
+        Me.RectangleShape3 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
+        Me.LineShape3 = New Microsoft.VisualBasic.PowerPacks.LineShape()
+        Me.LineShape2 = New Microsoft.VisualBasic.PowerPacks.LineShape()
+        Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
+        Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
@@ -411,61 +411,16 @@ Partial Class HomeForm
         Me.ShapeContainer1.TabIndex = 8
         Me.ShapeContainer1.TabStop = False
         '
-        'RectangleShape1
+        'LineShape8
         '
-        Me.RectangleShape1.BackColor = System.Drawing.Color.White
-        Me.RectangleShape1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.RectangleShape1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.RectangleShape1.FillColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.RectangleShape1.FillGradientColor = System.Drawing.Color.Silver
-        Me.RectangleShape1.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid
-        Me.RectangleShape1.Location = New System.Drawing.Point(758, -1)
-        Me.RectangleShape1.Name = "RectangleShape1"
-        Me.RectangleShape1.Size = New System.Drawing.Size(42, 49)
-        '
-        'LineShape1
-        '
-        Me.LineShape1.BorderColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.LineShape1.BorderWidth = 3
-        Me.LineShape1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LineShape1.Name = "LineShape1"
-        Me.LineShape1.X1 = 768
-        Me.LineShape1.X2 = 791
-        Me.LineShape1.Y1 = 12
-        Me.LineShape1.Y2 = 12
-        '
-        'LineShape2
-        '
-        Me.LineShape2.BorderColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.LineShape2.BorderWidth = 3
-        Me.LineShape2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LineShape2.Name = "LineShape2"
-        Me.LineShape2.X1 = 768
-        Me.LineShape2.X2 = 791
-        Me.LineShape2.Y1 = 24
-        Me.LineShape2.Y2 = 24
-        '
-        'LineShape3
-        '
-        Me.LineShape3.BorderColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.LineShape3.BorderWidth = 3
-        Me.LineShape3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LineShape3.Name = "LineShape3"
-        Me.LineShape3.X1 = 768
-        Me.LineShape3.X2 = 791
-        Me.LineShape3.Y1 = 36
-        Me.LineShape3.Y2 = 36
-        '
-        'RectangleShape3
-        '
-        Me.RectangleShape3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.RectangleShape3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.RectangleShape3.FillColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.RectangleShape3.FillGradientColor = System.Drawing.Color.Silver
-        Me.RectangleShape3.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid
-        Me.RectangleShape3.Location = New System.Drawing.Point(0, 0)
-        Me.RectangleShape3.Name = "RectangleShape3"
-        Me.RectangleShape3.Size = New System.Drawing.Size(42, 49)
+        Me.LineShape8.BorderColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.LineShape8.BorderWidth = 3
+        Me.LineShape8.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.LineShape8.Name = "LineShape8"
+        Me.LineShape8.X1 = 9
+        Me.LineShape8.X2 = 36
+        Me.LineShape8.Y1 = 25
+        Me.LineShape8.Y2 = 25
         '
         'LineShape7
         '
@@ -478,16 +433,61 @@ Partial Class HomeForm
         Me.LineShape7.Y1 = 10
         Me.LineShape7.Y2 = 40
         '
-        'LineShape8
+        'RectangleShape3
         '
-        Me.LineShape8.BorderColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.LineShape8.BorderWidth = 3
-        Me.LineShape8.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LineShape8.Name = "LineShape8"
-        Me.LineShape8.X1 = 9
-        Me.LineShape8.X2 = 36
-        Me.LineShape8.Y1 = 25
-        Me.LineShape8.Y2 = 25
+        Me.RectangleShape3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.RectangleShape3.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.RectangleShape3.FillColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.RectangleShape3.FillGradientColor = System.Drawing.Color.Silver
+        Me.RectangleShape3.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid
+        Me.RectangleShape3.Location = New System.Drawing.Point(0, 0)
+        Me.RectangleShape3.Name = "RectangleShape3"
+        Me.RectangleShape3.Size = New System.Drawing.Size(42, 49)
+        '
+        'LineShape3
+        '
+        Me.LineShape3.BorderColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.LineShape3.BorderWidth = 3
+        Me.LineShape3.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.LineShape3.Name = "LineShape3"
+        Me.LineShape3.X1 = 768
+        Me.LineShape3.X2 = 791
+        Me.LineShape3.Y1 = 36
+        Me.LineShape3.Y2 = 36
+        '
+        'LineShape2
+        '
+        Me.LineShape2.BorderColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.LineShape2.BorderWidth = 3
+        Me.LineShape2.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.LineShape2.Name = "LineShape2"
+        Me.LineShape2.X1 = 768
+        Me.LineShape2.X2 = 791
+        Me.LineShape2.Y1 = 24
+        Me.LineShape2.Y2 = 24
+        '
+        'LineShape1
+        '
+        Me.LineShape1.BorderColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.LineShape1.BorderWidth = 3
+        Me.LineShape1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.LineShape1.Name = "LineShape1"
+        Me.LineShape1.X1 = 768
+        Me.LineShape1.X2 = 791
+        Me.LineShape1.Y1 = 12
+        Me.LineShape1.Y2 = 12
+        '
+        'RectangleShape1
+        '
+        Me.RectangleShape1.BackColor = System.Drawing.Color.White
+        Me.RectangleShape1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.RectangleShape1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.RectangleShape1.FillColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.RectangleShape1.FillGradientColor = System.Drawing.Color.Silver
+        Me.RectangleShape1.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid
+        Me.RectangleShape1.Location = New System.Drawing.Point(758, -1)
+        Me.RectangleShape1.Name = "RectangleShape1"
+        Me.RectangleShape1.Size = New System.Drawing.Size(42, 49)
         '
         'HomeForm
         '
