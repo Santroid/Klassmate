@@ -114,6 +114,60 @@ Public Class LoginForm
 
     End Sub
 
+    'Hace lo mismo que el boton aceptar solo que es cuando se oprime enter en el teclado
+    Private Sub PasswordLoginTextBox_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles PasswordLoginTextBox.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim user As User
+            user = New User
+
+            user.Name_User = EmailLoginTextBox.Text
+            user.Password_User = PasswordLoginTextBox.Text
+
+            Dim connection As SqlConnection
+            Dim command As SqlCommand
+
+            Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+
+            'aquí conectamos con la base de datos
+            connection = New SqlConnection(connectionString)
+
+            Dim selectQuery
+
+            'declaramos la sentencia de INSERT para insertar a la BD
+            selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Name_User & "'" & " AND password='" & user.Password_User & "'"
+
+            command = New SqlCommand(selectQuery, connection)
+
+            connection.Open()
+
+            'ejecuta el lector de la base de datos
+            Dim reader As SqlDataReader = command.ExecuteReader
+
+            If reader.HasRows Then
+
+                reader.Read()
+
+                user.Id_User = reader.Item("idStudent")
+                MsgBox(user.Id_User)
+                'Esconde la pantalla de Login y muestra la de Home
+                Me.Hide()
+                HomeForm.Show()
+                EmailLoginTextBox.Text = ""
+                PasswordLoginTextBox.Text = ""
+
+
+                connection.Dispose()
+                connection.Close()
+
+            Else
+
+                MsgBox("Correo o contraseña incorrecta!")
+
+            End If
+        End If
+    End Sub
+
+
     Private Sub CancelLoginButton_Click(sender As Object, e As EventArgs) Handles CancelLoginButton.Click
         Me.Close()
     End Sub

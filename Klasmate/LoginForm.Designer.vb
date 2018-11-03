@@ -38,7 +38,7 @@ Partial Class LoginForm
         Me.KlassmateLoginLabel.AutoSize = True
         Me.KlassmateLoginLabel.Font = New System.Drawing.Font("Microsoft Tai Le", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KlassmateLoginLabel.ForeColor = System.Drawing.Color.Blue
-        Me.KlassmateLoginLabel.Location = New System.Drawing.Point(90, 9)
+        Me.KlassmateLoginLabel.Location = New System.Drawing.Point(89, 9)
         Me.KlassmateLoginLabel.Name = "KlassmateLoginLabel"
         Me.KlassmateLoginLabel.Size = New System.Drawing.Size(110, 27)
         Me.KlassmateLoginLabel.TabIndex = 0
@@ -117,7 +117,7 @@ Partial Class LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(294, 255)
+        Me.ClientSize = New System.Drawing.Size(284, 273)
         Me.Controls.Add(Me.IDLabel)
         Me.Controls.Add(Me.CancelLoginButton)
         Me.Controls.Add(Me.LoginButton)
