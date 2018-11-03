@@ -23,35 +23,37 @@ Partial Class ScheduleRegisterForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.PeriodNameLabel = New System.Windows.Forms.Label()
+        Me.NamePeriodTextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.NameCoursSRTextBox = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.DayCoursSRCheckedListBox = New System.Windows.Forms.CheckedListBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.ColorCoursSRComboBox = New System.Windows.Forms.ComboBox()
-        Me.AddCoursSRButton = New System.Windows.Forms.Button()
-        Me.DateTimePicker3 = New System.Windows.Forms.DateTimePicker()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.DateTimePicker4 = New System.Windows.Forms.DateTimePicker()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.DateTimePicker5 = New System.Windows.Forms.DateTimePicker()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.DateTimePicker6 = New System.Windows.Forms.DateTimePicker()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.DateTimePicker7 = New System.Windows.Forms.DateTimePicker()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.DateTimePicker8 = New System.Windows.Forms.DateTimePicker()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.EndPeriodRegisterDateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.StartPeriodRegisterDateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.DateTimePicker9 = New System.Windows.Forms.DateTimePicker()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.DateTimePicker8 = New System.Windows.Forms.DateTimePicker()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.DateTimePicker7 = New System.Windows.Forms.DateTimePicker()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.DateTimePicker6 = New System.Windows.Forms.DateTimePicker()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.DateTimePicker5 = New System.Windows.Forms.DateTimePicker()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.DateTimePicker4 = New System.Windows.Forms.DateTimePicker()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.DateTimePicker3 = New System.Windows.Forms.DateTimePicker()
+        Me.AddCoursSRButton = New System.Windows.Forms.Button()
+        Me.ColorCoursSRComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.DayCoursSRCheckedListBox = New System.Windows.Forms.CheckedListBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.NameCoursSRTextBox = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.DateTimePicker10 = New System.Windows.Forms.DateTimePicker()
@@ -68,7 +70,7 @@ Partial Class ScheduleRegisterForm
         Me.Label22 = New System.Windows.Forms.Label()
         Me.DateTimePicker16 = New System.Windows.Forms.DateTimePicker()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.ColorWorkSRComboBox = New System.Windows.Forms.ComboBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         Me.Label24 = New System.Windows.Forms.Label()
@@ -92,7 +94,7 @@ Partial Class ScheduleRegisterForm
         Me.Label34 = New System.Windows.Forms.Label()
         Me.DateTimePicker23 = New System.Windows.Forms.DateTimePicker()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ColorStudySRComboBox = New System.Windows.Forms.ComboBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.CheckedListBox2 = New System.Windows.Forms.CheckedListBox()
         Me.Label36 = New System.Windows.Forms.Label()
@@ -110,15 +112,75 @@ Partial Class ScheduleRegisterForm
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Panel1.Controls.Add(Me.PeriodNameLabel)
+        Me.Panel1.Controls.Add(Me.NamePeriodTextBox)
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.DateTimePicker2)
-        Me.Panel1.Controls.Add(Me.DateTimePicker1)
+        Me.Panel1.Controls.Add(Me.EndPeriodRegisterDateTimePicker)
+        Me.Panel1.Controls.Add(Me.StartPeriodRegisterDateTimePicker)
         Me.Panel1.Location = New System.Drawing.Point(12, 12)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(776, 100)
         Me.Panel1.TabIndex = 0
+        '
+        'PeriodNameLabel
+        '
+        Me.PeriodNameLabel.AutoSize = True
+        Me.PeriodNameLabel.Location = New System.Drawing.Point(26, 45)
+        Me.PeriodNameLabel.Name = "PeriodNameLabel"
+        Me.PeriodNameLabel.Size = New System.Drawing.Size(44, 13)
+        Me.PeriodNameLabel.TabIndex = 6
+        Me.PeriodNameLabel.Text = "Nombre"
+        '
+        'NamePeriodTextBox
+        '
+        Me.NamePeriodTextBox.Location = New System.Drawing.Point(29, 65)
+        Me.NamePeriodTextBox.Name = "NamePeriodTextBox"
+        Me.NamePeriodTextBox.Size = New System.Drawing.Size(259, 20)
+        Me.NamePeriodTextBox.TabIndex = 5
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(555, 45)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(45, 13)
+        Me.Label3.TabIndex = 4
+        Me.Label3.Text = "Termina"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(320, 45)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(32, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "Inicia"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(26, 10)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(117, 20)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Periodo Lectivo"
+        '
+        'EndPeriodRegisterDateTimePicker
+        '
+        Me.EndPeriodRegisterDateTimePicker.Location = New System.Drawing.Point(558, 65)
+        Me.EndPeriodRegisterDateTimePicker.Name = "EndPeriodRegisterDateTimePicker"
+        Me.EndPeriodRegisterDateTimePicker.Size = New System.Drawing.Size(200, 20)
+        Me.EndPeriodRegisterDateTimePicker.TabIndex = 1
+        '
+        'StartPeriodRegisterDateTimePicker
+        '
+        Me.StartPeriodRegisterDateTimePicker.Location = New System.Drawing.Point(320, 65)
+        Me.StartPeriodRegisterDateTimePicker.Name = "StartPeriodRegisterDateTimePicker"
+        Me.StartPeriodRegisterDateTimePicker.Size = New System.Drawing.Size(200, 20)
+        Me.StartPeriodRegisterDateTimePicker.TabIndex = 0
         '
         'Panel2
         '
@@ -151,220 +213,23 @@ Partial Class ScheduleRegisterForm
         Me.Panel2.Size = New System.Drawing.Size(776, 120)
         Me.Panel2.TabIndex = 1
         '
-        'DateTimePicker1
+        'Label15
         '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(94, 65)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 20)
-        Me.DateTimePicker1.TabIndex = 0
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(667, 49)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(15, 13)
+        Me.Label15.TabIndex = 21
+        Me.Label15.Text = "D"
         '
-        'DateTimePicker2
+        'DateTimePicker9
         '
-        Me.DateTimePicker2.Location = New System.Drawing.Point(482, 65)
-        Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(200, 20)
-        Me.DateTimePicker2.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(26, 10)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(81, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Periodo Lectivo"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(94, 45)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(32, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Inicia"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(479, 45)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(45, 13)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = "Termina"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(3, 12)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(39, 13)
-        Me.Label4.TabIndex = 0
-        Me.Label4.Text = "Cursos"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(3, 37)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(44, 13)
-        Me.Label5.TabIndex = 1
-        Me.Label5.Text = "Nombre"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(4, 62)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(31, 13)
-        Me.Label6.TabIndex = 2
-        Me.Label6.Text = "Color"
-        '
-        'NameCoursSRTextBox
-        '
-        Me.NameCoursSRTextBox.Location = New System.Drawing.Point(48, 34)
-        Me.NameCoursSRTextBox.Name = "NameCoursSRTextBox"
-        Me.NameCoursSRTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.NameCoursSRTextBox.TabIndex = 3
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(156, 51)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(28, 13)
-        Me.Label7.TabIndex = 4
-        Me.Label7.Text = "Dias"
-        '
-        'DayCoursSRCheckedListBox
-        '
-        Me.DayCoursSRCheckedListBox.CheckOnClick = True
-        Me.DayCoursSRCheckedListBox.ColumnWidth = 13
-        Me.DayCoursSRCheckedListBox.FormattingEnabled = True
-        Me.DayCoursSRCheckedListBox.Items.AddRange(New Object() {"", "", "", "", "", "", ""})
-        Me.DayCoursSRCheckedListBox.Location = New System.Drawing.Point(190, 49)
-        Me.DayCoursSRCheckedListBox.MultiColumn = True
-        Me.DayCoursSRCheckedListBox.Name = "DayCoursSRCheckedListBox"
-        Me.DayCoursSRCheckedListBox.Size = New System.Drawing.Size(98, 19)
-        Me.DayCoursSRCheckedListBox.TabIndex = 1
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(187, 33)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(98, 13)
-        Me.Label8.TabIndex = 5
-        Me.Label8.Text = "  L  K  M  J  V  S  D"
-        '
-        'ColorCoursSRComboBox
-        '
-        Me.ColorCoursSRComboBox.FormattingEnabled = True
-        Me.ColorCoursSRComboBox.Location = New System.Drawing.Point(48, 59)
-        Me.ColorCoursSRComboBox.Name = "ColorCoursSRComboBox"
-        Me.ColorCoursSRComboBox.Size = New System.Drawing.Size(100, 21)
-        Me.ColorCoursSRComboBox.TabIndex = 6
-        '
-        'AddCoursSRButton
-        '
-        Me.AddCoursSRButton.Font = New System.Drawing.Font("Microsoft Tai Le", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AddCoursSRButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.AddCoursSRButton.Location = New System.Drawing.Point(7, 86)
-        Me.AddCoursSRButton.Name = "AddCoursSRButton"
-        Me.AddCoursSRButton.Size = New System.Drawing.Size(28, 31)
-        Me.AddCoursSRButton.TabIndex = 7
-        Me.AddCoursSRButton.Text = "+"
-        Me.AddCoursSRButton.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.AddCoursSRButton.UseVisualStyleBackColor = True
-        '
-        'DateTimePicker3
-        '
-        Me.DateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker3.Location = New System.Drawing.Point(322, 34)
-        Me.DateTimePicker3.Name = "DateTimePicker3"
-        Me.DateTimePicker3.Size = New System.Drawing.Size(87, 20)
-        Me.DateTimePicker3.TabIndex = 8
-        Me.DateTimePicker3.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(303, 37)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(13, 13)
-        Me.Label9.TabIndex = 9
-        Me.Label9.Text = "L"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(430, 37)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(14, 13)
-        Me.Label10.TabIndex = 11
-        Me.Label10.Text = "K"
-        '
-        'DateTimePicker4
-        '
-        Me.DateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker4.Location = New System.Drawing.Point(449, 34)
-        Me.DateTimePicker4.Name = "DateTimePicker4"
-        Me.DateTimePicker4.Size = New System.Drawing.Size(87, 20)
-        Me.DateTimePicker4.TabIndex = 10
-        Me.DateTimePicker4.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(555, 37)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(16, 13)
-        Me.Label11.TabIndex = 13
-        Me.Label11.Text = "M"
-        '
-        'DateTimePicker5
-        '
-        Me.DateTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker5.Location = New System.Drawing.Point(574, 34)
-        Me.DateTimePicker5.Name = "DateTimePicker5"
-        Me.DateTimePicker5.Size = New System.Drawing.Size(87, 20)
-        Me.DateTimePicker5.TabIndex = 12
-        Me.DateTimePicker5.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(555, 65)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(14, 13)
-        Me.Label12.TabIndex = 15
-        Me.Label12.Text = "S"
-        '
-        'DateTimePicker6
-        '
-        Me.DateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker6.Location = New System.Drawing.Point(574, 62)
-        Me.DateTimePicker6.Name = "DateTimePicker6"
-        Me.DateTimePicker6.Size = New System.Drawing.Size(87, 20)
-        Me.DateTimePicker6.TabIndex = 14
-        Me.DateTimePicker6.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(430, 68)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(14, 13)
-        Me.Label13.TabIndex = 17
-        Me.Label13.Text = "V"
-        '
-        'DateTimePicker7
-        '
-        Me.DateTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker7.Location = New System.Drawing.Point(449, 65)
-        Me.DateTimePicker7.Name = "DateTimePicker7"
-        Me.DateTimePicker7.Size = New System.Drawing.Size(87, 20)
-        Me.DateTimePicker7.TabIndex = 16
-        Me.DateTimePicker7.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
+        Me.DateTimePicker9.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DateTimePicker9.Location = New System.Drawing.Point(686, 46)
+        Me.DateTimePicker9.Name = "DateTimePicker9"
+        Me.DateTimePicker9.Size = New System.Drawing.Size(87, 20)
+        Me.DateTimePicker9.TabIndex = 20
+        Me.DateTimePicker9.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
         '
         'Label14
         '
@@ -384,23 +249,181 @@ Partial Class ScheduleRegisterForm
         Me.DateTimePicker8.TabIndex = 18
         Me.DateTimePicker8.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
         '
-        'Label15
+        'Label13
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(667, 49)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(15, 13)
-        Me.Label15.TabIndex = 21
-        Me.Label15.Text = "D"
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(430, 68)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(14, 13)
+        Me.Label13.TabIndex = 17
+        Me.Label13.Text = "V"
         '
-        'DateTimePicker9
+        'DateTimePicker7
         '
-        Me.DateTimePicker9.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker9.Location = New System.Drawing.Point(686, 46)
-        Me.DateTimePicker9.Name = "DateTimePicker9"
-        Me.DateTimePicker9.Size = New System.Drawing.Size(87, 20)
-        Me.DateTimePicker9.TabIndex = 20
-        Me.DateTimePicker9.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
+        Me.DateTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DateTimePicker7.Location = New System.Drawing.Point(449, 65)
+        Me.DateTimePicker7.Name = "DateTimePicker7"
+        Me.DateTimePicker7.Size = New System.Drawing.Size(87, 20)
+        Me.DateTimePicker7.TabIndex = 16
+        Me.DateTimePicker7.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(555, 65)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(14, 13)
+        Me.Label12.TabIndex = 15
+        Me.Label12.Text = "S"
+        '
+        'DateTimePicker6
+        '
+        Me.DateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DateTimePicker6.Location = New System.Drawing.Point(574, 62)
+        Me.DateTimePicker6.Name = "DateTimePicker6"
+        Me.DateTimePicker6.Size = New System.Drawing.Size(87, 20)
+        Me.DateTimePicker6.TabIndex = 14
+        Me.DateTimePicker6.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(555, 37)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(16, 13)
+        Me.Label11.TabIndex = 13
+        Me.Label11.Text = "M"
+        '
+        'DateTimePicker5
+        '
+        Me.DateTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DateTimePicker5.Location = New System.Drawing.Point(574, 34)
+        Me.DateTimePicker5.Name = "DateTimePicker5"
+        Me.DateTimePicker5.Size = New System.Drawing.Size(87, 20)
+        Me.DateTimePicker5.TabIndex = 12
+        Me.DateTimePicker5.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(430, 37)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(14, 13)
+        Me.Label10.TabIndex = 11
+        Me.Label10.Text = "K"
+        '
+        'DateTimePicker4
+        '
+        Me.DateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DateTimePicker4.Location = New System.Drawing.Point(449, 34)
+        Me.DateTimePicker4.Name = "DateTimePicker4"
+        Me.DateTimePicker4.Size = New System.Drawing.Size(87, 20)
+        Me.DateTimePicker4.TabIndex = 10
+        Me.DateTimePicker4.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(303, 37)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(13, 13)
+        Me.Label9.TabIndex = 9
+        Me.Label9.Text = "L"
+        '
+        'DateTimePicker3
+        '
+        Me.DateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DateTimePicker3.Location = New System.Drawing.Point(322, 34)
+        Me.DateTimePicker3.Name = "DateTimePicker3"
+        Me.DateTimePicker3.Size = New System.Drawing.Size(87, 20)
+        Me.DateTimePicker3.TabIndex = 8
+        Me.DateTimePicker3.Value = New Date(2018, 10, 13, 21, 18, 0, 0)
+        '
+        'AddCoursSRButton
+        '
+        Me.AddCoursSRButton.Font = New System.Drawing.Font("Microsoft Tai Le", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AddCoursSRButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.AddCoursSRButton.Location = New System.Drawing.Point(7, 86)
+        Me.AddCoursSRButton.Name = "AddCoursSRButton"
+        Me.AddCoursSRButton.Size = New System.Drawing.Size(28, 31)
+        Me.AddCoursSRButton.TabIndex = 7
+        Me.AddCoursSRButton.Text = "+"
+        Me.AddCoursSRButton.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.AddCoursSRButton.UseVisualStyleBackColor = True
+        '
+        'ColorCoursSRComboBox
+        '
+        Me.ColorCoursSRComboBox.ForeColor = System.Drawing.Color.Transparent
+        Me.ColorCoursSRComboBox.FormattingEnabled = True
+        Me.ColorCoursSRComboBox.Location = New System.Drawing.Point(48, 59)
+        Me.ColorCoursSRComboBox.Name = "ColorCoursSRComboBox"
+        Me.ColorCoursSRComboBox.Size = New System.Drawing.Size(100, 21)
+        Me.ColorCoursSRComboBox.TabIndex = 6
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(187, 33)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(98, 13)
+        Me.Label8.TabIndex = 5
+        Me.Label8.Text = "  L  K  M  J  V  S  D"
+        '
+        'DayCoursSRCheckedListBox
+        '
+        Me.DayCoursSRCheckedListBox.CheckOnClick = True
+        Me.DayCoursSRCheckedListBox.ColumnWidth = 13
+        Me.DayCoursSRCheckedListBox.FormattingEnabled = True
+        Me.DayCoursSRCheckedListBox.Items.AddRange(New Object() {"", "", "", "", "", "", ""})
+        Me.DayCoursSRCheckedListBox.Location = New System.Drawing.Point(190, 49)
+        Me.DayCoursSRCheckedListBox.MultiColumn = True
+        Me.DayCoursSRCheckedListBox.Name = "DayCoursSRCheckedListBox"
+        Me.DayCoursSRCheckedListBox.Size = New System.Drawing.Size(98, 19)
+        Me.DayCoursSRCheckedListBox.TabIndex = 1
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(156, 51)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(28, 13)
+        Me.Label7.TabIndex = 4
+        Me.Label7.Text = "Dias"
+        '
+        'NameCoursSRTextBox
+        '
+        Me.NameCoursSRTextBox.Location = New System.Drawing.Point(48, 34)
+        Me.NameCoursSRTextBox.Name = "NameCoursSRTextBox"
+        Me.NameCoursSRTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.NameCoursSRTextBox.TabIndex = 3
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(4, 62)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(31, 13)
+        Me.Label6.TabIndex = 2
+        Me.Label6.Text = "Color"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(3, 37)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(44, 13)
+        Me.Label5.TabIndex = 1
+        Me.Label5.Text = "Nombre"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(3, 12)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(59, 20)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "Cursos"
         '
         'Panel3
         '
@@ -420,7 +443,7 @@ Partial Class ScheduleRegisterForm
         Me.Panel3.Controls.Add(Me.Label22)
         Me.Panel3.Controls.Add(Me.DateTimePicker16)
         Me.Panel3.Controls.Add(Me.Button1)
-        Me.Panel3.Controls.Add(Me.ComboBox1)
+        Me.Panel3.Controls.Add(Me.ColorWorkSRComboBox)
         Me.Panel3.Controls.Add(Me.Label23)
         Me.Panel3.Controls.Add(Me.CheckedListBox1)
         Me.Panel3.Controls.Add(Me.Label24)
@@ -571,13 +594,13 @@ Partial Class ScheduleRegisterForm
         Me.Button1.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'ComboBox1
+        'ColorWorkSRComboBox
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(48, 59)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(100, 21)
-        Me.ComboBox1.TabIndex = 6
+        Me.ColorWorkSRComboBox.FormattingEnabled = True
+        Me.ColorWorkSRComboBox.Location = New System.Drawing.Point(48, 59)
+        Me.ColorWorkSRComboBox.Name = "ColorWorkSRComboBox"
+        Me.ColorWorkSRComboBox.Size = New System.Drawing.Size(100, 21)
+        Me.ColorWorkSRComboBox.TabIndex = 6
         '
         'Label23
         '
@@ -637,9 +660,10 @@ Partial Class ScheduleRegisterForm
         'Label27
         '
         Me.Label27.AutoSize = True
+        Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.Location = New System.Drawing.Point(3, 12)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(95, 13)
+        Me.Label27.Size = New System.Drawing.Size(140, 20)
         Me.Label27.TabIndex = 0
         Me.Label27.Text = "Horario de Trabajo"
         '
@@ -661,7 +685,7 @@ Partial Class ScheduleRegisterForm
         Me.Panel4.Controls.Add(Me.Label34)
         Me.Panel4.Controls.Add(Me.DateTimePicker23)
         Me.Panel4.Controls.Add(Me.Button2)
-        Me.Panel4.Controls.Add(Me.ComboBox2)
+        Me.Panel4.Controls.Add(Me.ColorStudySRComboBox)
         Me.Panel4.Controls.Add(Me.Label35)
         Me.Panel4.Controls.Add(Me.CheckedListBox2)
         Me.Panel4.Controls.Add(Me.Label36)
@@ -812,13 +836,13 @@ Partial Class ScheduleRegisterForm
         Me.Button2.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'ComboBox2
+        'ColorStudySRComboBox
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(48, 59)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(100, 21)
-        Me.ComboBox2.TabIndex = 6
+        Me.ColorStudySRComboBox.FormattingEnabled = True
+        Me.ColorStudySRComboBox.Location = New System.Drawing.Point(48, 59)
+        Me.ColorStudySRComboBox.Name = "ColorStudySRComboBox"
+        Me.ColorStudySRComboBox.Size = New System.Drawing.Size(100, 21)
+        Me.ColorStudySRComboBox.TabIndex = 6
         '
         'Label35
         '
@@ -878,9 +902,10 @@ Partial Class ScheduleRegisterForm
         'Label39
         '
         Me.Label39.AutoSize = True
+        Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label39.Location = New System.Drawing.Point(3, 12)
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(94, 13)
+        Me.Label39.Size = New System.Drawing.Size(141, 20)
         Me.Label39.TabIndex = 0
         Me.Label39.Text = "Horario de Estudio"
         '
@@ -919,8 +944,8 @@ Partial Class ScheduleRegisterForm
     End Sub
 
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents DateTimePicker2 As DateTimePicker
-    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents EndPeriodRegisterDateTimePicker As DateTimePicker
+    Friend WithEvents StartPeriodRegisterDateTimePicker As DateTimePicker
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
@@ -964,7 +989,7 @@ Partial Class ScheduleRegisterForm
     Friend WithEvents Label22 As Label
     Friend WithEvents DateTimePicker16 As DateTimePicker
     Friend WithEvents Button1 As Button
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents ColorWorkSRComboBox As ComboBox
     Friend WithEvents Label23 As Label
     Friend WithEvents CheckedListBox1 As CheckedListBox
     Friend WithEvents Label24 As Label
@@ -988,7 +1013,7 @@ Partial Class ScheduleRegisterForm
     Friend WithEvents Label34 As Label
     Friend WithEvents DateTimePicker23 As DateTimePicker
     Friend WithEvents Button2 As Button
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents ColorStudySRComboBox As ComboBox
     Friend WithEvents Label35 As Label
     Friend WithEvents CheckedListBox2 As CheckedListBox
     Friend WithEvents Label36 As Label
@@ -997,4 +1022,6 @@ Partial Class ScheduleRegisterForm
     Friend WithEvents Label38 As Label
     Friend WithEvents Label39 As Label
     Friend WithEvents SaveSRButton As Button
+    Friend WithEvents PeriodNameLabel As Label
+    Friend WithEvents NamePeriodTextBox As TextBox
 End Class

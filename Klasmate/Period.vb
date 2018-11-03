@@ -1,5 +1,6 @@
 ﻿Public Class Period
     Private Id As Integer
+    Private Name As String
     Private StartDate As Date
     Private EndDate As Date
 
@@ -27,6 +28,15 @@
         End Get
         Set(value As Date)
             EndDate = value
+        End Set
+    End Property
+
+    Public Property Name_Period As String
+        Get
+            Return Name
+        End Get
+        Set(value As String)
+            Name = value
         End Set
     End Property
 End Class

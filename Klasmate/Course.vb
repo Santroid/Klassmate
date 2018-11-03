@@ -4,7 +4,7 @@ Public Class Course
     Private Id As Integer
     Private Name As String
     Private Schedule As Schedule
-    Private Color As Color
+    Private Color As String
     Private Period As Period
 
     Public Property Id_Course As Integer
@@ -34,11 +34,11 @@ Public Class Course
         End Set
     End Property
 
-    Public Property Color_Course As Color
+    Public Property Color_Course As String
         Get
             Return Color
         End Get
-        Set(value As Color)
+        Set(value As String)
             Color = value
         End Set
     End Property
@@ -50,4 +50,6 @@ Public Class Course
             Period = value
         End Set
     End Property
+
+
 End Class
