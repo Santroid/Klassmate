@@ -309,7 +309,7 @@ Public Class ScheduleRegisterForm
             '.Parameters.AddWithValue("@idStudent", )
             .Parameters.AddWithValue("@nameSubject", course.Name_Course)
             .Parameters.AddWithValue("@color", course.Color_Course.ToString)
-            .Parameters.AddWithValue("@idPeriod", Period.Id_Period)
+            '.Parameters.AddWithValue("@idPeriod", Period.Id_Period)
 
         End With
 
