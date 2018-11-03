@@ -71,9 +71,10 @@ Partial Class HomeForm
         'ProgressBar1
         '
         Me.ProgressBar1.ForeColor = System.Drawing.Color.Lime
-        Me.ProgressBar1.Location = New System.Drawing.Point(0, 49)
+        Me.ProgressBar1.Location = New System.Drawing.Point(0, 60)
+        Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(656, 10)
+        Me.ProgressBar1.Size = New System.Drawing.Size(875, 12)
         Me.ProgressBar1.TabIndex = 0
         '
         'AddHomePanel
@@ -84,9 +85,10 @@ Partial Class HomeForm
         Me.AddHomePanel.Controls.Add(Me.StudyAddHomeLabel)
         Me.AddHomePanel.Controls.Add(Me.CourseAddHomeLabel)
         Me.AddHomePanel.Controls.Add(Me.TermAddHomeLabel)
-        Me.AddHomePanel.Location = New System.Drawing.Point(0, 49)
+        Me.AddHomePanel.Location = New System.Drawing.Point(0, 60)
+        Me.AddHomePanel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.AddHomePanel.Name = "AddHomePanel"
-        Me.AddHomePanel.Size = New System.Drawing.Size(134, 128)
+        Me.AddHomePanel.Size = New System.Drawing.Size(179, 158)
         Me.AddHomePanel.TabIndex = 3
         Me.AddHomePanel.Visible = False
         '
@@ -95,9 +97,10 @@ Partial Class HomeForm
         Me.HomeworkAddHomeLabel.AutoSize = True
         Me.HomeworkAddHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.HomeworkAddHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.HomeworkAddHomeLabel.Location = New System.Drawing.Point(12, 99)
+        Me.HomeworkAddHomeLabel.Location = New System.Drawing.Point(16, 122)
+        Me.HomeworkAddHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.HomeworkAddHomeLabel.Name = "HomeworkAddHomeLabel"
-        Me.HomeworkAddHomeLabel.Size = New System.Drawing.Size(35, 13)
+        Me.HomeworkAddHomeLabel.Size = New System.Drawing.Size(46, 17)
         Me.HomeworkAddHomeLabel.TabIndex = 4
         Me.HomeworkAddHomeLabel.Text = "Tarea"
         '
@@ -106,9 +109,10 @@ Partial Class HomeForm
         Me.WorkAddHomeLabel.AutoSize = True
         Me.WorkAddHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.WorkAddHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.WorkAddHomeLabel.Location = New System.Drawing.Point(12, 77)
+        Me.WorkAddHomeLabel.Location = New System.Drawing.Point(16, 95)
+        Me.WorkAddHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.WorkAddHomeLabel.Name = "WorkAddHomeLabel"
-        Me.WorkAddHomeLabel.Size = New System.Drawing.Size(95, 13)
+        Me.WorkAddHomeLabel.Size = New System.Drawing.Size(128, 17)
         Me.WorkAddHomeLabel.TabIndex = 3
         Me.WorkAddHomeLabel.Text = "Horario de Trabajo"
         '
@@ -117,9 +121,10 @@ Partial Class HomeForm
         Me.StudyAddHomeLabel.AutoSize = True
         Me.StudyAddHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.StudyAddHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.StudyAddHomeLabel.Location = New System.Drawing.Point(12, 55)
+        Me.StudyAddHomeLabel.Location = New System.Drawing.Point(16, 68)
+        Me.StudyAddHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.StudyAddHomeLabel.Name = "StudyAddHomeLabel"
-        Me.StudyAddHomeLabel.Size = New System.Drawing.Size(94, 13)
+        Me.StudyAddHomeLabel.Size = New System.Drawing.Size(126, 17)
         Me.StudyAddHomeLabel.TabIndex = 2
         Me.StudyAddHomeLabel.Text = "Horario de Estudio"
         '
@@ -128,9 +133,10 @@ Partial Class HomeForm
         Me.CourseAddHomeLabel.AutoSize = True
         Me.CourseAddHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.CourseAddHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.CourseAddHomeLabel.Location = New System.Drawing.Point(12, 32)
+        Me.CourseAddHomeLabel.Location = New System.Drawing.Point(16, 39)
+        Me.CourseAddHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.CourseAddHomeLabel.Name = "CourseAddHomeLabel"
-        Me.CourseAddHomeLabel.Size = New System.Drawing.Size(34, 13)
+        Me.CourseAddHomeLabel.Size = New System.Drawing.Size(45, 17)
         Me.CourseAddHomeLabel.TabIndex = 1
         Me.CourseAddHomeLabel.Text = "Curso"
         '
@@ -139,9 +145,10 @@ Partial Class HomeForm
         Me.TermAddHomeLabel.AutoSize = True
         Me.TermAddHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.TermAddHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TermAddHomeLabel.Location = New System.Drawing.Point(12, 10)
+        Me.TermAddHomeLabel.Location = New System.Drawing.Point(16, 12)
+        Me.TermAddHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.TermAddHomeLabel.Name = "TermAddHomeLabel"
-        Me.TermAddHomeLabel.Size = New System.Drawing.Size(81, 13)
+        Me.TermAddHomeLabel.Size = New System.Drawing.Size(106, 17)
         Me.TermAddHomeLabel.TabIndex = 0
         Me.TermAddHomeLabel.Text = "Periodo Lectivo"
         '
@@ -153,9 +160,10 @@ Partial Class HomeForm
         Me.OptionsHomePanel.Controls.Add(Me.ExitHomeLabel)
         Me.OptionsHomePanel.Controls.Add(Me.ProfileEditHomeLabel)
         Me.OptionsHomePanel.Controls.Add(Me.ScheduleEditHomeLabel)
-        Me.OptionsHomePanel.Location = New System.Drawing.Point(701, 49)
+        Me.OptionsHomePanel.Location = New System.Drawing.Point(935, 60)
+        Me.OptionsHomePanel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.OptionsHomePanel.Name = "OptionsHomePanel"
-        Me.OptionsHomePanel.Size = New System.Drawing.Size(99, 125)
+        Me.OptionsHomePanel.Size = New System.Drawing.Size(132, 154)
         Me.OptionsHomePanel.TabIndex = 5
         Me.OptionsHomePanel.Visible = False
         '
@@ -165,9 +173,10 @@ Partial Class HomeForm
         Me.Label6.AutoSize = True
         Me.Label6.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label6.Location = New System.Drawing.Point(3, 10)
+        Me.Label6.Location = New System.Drawing.Point(4, 12)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(86, 13)
+        Me.Label6.Size = New System.Drawing.Size(116, 17)
         Me.Label6.TabIndex = 4
         Me.Label6.Text = "Generar Reporte"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -178,9 +187,10 @@ Partial Class HomeForm
         Me.Label5.AutoSize = True
         Me.Label5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label5.Location = New System.Drawing.Point(22, 55)
+        Me.Label5.Location = New System.Drawing.Point(29, 68)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(65, 13)
+        Me.Label5.Size = New System.Drawing.Size(87, 17)
         Me.Label5.TabIndex = 3
         Me.Label5.Text = "Editar Tarea"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -191,9 +201,10 @@ Partial Class HomeForm
         Me.ExitHomeLabel.AutoSize = True
         Me.ExitHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ExitHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.ExitHomeLabel.Location = New System.Drawing.Point(56, 101)
+        Me.ExitHomeLabel.Location = New System.Drawing.Point(75, 124)
+        Me.ExitHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ExitHomeLabel.Name = "ExitHomeLabel"
-        Me.ExitHomeLabel.Size = New System.Drawing.Size(27, 13)
+        Me.ExitHomeLabel.Size = New System.Drawing.Size(36, 17)
         Me.ExitHomeLabel.TabIndex = 2
         Me.ExitHomeLabel.Text = "Salir"
         Me.ExitHomeLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -204,9 +215,10 @@ Partial Class HomeForm
         Me.ProfileEditHomeLabel.AutoSize = True
         Me.ProfileEditHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ProfileEditHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.ProfileEditHomeLabel.Location = New System.Drawing.Point(23, 77)
+        Me.ProfileEditHomeLabel.Location = New System.Drawing.Point(31, 95)
+        Me.ProfileEditHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ProfileEditHomeLabel.Name = "ProfileEditHomeLabel"
-        Me.ProfileEditHomeLabel.Size = New System.Drawing.Size(60, 13)
+        Me.ProfileEditHomeLabel.Size = New System.Drawing.Size(81, 17)
         Me.ProfileEditHomeLabel.TabIndex = 1
         Me.ProfileEditHomeLabel.Text = "Editar Perfil"
         Me.ProfileEditHomeLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -217,9 +229,10 @@ Partial Class HomeForm
         Me.ScheduleEditHomeLabel.AutoSize = True
         Me.ScheduleEditHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ScheduleEditHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.ScheduleEditHomeLabel.Location = New System.Drawing.Point(13, 33)
+        Me.ScheduleEditHomeLabel.Location = New System.Drawing.Point(17, 41)
+        Me.ScheduleEditHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ScheduleEditHomeLabel.Name = "ScheduleEditHomeLabel"
-        Me.ScheduleEditHomeLabel.Size = New System.Drawing.Size(76, 13)
+        Me.ScheduleEditHomeLabel.Size = New System.Drawing.Size(103, 17)
         Me.ScheduleEditHomeLabel.TabIndex = 0
         Me.ScheduleEditHomeLabel.Text = "Editar Horarios"
         Me.ScheduleEditHomeLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -236,84 +249,94 @@ Partial Class HomeForm
         Me.EditProfilePanel.Controls.Add(Me.PasswordEditPanelLabel)
         Me.EditProfilePanel.Controls.Add(Me.EmailEditPanelLabel)
         Me.EditProfilePanel.Controls.Add(Me.NameEditPanelLabel)
-        Me.EditProfilePanel.Location = New System.Drawing.Point(275, 126)
+        Me.EditProfilePanel.Location = New System.Drawing.Point(367, 155)
+        Me.EditProfilePanel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.EditProfilePanel.Name = "EditProfilePanel"
-        Me.EditProfilePanel.Size = New System.Drawing.Size(207, 254)
+        Me.EditProfilePanel.Size = New System.Drawing.Size(276, 313)
         Me.EditProfilePanel.TabIndex = 6
         Me.EditProfilePanel.Visible = False
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(75, 22)
+        Me.Label1.Location = New System.Drawing.Point(100, 27)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(60, 13)
+        Me.Label1.Size = New System.Drawing.Size(81, 17)
         Me.Label1.TabIndex = 8
         Me.Label1.Text = "Editar Perfil"
         '
         'CancelEditProfileButton
         '
-        Me.CancelEditProfileButton.Location = New System.Drawing.Point(107, 216)
+        Me.CancelEditProfileButton.Location = New System.Drawing.Point(143, 266)
+        Me.CancelEditProfileButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CancelEditProfileButton.Name = "CancelEditProfileButton"
-        Me.CancelEditProfileButton.Size = New System.Drawing.Size(75, 23)
+        Me.CancelEditProfileButton.Size = New System.Drawing.Size(100, 28)
         Me.CancelEditProfileButton.TabIndex = 7
         Me.CancelEditProfileButton.Text = "Cancelar"
         Me.CancelEditProfileButton.UseVisualStyleBackColor = True
         '
         'SaveEditProfileButton
         '
-        Me.SaveEditProfileButton.Location = New System.Drawing.Point(26, 216)
+        Me.SaveEditProfileButton.Location = New System.Drawing.Point(35, 266)
+        Me.SaveEditProfileButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SaveEditProfileButton.Name = "SaveEditProfileButton"
-        Me.SaveEditProfileButton.Size = New System.Drawing.Size(75, 23)
+        Me.SaveEditProfileButton.Size = New System.Drawing.Size(100, 28)
         Me.SaveEditProfileButton.TabIndex = 6
         Me.SaveEditProfileButton.Text = "Guardar"
         Me.SaveEditProfileButton.UseVisualStyleBackColor = True
         '
         'PasswordEditProfileTextBox
         '
-        Me.PasswordEditProfileTextBox.Location = New System.Drawing.Point(26, 180)
+        Me.PasswordEditProfileTextBox.Location = New System.Drawing.Point(35, 222)
+        Me.PasswordEditProfileTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PasswordEditProfileTextBox.Name = "PasswordEditProfileTextBox"
-        Me.PasswordEditProfileTextBox.Size = New System.Drawing.Size(156, 20)
+        Me.PasswordEditProfileTextBox.Size = New System.Drawing.Size(207, 22)
         Me.PasswordEditProfileTextBox.TabIndex = 5
         '
         'EmailEditProfileTextBox
         '
-        Me.EmailEditProfileTextBox.Location = New System.Drawing.Point(26, 125)
+        Me.EmailEditProfileTextBox.Location = New System.Drawing.Point(35, 154)
+        Me.EmailEditProfileTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.EmailEditProfileTextBox.Name = "EmailEditProfileTextBox"
-        Me.EmailEditProfileTextBox.Size = New System.Drawing.Size(156, 20)
+        Me.EmailEditProfileTextBox.Size = New System.Drawing.Size(207, 22)
         Me.EmailEditProfileTextBox.TabIndex = 4
         '
         'NameEditProfileTextBox
         '
-        Me.NameEditProfileTextBox.Location = New System.Drawing.Point(26, 73)
+        Me.NameEditProfileTextBox.Location = New System.Drawing.Point(35, 90)
+        Me.NameEditProfileTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.NameEditProfileTextBox.Name = "NameEditProfileTextBox"
-        Me.NameEditProfileTextBox.Size = New System.Drawing.Size(156, 20)
+        Me.NameEditProfileTextBox.Size = New System.Drawing.Size(207, 22)
         Me.NameEditProfileTextBox.TabIndex = 3
         '
         'PasswordEditPanelLabel
         '
         Me.PasswordEditPanelLabel.AutoSize = True
-        Me.PasswordEditPanelLabel.Location = New System.Drawing.Point(23, 164)
+        Me.PasswordEditPanelLabel.Location = New System.Drawing.Point(31, 202)
+        Me.PasswordEditPanelLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.PasswordEditPanelLabel.Name = "PasswordEditPanelLabel"
-        Me.PasswordEditPanelLabel.Size = New System.Drawing.Size(61, 13)
+        Me.PasswordEditPanelLabel.Size = New System.Drawing.Size(81, 17)
         Me.PasswordEditPanelLabel.TabIndex = 2
         Me.PasswordEditPanelLabel.Text = "Contraseña"
         '
         'EmailEditPanelLabel
         '
         Me.EmailEditPanelLabel.AutoSize = True
-        Me.EmailEditPanelLabel.Location = New System.Drawing.Point(23, 109)
+        Me.EmailEditPanelLabel.Location = New System.Drawing.Point(31, 134)
+        Me.EmailEditPanelLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.EmailEditPanelLabel.Name = "EmailEditPanelLabel"
-        Me.EmailEditPanelLabel.Size = New System.Drawing.Size(38, 13)
+        Me.EmailEditPanelLabel.Size = New System.Drawing.Size(51, 17)
         Me.EmailEditPanelLabel.TabIndex = 1
         Me.EmailEditPanelLabel.Text = "Correo"
         '
         'NameEditPanelLabel
         '
         Me.NameEditPanelLabel.AutoSize = True
-        Me.NameEditPanelLabel.Location = New System.Drawing.Point(23, 57)
+        Me.NameEditPanelLabel.Location = New System.Drawing.Point(31, 70)
+        Me.NameEditPanelLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.NameEditPanelLabel.Name = "NameEditPanelLabel"
-        Me.NameEditPanelLabel.Size = New System.Drawing.Size(44, 13)
+        Me.NameEditPanelLabel.Size = New System.Drawing.Size(58, 17)
         Me.NameEditPanelLabel.TabIndex = 0
         Me.NameEditPanelLabel.Text = "Nombre"
         '
@@ -328,76 +351,85 @@ Partial Class HomeForm
         Me.AddHomeWorkPanel.Controls.Add(Me.Label4)
         Me.AddHomeWorkPanel.Controls.Add(Me.Label3)
         Me.AddHomeWorkPanel.Controls.Add(Me.Label2)
-        Me.AddHomeWorkPanel.Location = New System.Drawing.Point(275, 126)
+        Me.AddHomeWorkPanel.Location = New System.Drawing.Point(367, 155)
+        Me.AddHomeWorkPanel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.AddHomeWorkPanel.Name = "AddHomeWorkPanel"
-        Me.AddHomeWorkPanel.Size = New System.Drawing.Size(253, 254)
+        Me.AddHomeWorkPanel.Size = New System.Drawing.Size(337, 313)
         Me.AddHomeWorkPanel.TabIndex = 7
         Me.AddHomeWorkPanel.Visible = False
         '
         'CoursAddHWPanelComboBox
         '
         Me.CoursAddHWPanelComboBox.FormattingEnabled = True
-        Me.CoursAddHWPanelComboBox.Location = New System.Drawing.Point(29, 112)
+        Me.CoursAddHWPanelComboBox.Location = New System.Drawing.Point(39, 138)
+        Me.CoursAddHWPanelComboBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CoursAddHWPanelComboBox.Name = "CoursAddHWPanelComboBox"
-        Me.CoursAddHWPanelComboBox.Size = New System.Drawing.Size(194, 21)
+        Me.CoursAddHWPanelComboBox.Size = New System.Drawing.Size(257, 24)
         Me.CoursAddHWPanelComboBox.TabIndex = 10
         '
         'CancelHWAddButton
         '
-        Me.CancelHWAddButton.Location = New System.Drawing.Point(148, 206)
+        Me.CancelHWAddButton.Location = New System.Drawing.Point(197, 254)
+        Me.CancelHWAddButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CancelHWAddButton.Name = "CancelHWAddButton"
-        Me.CancelHWAddButton.Size = New System.Drawing.Size(75, 23)
+        Me.CancelHWAddButton.Size = New System.Drawing.Size(100, 28)
         Me.CancelHWAddButton.TabIndex = 9
         Me.CancelHWAddButton.Text = "Cancelar"
         Me.CancelHWAddButton.UseVisualStyleBackColor = True
         '
         'SaveHWAddButton
         '
-        Me.SaveHWAddButton.Location = New System.Drawing.Point(31, 206)
+        Me.SaveHWAddButton.Location = New System.Drawing.Point(41, 254)
+        Me.SaveHWAddButton.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SaveHWAddButton.Name = "SaveHWAddButton"
-        Me.SaveHWAddButton.Size = New System.Drawing.Size(75, 23)
+        Me.SaveHWAddButton.Size = New System.Drawing.Size(100, 28)
         Me.SaveHWAddButton.TabIndex = 8
         Me.SaveHWAddButton.Text = "Guardar"
         Me.SaveHWAddButton.UseVisualStyleBackColor = True
         '
         'DdayAddPanelDateTimePicker
         '
-        Me.DdayAddPanelDateTimePicker.Location = New System.Drawing.Point(31, 165)
+        Me.DdayAddPanelDateTimePicker.Location = New System.Drawing.Point(41, 203)
+        Me.DdayAddPanelDateTimePicker.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DdayAddPanelDateTimePicker.Name = "DdayAddPanelDateTimePicker"
-        Me.DdayAddPanelDateTimePicker.Size = New System.Drawing.Size(192, 20)
+        Me.DdayAddPanelDateTimePicker.Size = New System.Drawing.Size(255, 22)
         Me.DdayAddPanelDateTimePicker.TabIndex = 5
         '
         'NameHWAddPanelTextBox
         '
-        Me.NameHWAddPanelTextBox.Location = New System.Drawing.Point(29, 57)
+        Me.NameHWAddPanelTextBox.Location = New System.Drawing.Point(39, 70)
+        Me.NameHWAddPanelTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.NameHWAddPanelTextBox.Name = "NameHWAddPanelTextBox"
-        Me.NameHWAddPanelTextBox.Size = New System.Drawing.Size(194, 20)
+        Me.NameHWAddPanelTextBox.Size = New System.Drawing.Size(257, 22)
         Me.NameHWAddPanelTextBox.TabIndex = 3
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(28, 148)
+        Me.Label4.Location = New System.Drawing.Point(37, 182)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(92, 13)
+        Me.Label4.Size = New System.Drawing.Size(121, 17)
         Me.Label4.TabIndex = 2
         Me.Label4.Text = "Fecha de Entrega"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(28, 96)
+        Me.Label3.Location = New System.Drawing.Point(37, 118)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(34, 13)
+        Me.Label3.Size = New System.Drawing.Size(45, 17)
         Me.Label3.TabIndex = 1
         Me.Label3.Text = "Curso"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(26, 41)
+        Me.Label2.Location = New System.Drawing.Point(35, 50)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(44, 13)
+        Me.Label2.Size = New System.Drawing.Size(58, 17)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Nombre"
         '
@@ -407,7 +439,7 @@ Partial Class HomeForm
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
         Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape8, Me.LineShape7, Me.RectangleShape3, Me.LineShape3, Me.LineShape2, Me.LineShape1, Me.RectangleShape1})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(800, 468)
+        Me.ShapeContainer1.Size = New System.Drawing.Size(1067, 576)
         Me.ShapeContainer1.TabIndex = 8
         Me.ShapeContainer1.TabStop = False
         '
@@ -491,15 +523,16 @@ Partial Class HomeForm
         '
         'HomeForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 468)
+        Me.ClientSize = New System.Drawing.Size(1067, 576)
         Me.Controls.Add(Me.AddHomeWorkPanel)
         Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.OptionsHomePanel)
         Me.Controls.Add(Me.AddHomePanel)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.ShapeContainer1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "HomeForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "HomeForm"

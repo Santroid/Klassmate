@@ -1,4 +1,6 @@
-﻿Public Class HomeForm
+﻿Imports System.Data.SqlClient
+
+Public Class HomeForm
     Private Sub ProgressBar1_Click(sender As Object, e As EventArgs) Handles ProgressBar1.Click
 
     End Sub
@@ -108,5 +110,43 @@
         Else
             AddHomePanel.Hide()
         End If
+    End Sub
+
+    Private Sub SaveHWAddButton_Click(sender As Object, e As EventArgs) Handles SaveHWAddButton.Click
+
+        Dim connection As SqlConnection
+        Dim command As SqlCommand
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        Dim insertQuery
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+        'declaramos la sentencia de INSERT para insertar a la BD
+        insertQuery = "INSERT INTO Task(nameTask, duedate) values (@nameTask, @duedate)"
+
+        command = New SqlCommand(insertQuery, connection)
+
+        With command 'le asigna los valores a los espacios en la tabla
+
+            .Parameters.AddWithValue("@nameTask", NameHWAddPanelTextBox.Text)
+            .Parameters.AddWithValue("@duedate", DdayAddPanelDateTimePicker.Value)
+
+
+
+        End With
+
+        'abriendo la conexión
+        connection.Open()
+
+        'ejecutamos la consulta
+        command.ExecuteNonQuery()
+
+        connection.Dispose()
+        connection.Close()
+
+        MsgBox("Tarea guardada con exito")
+        AddHomeWorkPanel.Hide()
+
+
     End Sub
 End Class
