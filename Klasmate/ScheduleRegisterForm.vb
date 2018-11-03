@@ -272,8 +272,56 @@ Public Class ScheduleRegisterForm
 
         End If
     End Sub
-
     'Termina de agregarle colores al combobox de color cuando se agrega un horario de estudio -Santi
     '////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    Private Sub AddCoursSRButton_Click(sender As Object, e As EventArgs) Handles AddCoursSRButton.Click
+        '////// AGREGA UN CURSO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO /////////////
+        Dim course As Course
+        course = New Course
+
+        course.Name_Course = NameCoursSRTextBox.Text
+        course.Color_Course = ColorCoursSRComboBox.SelectedItem.ToString
+
+
+
+        Dim connection As SqlConnection
+        Dim command As SqlCommand
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+
+
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+
+        'abriendo la conexión
+        connection.Open()
+
+        Dim insertQuery
+        'declaramos la sentencia de INSERT para insertar a la BD
+        insertQuery = "INSERT INTO Subject(nameSubject, color, idPeriod ) values (@nameSubject, @color, @idPeriod)"
+
+        command = New SqlCommand(insertQuery, connection)
+
+        With command 'le asigna los valores a los espacios en la tabla
+
+            '.Parameters.AddWithValue("@idStudent", )
+            .Parameters.AddWithValue("@nameSubject", course.Name_Course)
+            .Parameters.AddWithValue("@color", course.Color_Course.ToString)
+            .Parameters.AddWithValue("@idPeriod", Period.Id_Period)
+
+        End With
+
+
+        'ejecutamos la consulta
+        command.ExecuteNonQuery()
+
+        connection.Dispose()
+        connection.Close()
+        '\\\\\\\\\ TERMINA DE AGREGAR UN CURSO A LA BASE DE DATOS \\\\\\\\\\\\
+    End Sub
+
+
 
 End Class
