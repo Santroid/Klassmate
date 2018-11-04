@@ -6,6 +6,40 @@ Public Class HomeForm
     End Sub
 
     Private Sub HomeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim connection As SqlConnection
+        'Dim command As SqlCommand
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        ' Dim selectQuery
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+
+
+        ' User.IdUser2
+        MsgBox("Second IdUser" & User.IdUser2)
+        Try
+            connection.Open()
+            Dim strSQL As String = "select nameSubject, color
+                                    from Subject s, KMProfile k, Period p
+                                    where k.idStudent = p.idStudent
+                                    and p.idPeriod = s.idPeriod
+                                    and k.idStudent = 16;"
+
+            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+            ' connection.Close()
+            Dim da As New SqlDataAdapter(strSQL, connection)
+            Dim ds As New DataSet
+            da.Fill(ds, strSQL)
+            CourseDataGridView.DataSource = ds.Tables(0)
+
+
+
+        Catch ex As SqlException
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "General Error")
+        End Try
 
     End Sub
 

@@ -8,7 +8,7 @@ Public Class ScheduleRegisterForm
 
 
     '/////////////////////////EL BOTON DE TERMINAR////////////////////////////////
-    Private Sub SaveSRButton_Click(sender As Object, e As EventArgs) Handles SaveSRButton.Click
+    Public Sub SaveSRButton_Click(sender As Object, e As EventArgs) Handles SaveSRButton.Click
         'Cuando el boton de terminar en el Form de agregar horarios despues de registrarse, se esconde eso Form y se muestra la el form de inicio -Santi
         Me.Hide()
         HomeForm.Show()
@@ -28,56 +28,65 @@ Public Class ScheduleRegisterForm
         Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
 
 
+
+
         'aquí conectamos con la base de datos
         connection = New SqlConnection(connectionString)
 
-        'abriendo la conexión
-        connection.Open()
+            'abriendo la conexión
+            connection.Open()
 
         Dim insertQuery
 
-        'declaramos la sentencia de INSERT para insertar a la BD
-        insertQuery = "INSERT INTO Period(namePeriod, startDate, endDate) values (@namePeriod, @startDate, @endDate)"
+        'el if es para que no se agregue el mismo periodo mas de una vez a la base de datos
+        MsgBox("This is before it added the periodo with the finish" & Period.PeriodCounter)
+        If Period.PeriodCounter = 0 Then
+            'declaramos la sentencia de INSERT para insertar a la BD
+            insertQuery = "INSERT INTO Period(namePeriod, startDate, endDate, idStudent) values (@namePeriod, @startDate, @endDate, @idStudent)"
 
-        command = New SqlCommand(insertQuery, connection)
+            command = New SqlCommand(insertQuery, connection)
 
-        With command 'le asigna los valores a los espacios en la tabla
+            With command 'le asigna los valores a los espacios en la tabla
 
-            '.Parameters.AddWithValue("@idStudent", )
-            .Parameters.AddWithValue("@namePeriod", period.Name_Period)
-            .Parameters.AddWithValue("@startDate", period.StartDate_Period)
-            .Parameters.AddWithValue("@endDate", period.EndDate_Period)
+                .Parameters.AddWithValue("@idStudent", User.IdUser)
+                .Parameters.AddWithValue("@namePeriod", period.Name_Period)
+                .Parameters.AddWithValue("@startDate", period.StartDate_Period)
+                .Parameters.AddWithValue("@endDate", period.EndDate_Period)
 
-        End With
+            End With
 
 
-        'ejecutamos la consulta
-        command.ExecuteNonQuery()
+            'ejecutamos la consulta
+            command.ExecuteNonQuery()
 
-        connection.Close()
+            connection.Close()
 
-        Dim selectQuery
+            Dim selectQuery
 
-        'declaramos la sentencia de INSERT para insertar a la BD
-        selectQuery = "SELECT TOP 1 * FROM Period ORDER BY idPeriod DESC"
+            'declaramos la sentencia de INSERT para insertar a la BD
+            selectQuery = "SELECT TOP 1 * FROM Period ORDER BY idPeriod DESC"
 
-        command = New SqlCommand(selectQuery, connection)
+            command = New SqlCommand(selectQuery, connection)
 
-        connection.Open()
+            connection.Open()
 
-        'ejecuta el lector de la base de datos
-        Dim reader As SqlDataReader = command.ExecuteReader
+            'ejecuta el lector de la base de datos
+            Dim reader As SqlDataReader = command.ExecuteReader
 
-        reader.Read()
+            reader.Read()
 
-        period.Id_Period = reader.Item("idPeriod")
-        MsgBox(period.Id_Period)
+            period.Id_Period = reader.Item("idPeriod")
+            Period.IdPeriod = reader.Item("idPeriod")
+            MsgBox(period.Id_Period)
 
-        connection.Dispose()
-        connection.Close()
+            connection.Dispose()
+            connection.Close()
 
-        '\\\\\\\\\\\\\\\\\\\ TERMINA DE AGREGAR EL PERIODO LECTIVO A LA BASE DE DATOS \\\\\\\\\\\\\\\\\\\\\\\\\\
-
+            'Un contador para saber si ya se registro un periodo lectivo
+            Period.PeriodCounter = 1
+            MsgBox("This is after it added the periodo with the finish" & Period.PeriodCounter)
+            '\\\\\\\\\\\\\\\\\\\ TERMINA DE AGREGAR EL PERIODO LECTIVO A LA BASE DE DATOS \\\\\\\\\\\\\\\\\\\\\\\\\\
+        End If
 
         '////// AGREGA UN CURSO A LA BASE DE DATOS /////////////
         Dim course As Course
@@ -103,7 +112,7 @@ Public Class ScheduleRegisterForm
             '.Parameters.AddWithValue("@idStudent", )
             .Parameters.AddWithValue("@nameSubject", course.Name_Course)
             .Parameters.AddWithValue("@color", course.Color_Course.ToString)
-            .Parameters.AddWithValue("@idPeriod", period.Id_Period)
+            .Parameters.AddWithValue("@idPeriod", Period.IdPeriod)
 
         End With
 
@@ -121,7 +130,9 @@ Public Class ScheduleRegisterForm
     '////////////////// Para agregarle colores al combobox de color cuando se agrega un curso //////////////////////
     Private Sub ScheduleRegisterForm_Load(sender As Object, e As EventArgs) _
         Handles MyBase.Load
-
+        'Un contador para saber si ya se registro un periodo lectivo
+        Period.PeriodCounter = 0
+        MsgBox("This is the periodocounter at load " & Period.PeriodCounter)
         Dim knownColors = System.Enum.GetNames(GetType(KnownColor)).
             Where(Function(kc) GetType(SystemColors).GetProperty(kc) Is Nothing _
             AndAlso kc <> KnownColor.Transparent.ToString()).
@@ -184,12 +195,13 @@ Public Class ScheduleRegisterForm
         If ColorCoursSRComboBox.SelectedIndex <> -1 Then
 
             ColorCoursSRComboBox.BackColor = Color.FromName(ColorCoursSRComboBox.SelectedItem.ToString)
-
+            ' Else
+            '    ColorCoursSRComboBox.BackColor = Color.FromName(ColorCoursSRComboBox.SelectedItem.ToString)
         End If
     End Sub
 
     'Termina de agregarle colores al combobox de color cuando se agrega un curso -Santi
-    '////////////////////////////////////////////////////////////////////////////////////////////////////
+    '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
     '///////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,7 +244,7 @@ Public Class ScheduleRegisterForm
     End Sub
 
     'Termina de agregarle colores al combobox de color cuando se agrega un horario de trabajo -Santi
-    '////////////////////////////////////////////////////////////////////////////////////////////////////
+    '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     '///////////////////////////////////////////////////////////////////////////////////////////////
     'Para agregarle colores al combobox de color cuando se agrega un horario de estudio -Santi
@@ -273,7 +285,7 @@ Public Class ScheduleRegisterForm
         End If
     End Sub
     'Termina de agregarle colores al combobox de color cuando se agrega un horario de estudio -Santi
-    '////////////////////////////////////////////////////////////////////////////////////////////////////
+    '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
     Private Sub AddCoursSRButton_Click(sender As Object, e As EventArgs) Handles AddCoursSRButton.Click
@@ -284,6 +296,13 @@ Public Class ScheduleRegisterForm
         course.Name_Course = NameCoursSRTextBox.Text
         course.Color_Course = ColorCoursSRComboBox.SelectedItem.ToString
 
+        Dim period As Period
+        period = New Period
+
+        period.Name_Period = NamePeriodTextBox.Text
+        period.StartDate_Period = StartPeriodRegisterDateTimePicker.Value
+        period.EndDate_Period = EndPeriodRegisterDateTimePicker.Value
+        period.Id_Period = 0
 
 
         Dim connection As SqlConnection
@@ -296,20 +315,76 @@ Public Class ScheduleRegisterForm
         connection = New SqlConnection(connectionString)
 
         'abriendo la conexión
-        connection.Open()
+
 
         Dim insertQuery
+
+        MsgBox("This is before it added the periodo with the plus" & Period.PeriodCounter)
+        'el if es para que no se agregue el mismo periodo mas de una vez a la base de datos
+        If Period.PeriodCounter = 0 Then
+            connection.Open()
+            'declaramos la sentencia de INSERT para insertar a la BD
+            insertQuery = "INSERT INTO Period(namePeriod, startDate, endDate, idStudent) values (@namePeriod, @startDate, @endDate, @idStudent)"
+
+            command = New SqlCommand(insertQuery, connection)
+
+            With command 'le asigna los valores a los espacios en la tabla
+
+                .Parameters.AddWithValue("@idStudent", User.IdUser)
+                .Parameters.AddWithValue("@namePeriod", period.Name_Period)
+                .Parameters.AddWithValue("@startDate", period.StartDate_Period)
+                .Parameters.AddWithValue("@endDate", period.EndDate_Period)
+
+            End With
+
+
+            'ejecutamos la consulta
+            command.ExecuteNonQuery()
+
+            connection.Close()
+
+            Dim selectQuery
+
+            'declaramos la sentencia de INSERT para insertar a la BD
+            selectQuery = "SELECT TOP 1 * FROM Period ORDER BY idPeriod DESC"
+
+            command = New SqlCommand(selectQuery, connection)
+
+            connection.Open()
+
+            'ejecuta el lector de la base de datos
+            Dim reader As SqlDataReader = command.ExecuteReader
+
+            reader.Read()
+
+            period.Id_Period = reader.Item("idPeriod")
+            Period.IdPeriod = reader.Item("idPeriod")
+            MsgBox(period.Id_Period)
+            MsgBox("This is the global variable " & Period.IdPeriod)
+
+
+            connection.Close()
+
+            'Un contador para saber si ya se registro un periodo lectivo
+            Period.PeriodCounter = 1
+            MsgBox("This is after it added the periodo with the plus" & Period.PeriodCounter)
+            '\\\\\\\\\\\\\\\\\\\ TERMINA DE AGREGAR EL PERIODO LECTIVO A LA BASE DE DATOS \\\\\\\\\\\\\\\\\\\\\\\\\\
+        End If
+
+
         'declaramos la sentencia de INSERT para insertar a la BD
-        insertQuery = "INSERT INTO Subject(nameSubject, color, idPeriod ) values (@nameSubject, @color, @idPeriod)"
+        insertQuery = "INSERT INTO Subject(nameSubject, color, idPeriod) values (@nameSubject, @color, @idPeriod)"
 
         command = New SqlCommand(insertQuery, connection)
+        connection.Open()
 
+        MsgBox("This is the global variable after the if " & Period.IdPeriod)
         With command 'le asigna los valores a los espacios en la tabla
 
-            '.Parameters.AddWithValue("@idStudent", )
+            '.Parameters.AddWithValue("@idStudent", User.IdUser)
             .Parameters.AddWithValue("@nameSubject", course.Name_Course)
             .Parameters.AddWithValue("@color", course.Color_Course.ToString)
-            '.Parameters.AddWithValue("@idPeriod", Period.Id_Period)
+            .Parameters.AddWithValue("@idPeriod", Period.IdPeriod)
 
         End With
 
@@ -317,9 +392,13 @@ Public Class ScheduleRegisterForm
         'ejecutamos la consulta
         command.ExecuteNonQuery()
 
-        connection.Dispose()
+
         connection.Close()
-        '\\\\\\\\\ TERMINA DE AGREGAR UN CURSO A LA BASE DE DATOS \\\\\\\\\\\\
+
+        NameCoursSRTextBox.Clear()
+        ColorCoursSRComboBox.SelectedIndex = -1
+        ColorCoursSRComboBox.BackColor = Color.AliceBlue
+        '\\\\\\\\\ TERMINA DE AGREGAR UN CURSO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO \\\\\\\\\\\\
     End Sub
 
 

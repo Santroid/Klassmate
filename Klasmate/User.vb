@@ -9,6 +9,9 @@ Public Class User
     Private WorkSch As WorkSch
     Private StudySch As StudySch
 
+    Public Shared IdUser As Integer
+    Public Shared IdUser2 As Integer
+
 
     Public Property Id_User As Integer
         Get

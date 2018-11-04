@@ -3,6 +3,8 @@
     Private Name As String
     Private StartDate As Date
     Private EndDate As Date
+    Public Shared IdPeriod As Integer
+    Public Shared PeriodCounter As Integer
 
     Public Property Id_Period As Integer
         Get

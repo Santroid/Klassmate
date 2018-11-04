@@ -70,8 +70,31 @@ Public Class RegisterForm
                     'ejecutamos la consulta
                     command.ExecuteNonQuery()
 
-                    connection.Dispose()
+
                     connection.Close()
+
+                    'Aca se usa una variable para guardar el id del usuario
+                    'Dim selectQuery
+
+                    'declaramos la sentencia de INSERT para insertar a la BD
+                    selectQuery = "SELECT TOP 1 * FROM KMProfile ORDER BY idStudent DESC"
+
+                    command = New SqlCommand(selectQuery, connection)
+
+                    connection.Open()
+
+                    'ejecuta el lector de la base de datos
+                    reader = command.ExecuteReader
+
+                    reader.Read()
+
+                    User.IdUser = reader.Item("idStudent")
+                    MsgBox("This is the global variable IdUser" & User.IdUser)
+
+
+
+                    connection.Close()
+
                 Else
                     PasswordErrorLabel.Visible = True
                 End If

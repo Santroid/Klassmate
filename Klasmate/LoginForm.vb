@@ -120,7 +120,7 @@ Public Class LoginForm
             Dim user As User
             user = New User
 
-            user.Name_User = EmailLoginTextBox.Text
+            user.Email_User = EmailLoginTextBox.Text
             user.Password_User = PasswordLoginTextBox.Text
 
             Dim connection As SqlConnection
@@ -134,7 +134,7 @@ Public Class LoginForm
             Dim selectQuery
 
             'declaramos la sentencia de INSERT para insertar a la BD
-            selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Name_User & "'" & " AND password='" & user.Password_User & "'"
+            selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Email_User & "'" & " AND password='" & user.Password_User & "'"
 
             command = New SqlCommand(selectQuery, connection)
 
@@ -148,7 +148,12 @@ Public Class LoginForm
                 reader.Read()
 
                 user.Id_User = reader.Item("idStudent")
+                User.IdUser = reader.Item("idStudent")
+                User.IdUser2 = reader.Item("idStudent")
                 MsgBox(user.Id_User)
+                Dim HomeForm As New HomeForm
+                'HomeForm.IdUser = user.Id_User
+
                 'Esconde la pantalla de Login y muestra la de Home
                 Me.Hide()
                 HomeForm.Show()
@@ -156,7 +161,6 @@ Public Class LoginForm
                 PasswordLoginTextBox.Text = ""
 
 
-                connection.Dispose()
                 connection.Close()
 
             Else
