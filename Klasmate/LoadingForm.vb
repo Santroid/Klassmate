@@ -7,7 +7,6 @@
         Else
             Timer1.Enabled = False
             Me.Hide()
-
             LoginForm.Show()
         End If
     End Sub
