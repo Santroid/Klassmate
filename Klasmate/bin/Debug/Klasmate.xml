@@ -22,5 +22,10 @@ Klasmate
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:Klasmate.My.Resources.Resources.fondo_azul_desenfocado_1107_164">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

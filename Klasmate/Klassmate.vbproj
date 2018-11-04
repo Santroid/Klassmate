@@ -119,6 +119,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HomeWork.vb" />
+    <Compile Include="LoadingForm.Designer.vb">
+      <DependentUpon>LoadingForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     <EmbeddedResource Include="HomeForm.resx">
       <DependentUpon>HomeForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +214,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondo-azul-desenfocado_1107-164.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

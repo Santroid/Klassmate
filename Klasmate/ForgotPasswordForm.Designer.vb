@@ -32,7 +32,7 @@ Partial Class ForgotPasswordForm
         '
         'EmailForgotPassTextBox
         '
-        Me.EmailForgotPassTextBox.Location = New System.Drawing.Point(71, 99)
+        Me.EmailForgotPassTextBox.Location = New System.Drawing.Point(96, 101)
         Me.EmailForgotPassTextBox.Name = "EmailForgotPassTextBox"
         Me.EmailForgotPassTextBox.Size = New System.Drawing.Size(156, 20)
         Me.EmailForgotPassTextBox.TabIndex = 0
@@ -40,11 +40,11 @@ Partial Class ForgotPasswordForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(24, 42)
+        Me.Label1.Location = New System.Drawing.Point(12, 56)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(293, 13)
+        Me.Label1.Size = New System.Drawing.Size(329, 13)
         Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Si olvido su contraseña, una nueva se le enviara a su correo"
+        Me.Label1.Text = "Ingrese su correo y se le enviará una nueva contraseña a su correo."
         '
         'Label2
         '
@@ -55,12 +55,12 @@ Partial Class ForgotPasswordForm
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(314, 25)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Recuperacion de contraseña"
+        Me.Label2.Text = "Recuperación de contraseña"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(71, 80)
+        Me.Label3.Location = New System.Drawing.Point(154, 85)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(41, 13)
         Me.Label3.TabIndex = 3
@@ -68,7 +68,7 @@ Partial Class ForgotPasswordForm
         '
         'SendNewPassButton
         '
-        Me.SendNewPassButton.Location = New System.Drawing.Point(71, 135)
+        Me.SendNewPassButton.Location = New System.Drawing.Point(96, 137)
         Me.SendNewPassButton.Name = "SendNewPassButton"
         Me.SendNewPassButton.Size = New System.Drawing.Size(75, 23)
         Me.SendNewPassButton.TabIndex = 4
@@ -77,7 +77,7 @@ Partial Class ForgotPasswordForm
         '
         'CancelForgotPassButton
         '
-        Me.CancelForgotPassButton.Location = New System.Drawing.Point(152, 135)
+        Me.CancelForgotPassButton.Location = New System.Drawing.Point(177, 137)
         Me.CancelForgotPassButton.Name = "CancelForgotPassButton"
         Me.CancelForgotPassButton.Size = New System.Drawing.Size(75, 23)
         Me.CancelForgotPassButton.TabIndex = 5
@@ -88,7 +88,7 @@ Partial Class ForgotPasswordForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(344, 206)
+        Me.ClientSize = New System.Drawing.Size(344, 207)
         Me.Controls.Add(Me.CancelForgotPassButton)
         Me.Controls.Add(Me.SendNewPassButton)
         Me.Controls.Add(Me.Label3)

@@ -108,7 +108,7 @@ Public Class LoginForm
 
         Else
 
-            MsgBox("Correo o contraseña incorrecta!")
+            MsgBox("¡Correo o contraseña incorrecta!")
 
         End If
 
@@ -160,9 +160,7 @@ Public Class LoginForm
                 connection.Close()
 
             Else
-
-                MsgBox("Correo o contraseña incorrecta!")
-
+                MsgBox("¡Correo o contraseña incorrecta!")
             End If
         End If
     End Sub
@@ -173,6 +171,7 @@ Public Class LoginForm
     End Sub
 
     Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Hide()
         PasswordLoginTextBox.UseSystemPasswordChar = False
     End Sub
 

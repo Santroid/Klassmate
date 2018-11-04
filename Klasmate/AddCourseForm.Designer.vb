@@ -219,9 +219,9 @@ Partial Class AddCourseForm
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(187, 47)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(28, 13)
+        Me.Label7.Size = New System.Drawing.Size(30, 13)
         Me.Label7.TabIndex = 27
-        Me.Label7.Text = "Dias"
+        Me.Label7.Text = "Días"
         '
         'NameCoursSRTextBox
         '
