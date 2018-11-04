@@ -59,7 +59,7 @@ Public Class ForgotPasswordForm
 
                 'set the content
                 mail.Subject = "Klassmate Soporte | Contraseña de recuperacion"
-                mail.Body = "Usted esta recibiendo este correo porque se le olvido su contraseña. La siguiente contraseña es su nueva contraseña temporal:" & vbCrLf & vbCrLf & RandomPassword & vbCrLf & vbCrLf & "Use esta contraseña para ingresar, luego cambiela a una de su gusto."
+                mail.Body = "Usted está recibiendo este correo porque se le olvidó su contraseña. La siguiente contraseña es su clave temporal:" & vbCrLf & vbCrLf & RandomPassword & vbCrLf & vbCrLf & "Use esta contraseña para ingresar, luego cambiela a una de su gusto."
 
                 'set the server
                 Dim smtp As New SmtpClient("smtp.gmail.com")
