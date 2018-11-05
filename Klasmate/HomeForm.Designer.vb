@@ -63,8 +63,11 @@ Partial Class HomeForm
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.CourseDataGridView = New System.Windows.Forms.DataGridView()
-        Me.nameSubject = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.color = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nameSubject = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CourseDays = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CourseStartTme = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CourseEndTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
@@ -496,11 +499,19 @@ Partial Class HomeForm
         'CourseDataGridView
         '
         Me.CourseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.CourseDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.nameSubject, Me.color})
-        Me.CourseDataGridView.Location = New System.Drawing.Point(39, 193)
+        Me.CourseDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.color, Me.nameSubject, Me.CourseDays, Me.CourseStartTme, Me.CourseEndTime})
+        Me.CourseDataGridView.Location = New System.Drawing.Point(3, 75)
         Me.CourseDataGridView.Name = "CourseDataGridView"
-        Me.CourseDataGridView.Size = New System.Drawing.Size(524, 171)
+        Me.CourseDataGridView.Size = New System.Drawing.Size(653, 261)
         Me.CourseDataGridView.TabIndex = 9
+        '
+        'color
+        '
+        Me.color.DataPropertyName = "color"
+        Me.color.FillWeight = 25.0!
+        Me.color.HeaderText = ""
+        Me.color.Name = "color"
+        Me.color.Width = 25
         '
         'nameSubject
         '
@@ -509,24 +520,36 @@ Partial Class HomeForm
         Me.nameSubject.HeaderText = "Nombre del Curso"
         Me.nameSubject.Name = "nameSubject"
         '
-        'color
+        'CourseDays
         '
-        Me.color.DataPropertyName = "color"
-        Me.color.HeaderText = "Color"
-        Me.color.Name = "color"
+        Me.CourseDays.DataPropertyName = "day"
+        Me.CourseDays.HeaderText = "Dias"
+        Me.CourseDays.Name = "CourseDays"
+        '
+        'CourseStartTme
+        '
+        Me.CourseStartTme.DataPropertyName = "startTime"
+        Me.CourseStartTme.HeaderText = "Hora Inicio"
+        Me.CourseStartTme.Name = "CourseStartTme"
+        '
+        'CourseEndTime
+        '
+        Me.CourseEndTime.DataPropertyName = "endTime"
+        Me.CourseEndTime.HeaderText = "Hora Fin"
+        Me.CourseEndTime.Name = "CourseEndTime"
         '
         'HomeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 468)
-        Me.Controls.Add(Me.CourseDataGridView)
-        Me.Controls.Add(Me.AddHomeWorkPanel)
-        Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.OptionsHomePanel)
         Me.Controls.Add(Me.AddHomePanel)
+        Me.Controls.Add(Me.AddHomeWorkPanel)
+        Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.ShapeContainer1)
+        Me.Controls.Add(Me.CourseDataGridView)
         Me.Name = "HomeForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "HomeForm"
@@ -584,6 +607,9 @@ Partial Class HomeForm
     Friend WithEvents LineShape7 As PowerPacks.LineShape
     Friend WithEvents RectangleShape3 As PowerPacks.RectangleShape
     Friend WithEvents CourseDataGridView As DataGridView
-    Friend WithEvents nameSubject As DataGridViewTextBoxColumn
     Friend WithEvents color As DataGridViewTextBoxColumn
+    Friend WithEvents nameSubject As DataGridViewTextBoxColumn
+    Friend WithEvents CourseDays As DataGridViewTextBoxColumn
+    Friend WithEvents CourseStartTme As DataGridViewTextBoxColumn
+    Friend WithEvents CourseEndTime As DataGridViewTextBoxColumn
 End Class

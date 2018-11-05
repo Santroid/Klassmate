@@ -16,14 +16,16 @@ Public Class HomeForm
 
 
         ' User.IdUser2
-        MsgBox("Second IdUser" & User.IdUser2)
+        'MsgBox("Second IdUser" & User.IdUser2)
         Try
             connection.Open()
-            Dim strSQL As String = "select nameSubject, color
-                                    from Subject s, KMProfile k, Period p
+            Dim strSQL As String = "select s.nameSubject, s.color, sc.day, sc.startTime, sc.endTime
+                                    from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod = s.idPeriod
-                                    and k.idStudent = 16;"
+                                    and k.idStudent =" & User.IdUser & "
+                                    and s.idSubject = a.idSubject
+                                    and a.idSchedule = sc.idSchedule;"
 
             'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
 
@@ -41,6 +43,22 @@ Public Class HomeForm
             MsgBox(ex.Message, MsgBoxStyle.Critical, "General Error")
         End Try
 
+
+        'le cambia los colores a las celdas de acuerdo a la base de datos
+        Dim dgv As DataGridView = CourseDataGridView
+
+        For i As Integer = 0 To dgv.Rows.Count - 2
+
+            Dim cellColor As String = dgv.Rows(i).Cells(1).Value
+            dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+        Next
+        For i As Integer = 0 To dgv.Rows.Count - 2
+
+            Dim cellColor As String = dgv.Rows(i).Cells(1).Value
+            dgv.Rows(i).Cells(1).Value = ""
+
+        Next
     End Sub
 
     Private Sub AddHomeButton_Click(sender As Object, e As EventArgs)

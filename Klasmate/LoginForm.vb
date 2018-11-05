@@ -94,8 +94,14 @@ Public Class LoginForm
 
             reader.Read()
 
+
+
             user.Id_User = reader.Item("idStudent")
-            MsgBox(user.Id_User)
+            User.IdUser = reader.Item("idStudent")
+            User.IdUser2 = reader.Item("idStudent")
+            MsgBox("This is user.Id_User " & user.Id_User)
+            MsgBox("This is  User.IdUser " & User.IdUser)
+            MsgBox("This is  User.IdUser2 " & User.IdUser)
             'Esconde la pantalla de Login y muestra la de Home
             Me.Hide()
             HomeForm.Show()
@@ -150,7 +156,9 @@ Public Class LoginForm
                 user.Id_User = reader.Item("idStudent")
                 User.IdUser = reader.Item("idStudent")
                 User.IdUser2 = reader.Item("idStudent")
-                MsgBox(user.Id_User)
+                MsgBox("This is user.Id_User " & user.Id_User)
+                MsgBox("This is  User.IdUser " & User.IdUser)
+                MsgBox("This is  User.IdUser2 " & User.IdUser)
                 Dim HomeForm As New HomeForm
                 'HomeForm.IdUser = user.Id_User
 

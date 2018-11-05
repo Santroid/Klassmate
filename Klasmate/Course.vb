@@ -6,6 +6,7 @@ Public Class Course
     Private Schedule As Schedule
     Private Color As String
     Private Period As Period
+    Public Shared IdCourse As Integer
 
     Public Property Id_Course As Integer
         Get
