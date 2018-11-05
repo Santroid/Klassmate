@@ -52,5 +52,4 @@ Public Class Course
         End Set
     End Property
 
-
 End Class

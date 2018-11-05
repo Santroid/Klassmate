@@ -1,6 +1,11 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class LoginForm
+
+    Dim command As SqlCommand
+    Dim selectQuery
+    Dim user As User
+
     Private Sub EmailLoginTextBox_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EmailLoginTextBox.Click
         If EmailLoginTextBox.Text = "Correo" Then
             EmailLoginTextBox.Text = ""
@@ -10,6 +15,7 @@ Public Class LoginForm
             PasswordLoginTextBox.UseSystemPasswordChar = False
         End If
     End Sub
+
     Private Sub EmailLoginTextBox_TextChanged(sender As Object, e As EventArgs) Handles EmailLoginTextBox.TextChanged
         If EmailLoginTextBox.Text = "Correo" Then
             EmailLoginTextBox.Font = New Font("Microsoft Sans Serif", 8.0, FontStyle.Italic)
@@ -21,8 +27,8 @@ Public Class LoginForm
                 EmailLoginTextBox.ForeColor = Color.Black
             End If
         End If
-
     End Sub
+
     Private Sub PasswordLoginTextBox_TextChanged(sender As Object, e As EventArgs) Handles PasswordLoginTextBox.TextChanged
         If PasswordLoginTextBox.Text = "Contraseña" Then
             PasswordLoginTextBox.Font = New Font("Microsoft Sans Serif", 8.0, FontStyle.Italic)
@@ -38,6 +44,7 @@ Public Class LoginForm
             PasswordLoginTextBox.UseSystemPasswordChar = True
         End If
     End Sub
+
     Private Sub PasswordLoginTextBox_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PasswordLoginTextBox.Click
         If PasswordLoginTextBox.Text = "Contraseña" Then
             PasswordLoginTextBox.Text = ""
@@ -53,130 +60,97 @@ Public Class LoginForm
         'Esconde la pantalla de Login y muestra la pantalla de Registrar
         Me.Hide()
         RegisterForm.Show()
-
     End Sub
 
     Private Sub ForgotPasswordLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ForgotPasswordLinkLabel.LinkClicked
         'Esconde la pantalla de Login y muestra la de Recuperar Contraseña
         Me.Hide()
         ForgotPasswordForm.Show()
-
     End Sub
 
     Private Sub LoginButton_Click(sender As Object, e As EventArgs) Handles LoginButton.Click
-        Dim user As User
         user = New User
-
         user.Name_User = EmailLoginTextBox.Text
         user.Password_User = PasswordLoginTextBox.Text
 
         Dim connection As SqlConnection
         Dim command As SqlCommand
 
-        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        'CON ESTE TRY-CATCH LOGRAMOS LA CONEXIÓN EVITANDO ESCRIBIR EL STRING MUCHAS VECES -- JEFFREY VALERIO
+        Try
+            Connect()
 
-        'aquí conectamos con la base de datos
-        connection = New SqlConnection(connectionString)
+            'declaramos la sentencia de INSERT para insertar a la BD
+            selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Name_User & "'" & " AND password='" & user.Password_User & "'"
+            command = New SqlCommand(selectQuery, ConnectionBD.Connection)
 
-        Dim selectQuery
+            'ejecuta el lector de la base de datos
+            Dim reader As SqlDataReader = command.ExecuteReader
 
-        'declaramos la sentencia de INSERT para insertar a la BD
-        selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Name_User & "'" & " AND password='" & user.Password_User & "'"
+            If reader.HasRows Then
+                reader.Read()
 
-        command = New SqlCommand(selectQuery, connection)
-
-        connection.Open()
-
-        'ejecuta el lector de la base de datos
-        Dim reader As SqlDataReader = command.ExecuteReader
-
-        If reader.HasRows Then
-
-            reader.Read()
-
-
-
-            user.Id_User = reader.Item("idStudent")
-            User.IdUser = reader.Item("idStudent")
-            User.IdUser2 = reader.Item("idStudent")
-            MsgBox("This is user.Id_User " & user.Id_User)
-            MsgBox("This is  User.IdUser " & User.IdUser)
-            MsgBox("This is  User.IdUser2 " & User.IdUser)
-            'Esconde la pantalla de Login y muestra la de Home
-            Me.Hide()
-            HomeForm.Show()
-            EmailLoginTextBox.Text = ""
-            PasswordLoginTextBox.Text = ""
-
-
-            connection.Dispose()
-            connection.Close()
-
-        Else
-
-            MsgBox("¡Correo o contraseña incorrecta!")
-
-        End If
+                user.Id_User = reader.Item("idStudent")
+                User.IdUser = reader.Item("idStudent")
+                User.IdUser2 = reader.Item("idStudent")
+                'MsgBox("This is user.Id_User " & user.Id_User)
+                'MsgBox("This is  User.IdUser " & User.IdUser)
+                'MsgBox("This is  User.IdUser2 " & User.IdUser)
+                'Esconde la pantalla de Login y muestra la de Home
+                Me.Hide()
+                HomeForm.Show()
+                EmailLoginTextBox.Text = ""
+                PasswordLoginTextBox.Text = ""
+            Else
+                MsgBox("¡Correo o contraseña incorrecta!")
+            End If
+        Catch ex As SqlException
+            MsgBox("No se logró conectar a la base de datos de KlassMate" & ex.Message)
+        Finally
+            Disconnect()
+        End Try
 
     End Sub
 
     'Hace lo mismo que el boton aceptar solo que es cuando se oprime enter en el teclado
     Private Sub PasswordLoginTextBox_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles PasswordLoginTextBox.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim user As User
-            user = New User
 
-            user.Email_User = EmailLoginTextBox.Text
-            user.Password_User = PasswordLoginTextBox.Text
+            Try
+                Connect()
 
-            Dim connection As SqlConnection
-            Dim command As SqlCommand
+                'declaramos la sentencia de INSERT para insertar a la BD
+                selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Name_User & "'" & " AND password='" & user.Password_User & "'"
+                command = New SqlCommand(selectQuery, ConnectionBD.Connection)
 
-            Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+                'ejecuta el lector de la base de datos
+                Dim reader As SqlDataReader = command.ExecuteReader
 
-            'aquí conectamos con la base de datos
-            connection = New SqlConnection(connectionString)
+                If reader.HasRows Then
+                    reader.Read()
 
-            Dim selectQuery
+                    user.Id_User = reader.Item("idStudent")
+                    User.IdUser = reader.Item("idStudent")
+                    User.IdUser2 = reader.Item("idStudent")
+                    'MsgBox("This is user.Id_User " & user.Id_User)
+                    'MsgBox("This is  User.IdUser " & User.IdUser)
+                    'MsgBox("This is  User.IdUser2 " & User.IdUser)
+                    'Esconde la pantalla de Login y muestra la de Home
+                    Me.Hide()
+                    HomeForm.Show()
+                    EmailLoginTextBox.Text = ""
+                    PasswordLoginTextBox.Text = ""
+                Else
+                    MsgBox("¡Correo o contraseña incorrecta!")
+                End If
+            Catch ex As SqlException
+                MsgBox("No se logró conectar a la base de datos de KlassMate" & ex.Message)
+            Finally
+                Disconnect()
+            End Try
 
-            'declaramos la sentencia de INSERT para insertar a la BD
-            selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Email_User & "'" & " AND password='" & user.Password_User & "'"
-
-            command = New SqlCommand(selectQuery, connection)
-
-            connection.Open()
-
-            'ejecuta el lector de la base de datos
-            Dim reader As SqlDataReader = command.ExecuteReader
-
-            If reader.HasRows Then
-
-                reader.Read()
-
-                user.Id_User = reader.Item("idStudent")
-                User.IdUser = reader.Item("idStudent")
-                User.IdUser2 = reader.Item("idStudent")
-                MsgBox("This is user.Id_User " & user.Id_User)
-                MsgBox("This is  User.IdUser " & User.IdUser)
-                MsgBox("This is  User.IdUser2 " & User.IdUser)
-                Dim HomeForm As New HomeForm
-                'HomeForm.IdUser = user.Id_User
-
-                'Esconde la pantalla de Login y muestra la de Home
-                Me.Hide()
-                HomeForm.Show()
-                EmailLoginTextBox.Text = ""
-                PasswordLoginTextBox.Text = ""
-
-
-                connection.Close()
-
-            Else
-                MsgBox("¡Correo o contraseña incorrecta!")
-            End If
         End If
     End Sub
-
 
     Private Sub CancelLoginButton_Click(sender As Object, e As EventArgs) Handles CancelLoginButton.Click
         Me.Close()

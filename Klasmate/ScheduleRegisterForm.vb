@@ -98,7 +98,6 @@ Public Class ScheduleRegisterForm
         course.Name_Course = NameCoursSRTextBox.Text
         course.Color_Course = ColorCoursSRComboBox.SelectedItem.ToString
 
-
         'aquí conectamos con la base de datos
         connection = New SqlConnection(connectionString)
 
