@@ -73,7 +73,7 @@ Public Class LoginForm
         user.Email_User = EmailLoginTextBox.Text
         user.Password_User = PasswordLoginTextBox.Text
 
-        Dim connection As SqlConnection
+
         Dim command As SqlCommand
 
         'CON ESTE TRY-CATCH LOGRAMOS LA CONEXIÓN EVITANDO ESCRIBIR EL STRING MUCHAS VECES -- JEFFREY VALERIO
@@ -99,8 +99,8 @@ Public Class LoginForm
                 'Esconde la pantalla de Login y muestra la de Home
                 Me.Hide()
                 HomeForm.Show()
-                EmailLoginTextBox.Text = ""
-                PasswordLoginTextBox.Text = ""
+                EmailLoginTextBox.Text = "Correo"
+                PasswordLoginTextBox.Text = "Contraseña"
             Else
                 MsgBox("¡Correo o contraseña incorrecta!")
             End If
@@ -115,12 +115,19 @@ Public Class LoginForm
     'Hace lo mismo que el boton aceptar solo que es cuando se oprime enter en el teclado
     Private Sub PasswordLoginTextBox_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles PasswordLoginTextBox.KeyDown
         If e.KeyCode = Keys.Enter Then
+            user = New User
+            user.Email_User = EmailLoginTextBox.Text
+            user.Password_User = PasswordLoginTextBox.Text
 
+
+            Dim command As SqlCommand
+
+            'CON ESTE TRY-CATCH LOGRAMOS LA CONEXIÓN EVITANDO ESCRIBIR EL STRING MUCHAS VECES -- JEFFREY VALERIO
             Try
                 Connect()
 
                 'declaramos la sentencia de INSERT para insertar a la BD
-                selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Name_User & "'" & " AND password='" & user.Password_User & "'"
+                selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Email_User & "'" & " AND password='" & user.Password_User & "'"
                 command = New SqlCommand(selectQuery, ConnectionBD.Connection)
 
                 'ejecuta el lector de la base de datos
@@ -132,14 +139,12 @@ Public Class LoginForm
                     user.Id_User = reader.Item("idStudent")
                     User.IdUser = reader.Item("idStudent")
                     User.IdUser2 = reader.Item("idStudent")
-                    'MsgBox("This is user.Id_User " & user.Id_User)
-                    'MsgBox("This is  User.IdUser " & User.IdUser)
-                    'MsgBox("This is  User.IdUser2 " & User.IdUser)
+
                     'Esconde la pantalla de Login y muestra la de Home
                     Me.Hide()
                     HomeForm.Show()
-                    EmailLoginTextBox.Text = ""
-                    PasswordLoginTextBox.Text = ""
+                    EmailLoginTextBox.Text = "Correo"
+                    PasswordLoginTextBox.Text = "Contraseña"
                 Else
                     MsgBox("¡Correo o contraseña incorrecta!")
                 End If
@@ -153,7 +158,8 @@ Public Class LoginForm
     End Sub
 
     Private Sub CancelLoginButton_Click(sender As Object, e As EventArgs) Handles CancelLoginButton.Click
-        Me.Close()
+        EmailLoginTextBox.Text = "Correo"
+        PasswordLoginTextBox.Text = "Contraseña"
     End Sub
 
     Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load

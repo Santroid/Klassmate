@@ -544,6 +544,7 @@ Partial Class HomeForm
         Me.CourseID.DataPropertyName = "idSubject"
         Me.CourseID.HeaderText = "IDCurso"
         Me.CourseID.Name = "CourseID"
+        Me.CourseID.Visible = False
         '
         'HomeForm
         '

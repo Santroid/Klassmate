@@ -56,8 +56,8 @@ Public Class HomeForm
         For i As Integer = 0 To dgv.Rows.Count - 2
 
             Dim cellColor As String = dgv.Rows(i).Cells(0).Value
-            MsgBox(cellColor)
-            dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
+            'MsgBox(cellColor)
+            dgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
 
         Next
         For i As Integer = 0 To dgv.Rows.Count - 2
