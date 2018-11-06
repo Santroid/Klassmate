@@ -106,7 +106,5 @@ Public Class ForgotPasswordForm
             MsgBox("No existe una cuenta con el correo ingresado. Por favor asegurese de este escribiendo bien el correo o intentar con un correo diferente")
         End If
 
-
-
     End Sub
 End Class

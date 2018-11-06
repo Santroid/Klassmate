@@ -17,8 +17,10 @@ Public Class HomeForm
 
         ' User.IdUser2
         'MsgBox("Second IdUser" & User.IdUser2)
+        '/// aca se agrega el color, nombre del curso, dia, horaInicio y horaFin al DataGridView para que el usuario lo vea en el HomeForm
         Try
             connection.Open()
+            'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
             Dim strSQL As String = "select s.nameSubject, s.color, sc.day, sc.startTime, sc.endTime
                                     from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
