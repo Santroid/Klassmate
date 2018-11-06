@@ -7,6 +7,7 @@ Public Class Course
     Private Color As String
     Private Period As Period
     Public Shared IdCourse As Integer
+    Public Shared IdCourse2 As Integer
 
     Public Property Id_Course As Integer
         Get

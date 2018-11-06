@@ -7,6 +7,10 @@ Public Class HomeForm
 
     Private Sub HomeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim connection As SqlConnection
+
+        'Dim user As User
+        'user = New User
+        'user.GetHashCode.
         'Dim command As SqlCommand
 
         Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
@@ -21,7 +25,7 @@ Public Class HomeForm
         Try
             connection.Open()
             'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
-            Dim strSQL As String = "select s.nameSubject, s.color, sc.day, sc.startTime, sc.endTime
+            Dim strSQL As String = "select s.color, s.nameSubject, sc.day, sc.startTime, sc.endTime, s.idSubject
                                     from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod = s.idPeriod
@@ -51,14 +55,15 @@ Public Class HomeForm
 
         For i As Integer = 0 To dgv.Rows.Count - 2
 
-            Dim cellColor As String = dgv.Rows(i).Cells(1).Value
+            Dim cellColor As String = dgv.Rows(i).Cells(0).Value
+            MsgBox(cellColor)
             dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
 
         Next
         For i As Integer = 0 To dgv.Rows.Count - 2
 
             Dim cellColor As String = dgv.Rows(i).Cells(1).Value
-            dgv.Rows(i).Cells(1).Value = ""
+            dgv.Rows(i).Cells(0).Value = ""
 
         Next
     End Sub
@@ -168,6 +173,7 @@ Public Class HomeForm
 
     Private Sub SaveHWAddButton_Click(sender As Object, e As EventArgs) Handles SaveHWAddButton.Click
 
+
         Dim connection As SqlConnection
         Dim command As SqlCommand
 
@@ -176,14 +182,32 @@ Public Class HomeForm
         'aquí conectamos con la base de datos
         connection = New SqlConnection(connectionString)
         'declaramos la sentencia de INSERT para insertar a la BD
-        insertQuery = "INSERT INTO Task(nameTask, duedate) values (@nameTask, @duedate)"
+        insertQuery = "INSERT INTO Task(nameTask, duedate, idSubject) values (@nameTask, @duedate, @idSubject)"
 
         command = New SqlCommand(insertQuery, connection)
+        MsgBox(CoursAddHWPanelComboBox.SelectedItem.ToString)
+        '// agarra el idSubject del curso escogido en el combobox
+        Dim dgv As DataGridView = CourseDataGridView
+        For i As Integer = 0 To dgv.Rows.Count - 2
+            If dgv.Rows(i).Cells(1).Value = CoursAddHWPanelComboBox.SelectedItem.ToString Then
+                Course.IdCourse2 = dgv.Rows(i).Cells(5).Value
+
+                i = dgv.Rows.Count - 2
+            End If
+
+
+            'MsgBox("iteracion " & i)
+            'dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+
+        Next
+
 
         With command 'le asigna los valores a los espacios en la tabla
 
             .Parameters.AddWithValue("@nameTask", NameHWAddPanelTextBox.Text)
             .Parameters.AddWithValue("@duedate", DdayAddPanelDateTimePicker.Value)
+            .Parameters.AddWithValue("@idSubject", Course.IdCourse2)
 
 
 
@@ -202,5 +226,20 @@ Public Class HomeForm
         AddHomeWorkPanel.Hide()
 
 
+    End Sub
+
+
+
+    Private Sub AddHomeWorkPanel_Enter(sender As Object, e As EventArgs) Handles AddHomeWorkPanel.Enter
+        Me.CenterToScreen()
+        Dim dgv As DataGridView = CourseDataGridView
+        For i As Integer = 0 To dgv.Rows.Count - 2
+
+            Dim Course As String = dgv.Rows(i).Cells(1).Value
+            'MsgBox("iteracion " & i)
+            'dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
+            CoursAddHWPanelComboBox.Items.Add(Course)
+
+        Next
     End Sub
 End Class

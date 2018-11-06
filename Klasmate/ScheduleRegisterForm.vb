@@ -79,8 +79,8 @@ Public Class ScheduleRegisterForm
 
             reader.Read()
 
-            'period.Id_Period = reader.Item("idPeriod")
-            'Period.IdPeriod = reader.Item("idPeriod")
+            period.Id_Period = reader.Item("idPeriod")
+            Period.IdPeriod = reader.Item("idPeriod")
             'MsgBox(period.Id_Period)
 
             connection.Close()

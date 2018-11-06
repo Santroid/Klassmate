@@ -68,6 +68,7 @@ Partial Class HomeForm
         Me.CourseDays = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseStartTme = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseEndTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CourseID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
@@ -335,7 +336,7 @@ Partial Class HomeForm
         Me.AddHomeWorkPanel.Controls.Add(Me.Label4)
         Me.AddHomeWorkPanel.Controls.Add(Me.Label3)
         Me.AddHomeWorkPanel.Controls.Add(Me.Label2)
-        Me.AddHomeWorkPanel.Location = New System.Drawing.Point(275, 126)
+        Me.AddHomeWorkPanel.Location = New System.Drawing.Point(499, 180)
         Me.AddHomeWorkPanel.Name = "AddHomeWorkPanel"
         Me.AddHomeWorkPanel.Size = New System.Drawing.Size(253, 254)
         Me.AddHomeWorkPanel.TabIndex = 7
@@ -414,7 +415,7 @@ Partial Class HomeForm
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
         Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape8, Me.LineShape7, Me.RectangleShape3, Me.LineShape3, Me.LineShape2, Me.LineShape1, Me.RectangleShape1})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(800, 468)
+        Me.ShapeContainer1.Size = New System.Drawing.Size(800, 641)
         Me.ShapeContainer1.TabIndex = 8
         Me.ShapeContainer1.TabStop = False
         '
@@ -499,7 +500,7 @@ Partial Class HomeForm
         'CourseDataGridView
         '
         Me.CourseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.CourseDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.color, Me.nameSubject, Me.CourseDays, Me.CourseStartTme, Me.CourseEndTime})
+        Me.CourseDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.color, Me.nameSubject, Me.CourseDays, Me.CourseStartTme, Me.CourseEndTime, Me.CourseID})
         Me.CourseDataGridView.Location = New System.Drawing.Point(3, 75)
         Me.CourseDataGridView.Name = "CourseDataGridView"
         Me.CourseDataGridView.Size = New System.Drawing.Size(653, 261)
@@ -538,18 +539,24 @@ Partial Class HomeForm
         Me.CourseEndTime.HeaderText = "Hora Fin"
         Me.CourseEndTime.Name = "CourseEndTime"
         '
+        'CourseID
+        '
+        Me.CourseID.DataPropertyName = "idSubject"
+        Me.CourseID.HeaderText = "IDCurso"
+        Me.CourseID.Name = "CourseID"
+        '
         'HomeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 468)
+        Me.ClientSize = New System.Drawing.Size(800, 641)
         Me.Controls.Add(Me.OptionsHomePanel)
         Me.Controls.Add(Me.AddHomePanel)
         Me.Controls.Add(Me.AddHomeWorkPanel)
         Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.ProgressBar1)
-        Me.Controls.Add(Me.ShapeContainer1)
         Me.Controls.Add(Me.CourseDataGridView)
+        Me.Controls.Add(Me.ShapeContainer1)
         Me.Name = "HomeForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "HomeForm"
@@ -612,4 +619,5 @@ Partial Class HomeForm
     Friend WithEvents CourseDays As DataGridViewTextBoxColumn
     Friend WithEvents CourseStartTme As DataGridViewTextBoxColumn
     Friend WithEvents CourseEndTime As DataGridViewTextBoxColumn
+    Friend WithEvents CourseID As DataGridViewTextBoxColumn
 End Class

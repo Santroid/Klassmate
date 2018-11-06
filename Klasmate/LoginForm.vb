@@ -70,7 +70,7 @@ Public Class LoginForm
 
     Private Sub LoginButton_Click(sender As Object, e As EventArgs) Handles LoginButton.Click
         user = New User
-        user.Name_User = EmailLoginTextBox.Text
+        user.Email_User = EmailLoginTextBox.Text
         user.Password_User = PasswordLoginTextBox.Text
 
         Dim connection As SqlConnection
@@ -81,7 +81,7 @@ Public Class LoginForm
             Connect()
 
             'declaramos la sentencia de INSERT para insertar a la BD
-            selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Name_User & "'" & " AND password='" & user.Password_User & "'"
+            selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Email_User & "'" & " AND password='" & user.Password_User & "'"
             command = New SqlCommand(selectQuery, ConnectionBD.Connection)
 
             'ejecuta el lector de la base de datos
