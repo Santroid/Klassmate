@@ -4,7 +4,7 @@ Public Class LoginForm
 
     Dim command As SqlCommand
     Dim selectQuery
-    Dim user As User
+    Public user As User
 
     Private Sub EmailLoginTextBox_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EmailLoginTextBox.Click
         If EmailLoginTextBox.Text = "Correo" Then

@@ -29,7 +29,7 @@ Public Class HomeForm
                                     from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod = s.idPeriod
-                                    and k.idStudent =" & User.IdUser & "
+                                    and k.idStudent =" & LoginForm.user.Id_User & "
                                     and s.idSubject = a.idSubject
                                     and a.idSchedule = sc.idSchedule;"
 
@@ -66,6 +66,8 @@ Public Class HomeForm
             dgv.Rows(i).Cells(0).Value = ""
 
         Next
+        dgv.ClearSelection()
+
     End Sub
 
     Private Sub AddHomeButton_Click(sender As Object, e As EventArgs)

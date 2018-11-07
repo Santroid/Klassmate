@@ -31,6 +31,7 @@ Partial Class ScheduleRegisterForm
         Me.EndPeriodRegisterDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.StartPeriodRegisterDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.DefaultDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.DTLabel = New System.Windows.Forms.Label()
         Me.DTDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.JILabel = New System.Windows.Forms.Label()
@@ -117,7 +118,6 @@ Partial Class ScheduleRegisterForm
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label39 = New System.Windows.Forms.Label()
         Me.SaveSRButton = New System.Windows.Forms.Button()
-        Me.DefaultDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -242,6 +242,18 @@ Partial Class ScheduleRegisterForm
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(795, 120)
         Me.Panel2.TabIndex = 1
+        '
+        'DefaultDateTimePicker
+        '
+        Me.DefaultDateTimePicker.Enabled = False
+        Me.DefaultDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time
+        Me.DefaultDateTimePicker.Location = New System.Drawing.Point(699, 8)
+        Me.DefaultDateTimePicker.Name = "DefaultDateTimePicker"
+        Me.DefaultDateTimePicker.ShowUpDown = True
+        Me.DefaultDateTimePicker.Size = New System.Drawing.Size(87, 20)
+        Me.DefaultDateTimePicker.TabIndex = 36
+        Me.DefaultDateTimePicker.Value = New Date(2018, 11, 4, 0, 0, 0, 0)
+        Me.DefaultDateTimePicker.Visible = False
         '
         'DTLabel
         '
@@ -1129,18 +1141,6 @@ Partial Class ScheduleRegisterForm
         Me.SaveSRButton.TabIndex = 24
         Me.SaveSRButton.Text = "Terminar"
         Me.SaveSRButton.UseVisualStyleBackColor = True
-        '
-        'DefaultDateTimePicker
-        '
-        Me.DefaultDateTimePicker.Enabled = False
-        Me.DefaultDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DefaultDateTimePicker.Location = New System.Drawing.Point(699, 8)
-        Me.DefaultDateTimePicker.Name = "DefaultDateTimePicker"
-        Me.DefaultDateTimePicker.ShowUpDown = True
-        Me.DefaultDateTimePicker.Size = New System.Drawing.Size(87, 20)
-        Me.DefaultDateTimePicker.TabIndex = 36
-        Me.DefaultDateTimePicker.Value = New Date(2018, 11, 4, 0, 0, 0, 0)
-        Me.DefaultDateTimePicker.Visible = False
         '
         'ScheduleRegisterForm
         '
