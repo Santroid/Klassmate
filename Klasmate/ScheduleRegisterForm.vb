@@ -393,6 +393,9 @@ Public Class ScheduleRegisterForm
             DTLabel.Enabled = False
         End If
         '\\\\\\\\\ TERMINA DE AGREGAR UN CURSO A LA BASE DE DATOS \\\\\\\\\\\\
+        'Cuando el boton de terminar en el Form de agregar horarios despues de registrarse, se esconde eso Form y se muestra la el form de inicio -Santi
+        Me.Hide()
+        HomeForm.Show()
     End Sub
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ TERMINA EL BOTON DE TERMINAR \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
