@@ -96,11 +96,16 @@ Public Class LoginForm
                 'MsgBox("This is user.Id_User " & user.Id_User)
                 'MsgBox("This is  User.IdUser " & User.IdUser)
                 'MsgBox("This is  User.IdUser2 " & User.IdUser)
-                'Esconde la pantalla de Login y muestra la de Home
-                Me.Hide()
+                If reader.Item("status") = False Then
+                    MsgBox("El usuario asociado a ese correo esta inactivo")
+
+                Else
+                    'Esconde la pantalla de Login y muestra la de Home
+                    Me.Hide()
                 HomeForm.Show()
                 EmailLoginTextBox.Text = "Correo"
-                PasswordLoginTextBox.Text = "Contraseña"
+                    PasswordLoginTextBox.Text = "Contraseña"
+                End If
             Else
                 MsgBox("¡Correo o contraseña incorrecta!")
             End If
@@ -139,12 +144,17 @@ Public Class LoginForm
                     user.Id_User = reader.Item("idStudent")
                     User.IdUser = reader.Item("idStudent")
                     User.IdUser2 = reader.Item("idStudent")
+                    If reader.Item("status") = False Then
+                        MsgBox("El usuario asociado a ese correo esta inactivo")
 
-                    'Esconde la pantalla de Login y muestra la de Home
-                    Me.Hide()
+                    Else
+
+                        'Esconde la pantalla de Login y muestra la de Home
+                        Me.Hide()
                     HomeForm.Show()
                     EmailLoginTextBox.Text = "Correo"
-                    PasswordLoginTextBox.Text = "Contraseña"
+                        PasswordLoginTextBox.Text = "Contraseña"
+                    End If
                 Else
                     MsgBox("¡Correo o contraseña incorrecta!")
                 End If
