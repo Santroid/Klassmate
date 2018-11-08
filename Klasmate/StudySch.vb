@@ -4,7 +4,8 @@ Public Class StudySch
     Private Id As Integer
     Private Name As String
     Private Schedule As Schedule
-    Private Color As Color
+    Private Color As String
+    Private Period As Period
 
     Public Property Id_StudySch As Integer
         Get
@@ -33,12 +34,22 @@ Public Class StudySch
         End Set
     End Property
 
-    Public Property Color_StudySch As Color
+    Public Property Color_StudySch As String
         Get
             Return Color
         End Get
-        Set(value As Color)
+        Set(value As String)
             Color = value
         End Set
     End Property
+
+    Public Property Period_User As Period
+        Get
+            Return Period
+        End Get
+        Set(value As Period)
+            Period = value
+        End Set
+    End Property
+
 End Class
