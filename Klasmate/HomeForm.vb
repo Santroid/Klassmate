@@ -29,7 +29,7 @@ Public Class HomeForm
                                     from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod = s.idPeriod
-                                    and k.idStudent =" & User.IdUser & "
+                                    and k.idStudent =" & LoginForm.user.Id_User & "
                                     and s.idSubject = a.idSubject
                                     and a.idSchedule = sc.idSchedule;"
 
@@ -66,6 +66,8 @@ Public Class HomeForm
             dgv.Rows(i).Cells(0).Value = ""
 
         Next
+        dgv.ClearSelection()
+
     End Sub
 
     Private Sub AddHomeButton_Click(sender As Object, e As EventArgs)
@@ -101,7 +103,40 @@ Public Class HomeForm
     Private Sub ProfileEditHomeLabel_Click(sender As Object, e As EventArgs) Handles ProfileEditHomeLabel.Click
         'cuando se oprime la opcion de editar perfil se despliega el panel de editar perfil
         EditProfilePanel.Show()
+
+        Dim connection As SqlConnection
+        Dim command As SqlCommand
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        Dim selectQuery
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+
+        Connect()
+
+        'declaramos la sentencia de INSERT para insertar a la BD
+        selectQuery = "SELECT * FROM KMProfile WHERE idStudent= " & LoginForm.user.Id_User & " "
+        command = New SqlCommand(selectQuery, ConnectionBD.Connection)
+
+        'ejecuta el lector de la base de datos
+        Dim reader As SqlDataReader = Command.ExecuteReader
+
+        If reader.HasRows Then
+            reader.Read()
+            Me.NameEditProfileTextBox.Text = reader.Item("name").ToString
+            Me.EmailEditProfileTextBox.Text = reader.Item("email").ToString
+            Me.PasswordEditProfileTextBox.Text = reader.Item("password").ToString
+
+
+        End If
+        Disconnect()
+
+
     End Sub
+
+    Private Function selectQuery() As String
+        Throw New NotImplementedException()
+    End Function
 
     Private Sub CancelEditProfileButton_Click(sender As Object, e As EventArgs) Handles CancelEditProfileButton.Click
         'cuando se oprime el boton de cancelar en el panel de editar perfil, se esconde el panel de editar perfil
@@ -242,4 +277,63 @@ Public Class HomeForm
 
         Next
     End Sub
+
+    Private Sub SaveEditProfileButton_Click(sender As Object, e As EventArgs) Handles SaveEditProfileButton.Click
+
+        Dim connection As SqlConnection
+        Dim command As New SqlCommand
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+
+        Dim updateQuery As String
+        updateQuery = "UPDATE KMProfile SET name=@name, email=@email, password=@password WHERE idStudent= " & LoginForm.user.Id_User & " "
+        command = New SqlCommand(updateQuery, connection)
+
+        With command
+            .Parameters.AddWithValue("@name", NameEditProfileTextBox.Text)
+            .Parameters.AddWithValue("@email", EmailEditProfileTextBox.Text)
+            .Parameters.AddWithValue("@password", PasswordEditProfileTextBox.Text)
+        End With
+
+
+        connection.Open()
+        command.ExecuteNonQuery()
+        command.Dispose()
+        connection.Close()
+
+        MsgBox("Cambios realizados con exito")
+
+    End Sub
+
+    Private Sub DeleteProfileButton_Click(sender As Object, e As EventArgs) Handles DeleteProfileButton.Click
+
+        Dim connection As SqlConnection
+        Dim command As New SqlCommand
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+
+        Dim updateQuery As String
+        updateQuery = "UPDATE KMProfile SET status=@status WHERE idStudent= " & LoginForm.user.Id_User & " "
+        command = New SqlCommand(updateQuery, connection)
+
+        With command
+            .Parameters.AddWithValue("@status", False)
+        End With
+
+
+        connection.Open()
+        command.ExecuteNonQuery()
+        command.Dispose()
+        connection.Close()
+        MsgBox("Perfil borrado")
+
+        Me.Close()
+        LoginForm.Show()
+
+    End Sub
+
 End Class
