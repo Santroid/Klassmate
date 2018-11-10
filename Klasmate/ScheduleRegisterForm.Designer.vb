@@ -289,7 +289,7 @@ Partial Class ScheduleRegisterForm
         '
         Me.DTLabel.AutoSize = True
         Me.DTLabel.Enabled = False
-        Me.DTLabel.Location = New System.Drawing.Point(665, 73)
+        Me.DTLabel.Location = New System.Drawing.Point(669, 69)
         Me.DTLabel.Name = "DTLabel"
         Me.DTLabel.Size = New System.Drawing.Size(28, 13)
         Me.DTLabel.TabIndex = 35
@@ -436,7 +436,7 @@ Partial Class ScheduleRegisterForm
         '
         Me.DILabel.AutoSize = True
         Me.DILabel.Enabled = False
-        Me.DILabel.Location = New System.Drawing.Point(665, 50)
+        Me.DILabel.Location = New System.Drawing.Point(669, 44)
         Me.DILabel.Name = "DILabel"
         Me.DILabel.Size = New System.Drawing.Size(24, 13)
         Me.DILabel.TabIndex = 21
@@ -727,7 +727,7 @@ Partial Class ScheduleRegisterForm
         '
         Me.WDTLabel.AutoSize = True
         Me.WDTLabel.Enabled = False
-        Me.WDTLabel.Location = New System.Drawing.Point(665, 74)
+        Me.WDTLabel.Location = New System.Drawing.Point(669, 73)
         Me.WDTLabel.Name = "WDTLabel"
         Me.WDTLabel.Size = New System.Drawing.Size(28, 13)
         Me.WDTLabel.TabIndex = 64
@@ -874,7 +874,7 @@ Partial Class ScheduleRegisterForm
         '
         Me.WDILabel.AutoSize = True
         Me.WDILabel.Enabled = False
-        Me.WDILabel.Location = New System.Drawing.Point(665, 51)
+        Me.WDILabel.Location = New System.Drawing.Point(673, 49)
         Me.WDILabel.Name = "WDILabel"
         Me.WDILabel.Size = New System.Drawing.Size(24, 13)
         Me.WDILabel.TabIndex = 50
@@ -1164,7 +1164,7 @@ Partial Class ScheduleRegisterForm
         '
         Me.SDTLabel.AutoSize = True
         Me.SDTLabel.Enabled = False
-        Me.SDTLabel.Location = New System.Drawing.Point(665, 74)
+        Me.SDTLabel.Location = New System.Drawing.Point(669, 73)
         Me.SDTLabel.Name = "SDTLabel"
         Me.SDTLabel.Size = New System.Drawing.Size(28, 13)
         Me.SDTLabel.TabIndex = 64
@@ -1311,7 +1311,7 @@ Partial Class ScheduleRegisterForm
         '
         Me.SDILabel.AutoSize = True
         Me.SDILabel.Enabled = False
-        Me.SDILabel.Location = New System.Drawing.Point(665, 51)
+        Me.SDILabel.Location = New System.Drawing.Point(673, 51)
         Me.SDILabel.Name = "SDILabel"
         Me.SDILabel.Size = New System.Drawing.Size(24, 13)
         Me.SDILabel.TabIndex = 50

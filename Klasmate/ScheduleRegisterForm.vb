@@ -414,31 +414,109 @@ Public Class ScheduleRegisterForm
 
         Connect()
 
-            'Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        'Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
 
-            'aquí conectamos con la base de datos
-            connection = New SqlConnection(connectionString)
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
 
-            'abriendo la conexión
+        'abriendo la conexión
 
-            'Dim insertQuery
-            ' Dim selectQuery
-            ' Dim reader As SqlDataReader '= command.ExecuteReader
+        'Dim insertQuery
+        ' Dim selectQuery
+        ' Dim reader As SqlDataReader '= command.ExecuteReader
 
 
 
-            'declaramos la sentencia de INSERT para insertar a la BD
-            insertQuery = "INSERT INTO Activity(name, color, idStudent) values (@name, @color, @idStudent)"
+        'declaramos la sentencia de INSERT para insertar a la BD
+        insertQuery = "INSERT INTO Activity(name, color, idStudent) values (@name, @color, @idStudent)"
 
-            command = New SqlCommand(insertQuery, ConnectionBD.Connection)
+        command = New SqlCommand(insertQuery, ConnectionBD.Connection)
+        connection.Open()
+
+        ' MsgBox("This is the global variable after the if " & Period.IdPeriod)
+        With command 'le asigna los valores a los espacios en la tabla
+            '.Parameters.AddWithValue("@idStudent", User.IdUser)
+            .Parameters.AddWithValue("@name", Work.Name_WorkSch)
+            .Parameters.AddWithValue("@color", Work.Color_Work.ToString)
+            .Parameters.AddWithValue("@idStudent", User.IdUser)
+        End With
+
+        'ejecutamos la consulta
+        command.ExecuteNonQuery()
+
+        connection.Close()
+
+        '// SE AGREGAN LOS DIAS Y HORAS DEL HORARIO DE TRABAJO A LA TABLA "SHEDULE" Y SE RELACIONA CON "ACTIVITY HAS SCHEDULE" ///////
+
+        'declaramos la sentencia de INSERT para insertar a la BD
+        selectQuery = "SELECT TOP 1 * FROM Activity ORDER BY idActivity DESC"
+
+        command = New SqlCommand(selectQuery, ConnectionBD.Connection)
+
+        connection.Open()
+
+        'ejecuta el lector de la base de datos
+        reader = command.ExecuteReader
+
+        reader.Read()
+
+        Work.Id_WorkSch = reader.Item("idActivity")
+        MsgBox("global variable idActivity" & Work.Id_WorkSch)
+
+        connection.Close()
+
+        '// SE AGREGAN LOS DIAS Y HORAS DEL HORARIO DE TRABAJO A LA TABLA "SHEDULE" Y SE RELACIONA CON "ACTIVITY HAS SCHEDULE" ///////
+        For Each Index In DayWorkSRCheckedListBox.CheckedIndices
+
+            If Index = 0 Then
+                sch.Day_Schedule = "Lunes"
+                sch.TimeStart_Schedule = WLIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WLTDateTimePicker.Value
+                'si Martes esta marcado
+            ElseIf Index = 1 Then
+                sch.Day_Schedule = "Martes"
+                sch.TimeStart_Schedule = WKIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WKTDateTimePicker.Value
+                'si miercoles esta marcado
+            ElseIf Index = 2 Then
+                sch.Day_Schedule = "Miercoles"
+                sch.TimeStart_Schedule = WMIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WMTDateTimePicker.Value
+                'si jueves esta marcado
+            ElseIf Index = 3 Then
+                sch.Day_Schedule = "Jueves"
+                sch.TimeStart_Schedule = WJIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WJTDateTimePicker.Value
+                'si viernes esta marcado
+            ElseIf Index = 4 Then
+                sch.Day_Schedule = "Viernes"
+                sch.TimeStart_Schedule = WVIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WVTDateTimePicker.Value
+                'si sabado esta marcado
+            ElseIf Index = 5 Then
+                sch.Day_Schedule = "Sabado"
+                sch.TimeStart_Schedule = WSIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WSTDateTimePicker.Value
+                'si domingo esta marcado
+            ElseIf Index = 6 Then
+                sch.Day_Schedule = "Domingo"
+                sch.TimeStart_Schedule = WDIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WDTDateTimePicker.Value
+            End If
+
+            insertQuery = "INSERT INTO Schedule(day, startTime, endTime) values (@day, @startTime, @endTime)"
+
+            command = New SqlCommand(insertQuery, connection)
             connection.Open()
 
-            ' MsgBox("This is the global variable after the if " & Period.IdPeriod)
+            'MsgBox("This is the global variable after the if " & Period.IdPeriod)
             With command 'le asigna los valores a los espacios en la tabla
+
                 '.Parameters.AddWithValue("@idStudent", User.IdUser)
-                .Parameters.AddWithValue("@name", Work.Name_WorkSch)
-                .Parameters.AddWithValue("@color", Work.Color_Work.ToString)
-                .Parameters.AddWithValue("@idStudent", User.IdUser)
+                .Parameters.AddWithValue("@day", sch.Day_Schedule)
+                .Parameters.AddWithValue("@startTime", sch.TimeStart_Schedule.TimeOfDay)
+                .Parameters.AddWithValue("@endTime", sch.TimeEnd_Schedule.TimeOfDay)
+
             End With
 
             'ejecutamos la consulta
@@ -446,12 +524,10 @@ Public Class ScheduleRegisterForm
 
             connection.Close()
 
-            '// SE AGREGAN LOS DIAS Y HORAS DEL HORARIO DE TRABAJO A LA TABLA "SHEDULE" Y SE RELACIONA CON "ACTIVITY HAS SCHEDULE" ///////
-
             'declaramos la sentencia de INSERT para insertar a la BD
-            selectQuery = "SELECT TOP 1 * FROM Activity ORDER BY idActivity DESC"
+            selectQuery = "SELECT TOP 1 * FROM Schedule ORDER BY idSchedule DESC"
 
-            command = New SqlCommand(selectQuery, ConnectionBD.Connection)
+            command = New SqlCommand(selectQuery, connection)
 
             connection.Open()
 
@@ -460,232 +536,156 @@ Public Class ScheduleRegisterForm
 
             reader.Read()
 
-            Work.Id_WorkSch = reader.Item("idActivity")
-            MsgBox("global variable idActivity" & Work.Id_WorkSch)
+            Dim IdSch As Integer = reader.Item("idSchedule")
 
             connection.Close()
 
-            '// SE AGREGAN LOS DIAS Y HORAS DEL HORARIO DE TRABAJO A LA TABLA "SHEDULE" Y SE RELACIONA CON "ACTIVITY HAS SCHEDULE" ///////
-            For Each Index In DayWorkSRCheckedListBox.CheckedIndices
+            '// se relaciona con ACTIVITY HAS SCHEDULE
+            insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idActivity) values (@idSchedule, @idActivity)"
 
-                If Index = 0 Then
-                    sch.Day_Schedule = "Lunes"
-                    sch.TimeStart_Schedule = WLIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WLTDateTimePicker.Value
-                    'si Martes esta marcado
-                ElseIf Index = 1 Then
-                    sch.Day_Schedule = "Martes"
-                    sch.TimeStart_Schedule = WKIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WKTDateTimePicker.Value
-                    'si miercoles esta marcado
-                ElseIf Index = 2 Then
-                    sch.Day_Schedule = "Miercoles"
-                    sch.TimeStart_Schedule = WMIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WMTDateTimePicker.Value
-                    'si jueves esta marcado
-                ElseIf Index = 3 Then
-                    sch.Day_Schedule = "Jueves"
-                    sch.TimeStart_Schedule = WJIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WJTDateTimePicker.Value
-                    'si viernes esta marcado
-                ElseIf Index = 4 Then
-                    sch.Day_Schedule = "Viernes"
-                    sch.TimeStart_Schedule = WVIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WVTDateTimePicker.Value
-                    'si sabado esta marcado
-                ElseIf Index = 5 Then
-                    sch.Day_Schedule = "Sabado"
-                    sch.TimeStart_Schedule = WSIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WSTDateTimePicker.Value
-                    'si domingo esta marcado
-                ElseIf Index = 6 Then
-                    sch.Day_Schedule = "Domingo"
-                    sch.TimeStart_Schedule = WDIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WDTDateTimePicker.Value
-                End If
-
-                insertQuery = "INSERT INTO Schedule(day, startTime, endTime) values (@day, @startTime, @endTime)"
-
-                command = New SqlCommand(insertQuery, connection)
-                connection.Open()
-
-                'MsgBox("This is the global variable after the if " & Period.IdPeriod)
-                With command 'le asigna los valores a los espacios en la tabla
-
-                    '.Parameters.AddWithValue("@idStudent", User.IdUser)
-                    .Parameters.AddWithValue("@day", sch.Day_Schedule)
-                    .Parameters.AddWithValue("@startTime", sch.TimeStart_Schedule.TimeOfDay)
-                    .Parameters.AddWithValue("@endTime", sch.TimeEnd_Schedule.TimeOfDay)
-
-                End With
-
-                'ejecutamos la consulta
-                command.ExecuteNonQuery()
-
-                connection.Close()
-
-                'declaramos la sentencia de INSERT para insertar a la BD
-                selectQuery = "SELECT TOP 1 * FROM Schedule ORDER BY idSchedule DESC"
-
-                command = New SqlCommand(selectQuery, connection)
-
-                connection.Open()
-
-                'ejecuta el lector de la base de datos
-                reader = command.ExecuteReader
-
-                reader.Read()
-
-                Dim IdSch As Integer = reader.Item("idSchedule")
-
-                connection.Close()
-
-                '// se relaciona con ACTIVITY HAS SCHEDULE
-                insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idActivity) values (@idSchedule, @idActivity)"
-
-                command = New SqlCommand(insertQuery, connection)
-                connection.Open()
+            command = New SqlCommand(insertQuery, connection)
+            connection.Open()
 
 
-                With command 'le asigna los valores a los espacios en la tabla
-                    .Parameters.AddWithValue("@idSchedule", IdSch)
-                    .Parameters.AddWithValue("@idActivity", Work.Id_WorkSch)
-                End With
+            With command 'le asigna los valores a los espacios en la tabla
+                .Parameters.AddWithValue("@idSchedule", IdSch)
+                .Parameters.AddWithValue("@idActivity", Work.Id_WorkSch)
+            End With
 
-                'ejecutamos la consulta
-                command.ExecuteNonQuery()
+            'ejecutamos la consulta
+            command.ExecuteNonQuery()
 
-                connection.Close()
+            connection.Close()
 
-            Next
+        Next
 
 
-            NameWorkSRTextBox.Clear()
-            ColorWorkSRComboBox.SelectedIndex = -1
-            ColorWorkSRComboBox.BackColor = Color.AliceBlue
-            For index = 0 To DayWorkSRCheckedListBox.Items.Count - 1
-                DayWorkSRCheckedListBox.SetItemChecked(index, False)
-                DayWorkSRCheckedListBox.SetItemCheckState(index, CheckState.Unchecked)
-            Next
+        NameWorkSRTextBox.Clear()
+        ColorWorkSRComboBox.SelectedIndex = -1
+        ColorWorkSRComboBox.BackColor = Color.AliceBlue
+        For index = 0 To DayWorkSRCheckedListBox.Items.Count - 1
+            DayWorkSRCheckedListBox.SetItemChecked(index, False)
+            DayWorkSRCheckedListBox.SetItemCheckState(index, CheckState.Unchecked)
+        Next
 
-            '//LUNES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
+        '//LUNES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
 
-                ' MsgBox("Monday has been checked")
-                WLIDateTimePicker.Enabled = True
-                WLTDateTimePicker.Enabled = True
-                WLILabel.Enabled = True
-                WLTLabel.Enabled = True
-            Else
-                WLIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WLTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WLIDateTimePicker.Enabled = False
-                WLTDateTimePicker.Enabled = False
-                WLILabel.Enabled = False
-                WLTLabel.Enabled = False
-            End If
+            ' MsgBox("Monday has been checked")
+            WLIDateTimePicker.Enabled = True
+            WLTDateTimePicker.Enabled = True
+            WLILabel.Enabled = True
+            WLTLabel.Enabled = True
+        Else
+            WLIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WLTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WLIDateTimePicker.Enabled = False
+            WLTDateTimePicker.Enabled = False
+            WLILabel.Enabled = False
+            WLTLabel.Enabled = False
+        End If
 
-            '//MARTES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
+        '//MARTES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
 
-                ' MsgBox("Monday has been checked")
-                WKIDateTimePicker.Enabled = True
-                WKTDateTimePicker.Enabled = True
-                WKILabel.Enabled = True
-                WKTLabel.Enabled = True
-            Else
-                WKIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WKTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WKIDateTimePicker.Enabled = False
-                WKTDateTimePicker.Enabled = False
-                WKILabel.Enabled = False
-                WKTLabel.Enabled = False
-            End If
+            ' MsgBox("Monday has been checked")
+            WKIDateTimePicker.Enabled = True
+            WKTDateTimePicker.Enabled = True
+            WKILabel.Enabled = True
+            WKTLabel.Enabled = True
+        Else
+            WKIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WKTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WKIDateTimePicker.Enabled = False
+            WKTDateTimePicker.Enabled = False
+            WKILabel.Enabled = False
+            WKTLabel.Enabled = False
+        End If
 
-            '//MIERCOLES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
+        '//MIERCOLES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
 
-                ' MsgBox("Monday has been checked")
-                WMIDateTimePicker.Enabled = True
-                WMTDateTimePicker.Enabled = True
-                WMILabel.Enabled = True
-                WMTLabel.Enabled = True
-            Else
-                WMIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WMTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WMIDateTimePicker.Enabled = False
-                WMTDateTimePicker.Enabled = False
-                WMILabel.Enabled = False
-                WMTLabel.Enabled = False
-            End If
+            ' MsgBox("Monday has been checked")
+            WMIDateTimePicker.Enabled = True
+            WMTDateTimePicker.Enabled = True
+            WMILabel.Enabled = True
+            WMTLabel.Enabled = True
+        Else
+            WMIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WMTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WMIDateTimePicker.Enabled = False
+            WMTDateTimePicker.Enabled = False
+            WMILabel.Enabled = False
+            WMTLabel.Enabled = False
+        End If
 
-            '//JUEVES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
+        '//JUEVES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
 
-                ' MsgBox("Monday has been checked")
-                WJIDateTimePicker.Enabled = True
-                WJTDateTimePicker.Enabled = True
-                WJILabel.Enabled = True
-                WJTLabel.Enabled = True
-            Else
-                WJIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WJTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WJIDateTimePicker.Enabled = False
-                WJTDateTimePicker.Enabled = False
-                WJILabel.Enabled = False
-                WJTLabel.Enabled = False
-            End If
+            ' MsgBox("Monday has been checked")
+            WJIDateTimePicker.Enabled = True
+            WJTDateTimePicker.Enabled = True
+            WJILabel.Enabled = True
+            WJTLabel.Enabled = True
+        Else
+            WJIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WJTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WJIDateTimePicker.Enabled = False
+            WJTDateTimePicker.Enabled = False
+            WJILabel.Enabled = False
+            WJTLabel.Enabled = False
+        End If
 
-            '//VIERNES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
+        '//VIERNES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
 
-                '  MsgBox("Monday has been checked")
-                WVIDateTimePicker.Enabled = True
-                WVTDateTimePicker.Enabled = True
-                WVILabel.Enabled = True
-                WVTLabel.Enabled = True
-            Else
-                WVIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WVTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WVIDateTimePicker.Enabled = False
-                WVTDateTimePicker.Enabled = False
-                WVILabel.Enabled = False
-                WVTLabel.Enabled = False
-            End If
+            '  MsgBox("Monday has been checked")
+            WVIDateTimePicker.Enabled = True
+            WVTDateTimePicker.Enabled = True
+            WVILabel.Enabled = True
+            WVTLabel.Enabled = True
+        Else
+            WVIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WVTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WVIDateTimePicker.Enabled = False
+            WVTDateTimePicker.Enabled = False
+            WVILabel.Enabled = False
+            WVTLabel.Enabled = False
+        End If
 
-            '//SABADO//
-            If DayWorkSRCheckedListBox.GetItemCheckState(5) = CheckState.Checked Then
+        '//SABADO//
+        If DayWorkSRCheckedListBox.GetItemCheckState(5) = CheckState.Checked Then
 
-                ' MsgBox("Monday has been checked")
-                WSIDateTimePicker.Enabled = True
-                WSTDateTimePicker.Enabled = True
-                SILabel.Enabled = True
-                STLabel.Enabled = True
-            Else
-                WSIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WSTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WSIDateTimePicker.Enabled = False
-                WSTDateTimePicker.Enabled = False
-                WSILabel.Enabled = False
-                WSTLabel.Enabled = False
-            End If
+            ' MsgBox("Monday has been checked")
+            WSIDateTimePicker.Enabled = True
+            WSTDateTimePicker.Enabled = True
+            SILabel.Enabled = True
+            STLabel.Enabled = True
+        Else
+            WSIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WSTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WSIDateTimePicker.Enabled = False
+            WSTDateTimePicker.Enabled = False
+            WSILabel.Enabled = False
+            WSTLabel.Enabled = False
+        End If
 
-            '//DOMINGO//
-            If DayWorkSRCheckedListBox.GetItemCheckState(6) = CheckState.Checked Then
+        '//DOMINGO//
+        If DayWorkSRCheckedListBox.GetItemCheckState(6) = CheckState.Checked Then
 
-                ' MsgBox("Monday has been checked")
-                WDIDateTimePicker.Enabled = True
-                WDTDateTimePicker.Enabled = True
-                WDILabel.Enabled = True
-                WDTLabel.Enabled = True
-            Else
-                WDIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WDTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WDIDateTimePicker.Enabled = False
-                WDTDateTimePicker.Enabled = False
-                WDILabel.Enabled = False
-                WDTLabel.Enabled = False
-            End If
+            ' MsgBox("Monday has been checked")
+            WDIDateTimePicker.Enabled = True
+            WDTDateTimePicker.Enabled = True
+            WDILabel.Enabled = True
+            WDTLabel.Enabled = True
+        Else
+            WDIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WDTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WDIDateTimePicker.Enabled = False
+            WDTDateTimePicker.Enabled = False
+            WDILabel.Enabled = False
+            WDTLabel.Enabled = False
+        End If
 
         '\\\\\\\\\ TERMINA DE AGREGAR UN HORARIO DE TRABAJO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO \\\\\\\\\\\\
 
@@ -1472,93 +1472,47 @@ Public Class ScheduleRegisterForm
 
         Connect()
 
-            Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
 
-            'aquí conectamos con la base de datos
-            connection = New SqlConnection(connectionString)
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
 
-            'abriendo la conexión
+        'abriendo la conexión
 
-            Dim insertQuery
-            Dim selectQuery
-            Dim reader As SqlDataReader '= command.ExecuteReader
+        Dim insertQuery
+        Dim selectQuery
+        Dim reader As SqlDataReader '= command.ExecuteReader
 
-            MsgBox("This is before it added the periodo with the plus" & Period.PeriodCounter)
-            'el if es para que no se agregue el mismo periodo mas de una vez a la base de datos
-            If Period.PeriodCounter = 0 Then
-                connection.Open()
-                'declaramos la sentencia de INSERT para insertar a la BD
-                insertQuery = "INSERT INTO Period(namePeriod, startDate, endDate, idStudent) values (@namePeriod, @startDate, @endDate, @idStudent)"
-
-                command = New SqlCommand(insertQuery, connection)
-
-                With command 'le asigna los valores a los espacios en la tabla
-
-                    .Parameters.AddWithValue("@idStudent", User.IdUser)
-                    .Parameters.AddWithValue("@namePeriod", period.Name_Period)
-                    .Parameters.AddWithValue("@startDate", period.StartDate_Period)
-                    .Parameters.AddWithValue("@endDate", period.EndDate_Period)
-
-                End With
-
-
-                'ejecutamos la consulta
-                command.ExecuteNonQuery()
-
-                connection.Close()
-
-                ' Dim selectQuery
-
-                'declaramos la sentencia de INSERT para insertar a la BD
-                selectQuery = "SELECT TOP 1 * FROM Period ORDER BY idPeriod DESC"
-
-                command = New SqlCommand(selectQuery, connection)
-
-                connection.Open()
-
-                'ejecuta el lector de la base de datos
-                reader = command.ExecuteReader
-
-                reader.Read()
-
-                period.Id_Period = reader.Item("idPeriod")
-                Period.IdPeriod = reader.Item("idPeriod")
-                'MsgBox(period.Id_Period)
-                ' MsgBox("This is the global variable " & Period.IdPeriod)
-
-                connection.Close()
-
-                'Un contador para saber si ya se registro un periodo lectivo
-                Period.PeriodCounter = 1
-                ' MsgBox("This is after it added the periodo with the plus" & Period.PeriodCounter)
-                '\\\\\\\\\\\\\\\\\\\ TERMINA DE AGREGAR EL PERIODO LECTIVO A LA BASE DE DATOS \\\\\\\\\\\\\\\\\\\\\\\\\\
-            End If
-
-            'declaramos la sentencia de INSERT para insertar a la BD
-            insertQuery = "INSERT INTO Activity (name, color, idStudent) values (@name, @color, @idStudent)"
-
-            command = New SqlCommand(insertQuery, ConnectionBD.Connection)
+        MsgBox("This is before it added the periodo with the plus" & Period.PeriodCounter)
+        'el if es para que no se agregue el mismo periodo mas de una vez a la base de datos
+        If Period.PeriodCounter = 0 Then
             connection.Open()
+            'declaramos la sentencia de INSERT para insertar a la BD
+            insertQuery = "INSERT INTO Period(namePeriod, startDate, endDate, idStudent) values (@namePeriod, @startDate, @endDate, @idStudent)"
 
-            ' MsgBox("This is the global variable after the if " & Period.IdPeriod)
+            command = New SqlCommand(insertQuery, connection)
+
             With command 'le asigna los valores a los espacios en la tabla
-                '.Parameters.AddWithValue("@idStudent", User.IdUser)
-                .Parameters.AddWithValue("@name", Work.Name_WorkSch)
-                .Parameters.AddWithValue("@color", Work.Color_Work.ToString)
+
                 .Parameters.AddWithValue("@idStudent", User.IdUser)
+                .Parameters.AddWithValue("@namePeriod", period.Name_Period)
+                .Parameters.AddWithValue("@startDate", period.StartDate_Period)
+                .Parameters.AddWithValue("@endDate", period.EndDate_Period)
+
             End With
+
 
             'ejecutamos la consulta
             command.ExecuteNonQuery()
 
             connection.Close()
 
-            '// SE AGREGAN LOS DIAS Y HORAS DEL CURSO A LA TABLA "SHEDULE" Y SE RELACIONA CON "ACTIVITY HAS SCHEDULE" ///////
+            ' Dim selectQuery
 
             'declaramos la sentencia de INSERT para insertar a la BD
-            selectQuery = "SELECT TOP 1 * FROM Activity ORDER BY idActivity DESC"
+            selectQuery = "SELECT TOP 1 * FROM Period ORDER BY idPeriod DESC"
 
-            command = New SqlCommand(selectQuery, ConnectionBD.Connection)
+            command = New SqlCommand(selectQuery, connection)
 
             connection.Open()
 
@@ -1567,232 +1521,278 @@ Public Class ScheduleRegisterForm
 
             reader.Read()
 
-        Work.Id_WorkSch = reader.Item("idActivity")
-        MsgBox("global variable idActivity" & Work.Id_WorkSch)
+            period.Id_Period = reader.Item("idPeriod")
+            Period.IdPeriod = reader.Item("idPeriod")
+            'MsgBox(period.Id_Period)
+            ' MsgBox("This is the global variable " & Period.IdPeriod)
 
             connection.Close()
 
-            '// SE AGREGAN LOS DIAS Y HORAS DEL CURSO A LA TABLA "SHEDULE" Y SE RELACIONA CON "ACTIVITY HAS SCHEDULE" ///////
-            For Each Index In DayWorkSRCheckedListBox.CheckedIndices
+            'Un contador para saber si ya se registro un periodo lectivo
+            Period.PeriodCounter = 1
+            ' MsgBox("This is after it added the periodo with the plus" & Period.PeriodCounter)
+            '\\\\\\\\\\\\\\\\\\\ TERMINA DE AGREGAR EL PERIODO LECTIVO A LA BASE DE DATOS \\\\\\\\\\\\\\\\\\\\\\\\\\
+        End If
 
-                If Index = 0 Then
-                    sch.Day_Schedule = "Lunes"
-                    sch.TimeStart_Schedule = WLIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WLTDateTimePicker.Value
-                    'si Martes esta marcado
-                ElseIf Index = 1 Then
-                    sch.Day_Schedule = "Martes"
-                    sch.TimeStart_Schedule = WKIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WKTDateTimePicker.Value
-                    'si miercoles esta marcado
-                ElseIf Index = 2 Then
-                    sch.Day_Schedule = "Miercoles"
-                    sch.TimeStart_Schedule = WMIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WMTDateTimePicker.Value
-                    'si jueves esta marcado
-                ElseIf Index = 3 Then
-                    sch.Day_Schedule = "Jueves"
-                    sch.TimeStart_Schedule = WJIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WJTDateTimePicker.Value
-                    'si viernes esta marcado
-                ElseIf Index = 4 Then
-                    sch.Day_Schedule = "Viernes"
-                    sch.TimeStart_Schedule = WVIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WVTDateTimePicker.Value
-                    'si sabado esta marcado
-                ElseIf Index = 5 Then
-                    sch.Day_Schedule = "Sabado"
-                    sch.TimeStart_Schedule = WSIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WSTDateTimePicker.Value
-                    'si domingo esta marcado
-                ElseIf Index = 6 Then
-                    sch.Day_Schedule = "Domingo"
-                    sch.TimeStart_Schedule = WDIDateTimePicker.Value
-                    sch.TimeEnd_Schedule = WDTDateTimePicker.Value
-                End If
+        'declaramos la sentencia de INSERT para insertar a la BD
+        insertQuery = "INSERT INTO Activity (name, color, idStudent) values (@name, @color, @idStudent)"
 
-                insertQuery = "INSERT INTO Schedule(day, startTime, endTime) values (@day, @startTime, @endTime)"
+        command = New SqlCommand(insertQuery, ConnectionBD.Connection)
+        connection.Open()
 
-                command = New SqlCommand(insertQuery, connection)
-                connection.Open()
+        ' MsgBox("This is the global variable after the if " & Period.IdPeriod)
+        With command 'le asigna los valores a los espacios en la tabla
+            '.Parameters.AddWithValue("@idStudent", User.IdUser)
+            .Parameters.AddWithValue("@name", Work.Name_WorkSch)
+            .Parameters.AddWithValue("@color", Work.Color_Work.ToString)
+            .Parameters.AddWithValue("@idStudent", User.IdUser)
+        End With
 
-                'MsgBox("This is the global variable after the if " & Period.IdPeriod)
-                With command 'le asigna los valores a los espacios en la tabla
+        'ejecutamos la consulta
+        command.ExecuteNonQuery()
 
-                    '.Parameters.AddWithValue("@idStudent", User.IdUser)
-                    .Parameters.AddWithValue("@day", sch.Day_Schedule)
-                    .Parameters.AddWithValue("@startTime", sch.TimeStart_Schedule.TimeOfDay)
-                    .Parameters.AddWithValue("@endTime", sch.TimeEnd_Schedule.TimeOfDay)
+        connection.Close()
 
-                End With
+        '// SE AGREGAN LOS DIAS Y HORAS DEL CURSO A LA TABLA "SHEDULE" Y SE RELACIONA CON "ACTIVITY HAS SCHEDULE" ///////
 
-                'ejecutamos la consulta
-                command.ExecuteNonQuery()
+        'declaramos la sentencia de INSERT para insertar a la BD
+        selectQuery = "SELECT TOP 1 * FROM Activity ORDER BY idActivity DESC"
 
-                connection.Close()
+        command = New SqlCommand(selectQuery, ConnectionBD.Connection)
 
-                'declaramos la sentencia de INSERT para insertar a la BD
-                selectQuery = "SELECT TOP 1 * FROM Schedule ORDER BY idSchedule DESC"
+        connection.Open()
 
-                command = New SqlCommand(selectQuery, connection)
+        'ejecuta el lector de la base de datos
+        reader = command.ExecuteReader
 
-                connection.Open()
+        reader.Read()
 
-                'ejecuta el lector de la base de datos
-                reader = command.ExecuteReader
+        Work.Id_WorkSch = reader.Item("idActivity")
+        MsgBox("global variable idActivity" & Work.Id_WorkSch)
 
-                reader.Read()
+        connection.Close()
 
-                Dim IdSch As Integer = reader.Item("idSchedule")
+        '// SE AGREGAN LOS DIAS Y HORAS DEL CURSO A LA TABLA "SHEDULE" Y SE RELACIONA CON "ACTIVITY HAS SCHEDULE" ///////
+        For Each Index In DayWorkSRCheckedListBox.CheckedIndices
 
-                connection.Close()
-
-                '// se relaciona con ACTIVITY HAS SCHEDULE
-                insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idActivity) values (@idSchedule, @idActivity)"
-
-                command = New SqlCommand(insertQuery, connection)
-                connection.Open()
-
-
-                With command 'le asigna los valores a los espacios en la tabla
-                    .Parameters.AddWithValue("@idSchedule", IdSch)
-                    .Parameters.AddWithValue("@idActivity", Work.Id_WorkSch)
-                End With
-
-                'ejecutamos la consulta
-                command.ExecuteNonQuery()
-
-                connection.Close()
-
-            Next
-
-
-            NameWorkSRTextBox.Clear()
-            ColorWorkSRComboBox.SelectedIndex = -1
-            ColorWorkSRComboBox.BackColor = Color.AliceBlue
-            For index = 0 To DayWorkSRCheckedListBox.Items.Count - 1
-                DayWorkSRCheckedListBox.SetItemChecked(index, False)
-                DayWorkSRCheckedListBox.SetItemCheckState(index, CheckState.Unchecked)
-            Next
-
-            '//LUNES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
-
-                ' MsgBox("Monday has been checked")
-                WLIDateTimePicker.Enabled = True
-                WLTDateTimePicker.Enabled = True
-                WLILabel.Enabled = True
-                WLTLabel.Enabled = True
-            Else
-                WLIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WLTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WLIDateTimePicker.Enabled = False
-                WLTDateTimePicker.Enabled = False
-                WLILabel.Enabled = False
-                WLTLabel.Enabled = False
+            If Index = 0 Then
+                sch.Day_Schedule = "Lunes"
+                sch.TimeStart_Schedule = WLIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WLTDateTimePicker.Value
+                'si Martes esta marcado
+            ElseIf Index = 1 Then
+                sch.Day_Schedule = "Martes"
+                sch.TimeStart_Schedule = WKIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WKTDateTimePicker.Value
+                'si miercoles esta marcado
+            ElseIf Index = 2 Then
+                sch.Day_Schedule = "Miercoles"
+                sch.TimeStart_Schedule = WMIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WMTDateTimePicker.Value
+                'si jueves esta marcado
+            ElseIf Index = 3 Then
+                sch.Day_Schedule = "Jueves"
+                sch.TimeStart_Schedule = WJIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WJTDateTimePicker.Value
+                'si viernes esta marcado
+            ElseIf Index = 4 Then
+                sch.Day_Schedule = "Viernes"
+                sch.TimeStart_Schedule = WVIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WVTDateTimePicker.Value
+                'si sabado esta marcado
+            ElseIf Index = 5 Then
+                sch.Day_Schedule = "Sabado"
+                sch.TimeStart_Schedule = WSIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WSTDateTimePicker.Value
+                'si domingo esta marcado
+            ElseIf Index = 6 Then
+                sch.Day_Schedule = "Domingo"
+                sch.TimeStart_Schedule = WDIDateTimePicker.Value
+                sch.TimeEnd_Schedule = WDTDateTimePicker.Value
             End If
 
-            '//MARTES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
+            insertQuery = "INSERT INTO Schedule(day, startTime, endTime) values (@day, @startTime, @endTime)"
 
-                ' MsgBox("Monday has been checked")
-                WKIDateTimePicker.Enabled = True
-                WKTDateTimePicker.Enabled = True
-                WKILabel.Enabled = True
-                WKTLabel.Enabled = True
-            Else
-                WKIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WKTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WKIDateTimePicker.Enabled = False
-                WKTDateTimePicker.Enabled = False
-                WKILabel.Enabled = False
-                WKTLabel.Enabled = False
-            End If
+            command = New SqlCommand(insertQuery, connection)
+            connection.Open()
 
-            '//MIERCOLES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
+            'MsgBox("This is the global variable after the if " & Period.IdPeriod)
+            With command 'le asigna los valores a los espacios en la tabla
 
-                ' MsgBox("Monday has been checked")
-                WMIDateTimePicker.Enabled = True
-                WMTDateTimePicker.Enabled = True
-                WMILabel.Enabled = True
-                WMTLabel.Enabled = True
-            Else
-                WMIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WMTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WMIDateTimePicker.Enabled = False
-                WMTDateTimePicker.Enabled = False
-                WMILabel.Enabled = False
-                WMTLabel.Enabled = False
-            End If
+                '.Parameters.AddWithValue("@idStudent", User.IdUser)
+                .Parameters.AddWithValue("@day", sch.Day_Schedule)
+                .Parameters.AddWithValue("@startTime", sch.TimeStart_Schedule.TimeOfDay)
+                .Parameters.AddWithValue("@endTime", sch.TimeEnd_Schedule.TimeOfDay)
 
-            '//JUEVES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
+            End With
 
-                ' MsgBox("Monday has been checked")
-                WJIDateTimePicker.Enabled = True
-                WJTDateTimePicker.Enabled = True
-                WJILabel.Enabled = True
-                WJTLabel.Enabled = True
-            Else
-                WJIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WJTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WJIDateTimePicker.Enabled = False
-                WJTDateTimePicker.Enabled = False
-                WJILabel.Enabled = False
-                WJTLabel.Enabled = False
-            End If
+            'ejecutamos la consulta
+            command.ExecuteNonQuery()
 
-            '//VIERNES//
-            If DayWorkSRCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
+            connection.Close()
 
-                '  MsgBox("Monday has been checked")
-                WVIDateTimePicker.Enabled = True
-                WVTDateTimePicker.Enabled = True
-                WVILabel.Enabled = True
-                WVTLabel.Enabled = True
-            Else
-                WVIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WVTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WVIDateTimePicker.Enabled = False
-                WVTDateTimePicker.Enabled = False
-                WVILabel.Enabled = False
-                WVTLabel.Enabled = False
-            End If
+            'declaramos la sentencia de INSERT para insertar a la BD
+            selectQuery = "SELECT TOP 1 * FROM Schedule ORDER BY idSchedule DESC"
 
-            '//SABADO//
-            If DayWorkSRCheckedListBox.GetItemCheckState(5) = CheckState.Checked Then
+            command = New SqlCommand(selectQuery, connection)
 
-                ' MsgBox("Monday has been checked")
-                WSIDateTimePicker.Enabled = True
-                WSTDateTimePicker.Enabled = True
-                SILabel.Enabled = True
-                STLabel.Enabled = True
-            Else
-                WSIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WSTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WSIDateTimePicker.Enabled = False
-                WSTDateTimePicker.Enabled = False
-                WSILabel.Enabled = False
-                WSTLabel.Enabled = False
-            End If
+            connection.Open()
 
-            '//DOMINGO//
-            If DayWorkSRCheckedListBox.GetItemCheckState(6) = CheckState.Checked Then
+            'ejecuta el lector de la base de datos
+            reader = command.ExecuteReader
 
-                ' MsgBox("Monday has been checked")
-                WDIDateTimePicker.Enabled = True
-                WDTDateTimePicker.Enabled = True
-                WDILabel.Enabled = True
-                WDTLabel.Enabled = True
-            Else
-                WDIDateTimePicker.Value = DefaultDateTimePicker.Value
-                WDTDateTimePicker.Value = DefaultDateTimePicker.Value
-                WDIDateTimePicker.Enabled = False
-                WDTDateTimePicker.Enabled = False
-                WDILabel.Enabled = False
-                WDTLabel.Enabled = False
-            End If
+            reader.Read()
+
+            Dim IdSch As Integer = reader.Item("idSchedule")
+
+            connection.Close()
+
+            '// se relaciona con ACTIVITY HAS SCHEDULE
+            insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idActivity) values (@idSchedule, @idActivity)"
+
+            command = New SqlCommand(insertQuery, connection)
+            connection.Open()
+
+
+            With command 'le asigna los valores a los espacios en la tabla
+                .Parameters.AddWithValue("@idSchedule", IdSch)
+                .Parameters.AddWithValue("@idActivity", Work.Id_WorkSch)
+            End With
+
+            'ejecutamos la consulta
+            command.ExecuteNonQuery()
+
+            connection.Close()
+
+        Next
+
+
+        NameWorkSRTextBox.Clear()
+        ColorWorkSRComboBox.SelectedIndex = -1
+        ColorWorkSRComboBox.BackColor = Color.AliceBlue
+        For index = 0 To DayWorkSRCheckedListBox.Items.Count - 1
+            DayWorkSRCheckedListBox.SetItemChecked(index, False)
+            DayWorkSRCheckedListBox.SetItemCheckState(index, CheckState.Unchecked)
+        Next
+
+        '//LUNES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
+
+            ' MsgBox("Monday has been checked")
+            WLIDateTimePicker.Enabled = True
+            WLTDateTimePicker.Enabled = True
+            WLILabel.Enabled = True
+            WLTLabel.Enabled = True
+        Else
+            WLIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WLTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WLIDateTimePicker.Enabled = False
+            WLTDateTimePicker.Enabled = False
+            WLILabel.Enabled = False
+            WLTLabel.Enabled = False
+        End If
+
+        '//MARTES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
+
+            ' MsgBox("Monday has been checked")
+            WKIDateTimePicker.Enabled = True
+            WKTDateTimePicker.Enabled = True
+            WKILabel.Enabled = True
+            WKTLabel.Enabled = True
+        Else
+            WKIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WKTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WKIDateTimePicker.Enabled = False
+            WKTDateTimePicker.Enabled = False
+            WKILabel.Enabled = False
+            WKTLabel.Enabled = False
+        End If
+
+        '//MIERCOLES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
+
+            ' MsgBox("Monday has been checked")
+            WMIDateTimePicker.Enabled = True
+            WMTDateTimePicker.Enabled = True
+            WMILabel.Enabled = True
+            WMTLabel.Enabled = True
+        Else
+            WMIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WMTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WMIDateTimePicker.Enabled = False
+            WMTDateTimePicker.Enabled = False
+            WMILabel.Enabled = False
+            WMTLabel.Enabled = False
+        End If
+
+        '//JUEVES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
+
+            ' MsgBox("Monday has been checked")
+            WJIDateTimePicker.Enabled = True
+            WJTDateTimePicker.Enabled = True
+            WJILabel.Enabled = True
+            WJTLabel.Enabled = True
+        Else
+            WJIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WJTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WJIDateTimePicker.Enabled = False
+            WJTDateTimePicker.Enabled = False
+            WJILabel.Enabled = False
+            WJTLabel.Enabled = False
+        End If
+
+        '//VIERNES//
+        If DayWorkSRCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
+
+            '  MsgBox("Monday has been checked")
+            WVIDateTimePicker.Enabled = True
+            WVTDateTimePicker.Enabled = True
+            WVILabel.Enabled = True
+            WVTLabel.Enabled = True
+        Else
+            WVIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WVTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WVIDateTimePicker.Enabled = False
+            WVTDateTimePicker.Enabled = False
+            WVILabel.Enabled = False
+            WVTLabel.Enabled = False
+        End If
+
+        '//SABADO//
+        If DayWorkSRCheckedListBox.GetItemCheckState(5) = CheckState.Checked Then
+
+            ' MsgBox("Monday has been checked")
+            WSIDateTimePicker.Enabled = True
+            WSTDateTimePicker.Enabled = True
+            SILabel.Enabled = True
+            STLabel.Enabled = True
+        Else
+            WSIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WSTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WSIDateTimePicker.Enabled = False
+            WSTDateTimePicker.Enabled = False
+            WSILabel.Enabled = False
+            WSTLabel.Enabled = False
+        End If
+
+        '//DOMINGO//
+        If DayWorkSRCheckedListBox.GetItemCheckState(6) = CheckState.Checked Then
+
+            ' MsgBox("Monday has been checked")
+            WDIDateTimePicker.Enabled = True
+            WDTDateTimePicker.Enabled = True
+            WDILabel.Enabled = True
+            WDTLabel.Enabled = True
+        Else
+            WDIDateTimePicker.Value = DefaultDateTimePicker.Value
+            WDTDateTimePicker.Value = DefaultDateTimePicker.Value
+            WDIDateTimePicker.Enabled = False
+            WDTDateTimePicker.Enabled = False
+            WDILabel.Enabled = False
+            WDTLabel.Enabled = False
+        End If
 
         '\\\\\\\\\ TERMINA DE AGREGAR UN HORARIO DE TRABAJO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO \\\\\\\\\\\\
 

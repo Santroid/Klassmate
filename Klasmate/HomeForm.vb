@@ -80,9 +80,7 @@ Public Class HomeForm
         End If
     End Sub
 
-    Private Sub AddHomePanel_Paint(sender As Object, e As PaintEventArgs) Handles AddHomePanel.Paint
 
-    End Sub
 
     Private Sub OptionsHomeButton_Click(sender As Object, e As EventArgs)
         'Cuando se oprime el boton de opciones se despliega o esconde el panel con las opciones
@@ -150,6 +148,11 @@ Public Class HomeForm
     Private Sub CancelHWAddButton_Click(sender As Object, e As EventArgs) Handles CancelHWAddButton.Click
         'cuando se oprime el boton de cancelar en el panel de agregar tarea, se esconde el panel de agregar tarea
         AddHomeWorkPanel.Hide()
+        NameHWAddPanelTextBox.Text = ""
+        CoursAddHWPanelComboBox.SelectedIndex = -1
+        DdayAddPanelDateTimePicker.Value = Date.Today
+
+
     End Sub
 
     Private Sub HomeworkAddHomeLabel_Click(sender As Object, e As EventArgs) Handles HomeworkAddHomeLabel.Click
@@ -265,18 +268,18 @@ Public Class HomeForm
 
 
 
-    Private Sub AddHomeWorkPanel_Enter(sender As Object, e As EventArgs) Handles AddHomeWorkPanel.Enter
-        Me.CenterToScreen()
-        Dim dgv As DataGridView = CourseDataGridView
-        For i As Integer = 0 To dgv.Rows.Count - 2
+    'Private Sub AddHomeWorkPanel_Enter(sender As Object, e As EventArgs) Handles AddHomeWorkPanel.Enter
 
-            Dim Course As String = dgv.Rows(i).Cells(1).Value
-            'MsgBox("iteracion " & i)
-            'dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
-            CoursAddHWPanelComboBox.Items.Add(Course)
+    '    Dim dgv As DataGridView = CourseDataGridView
+    '    For i As Integer = 0 To dgv.Rows.Count - 2
 
-        Next
-    End Sub
+    '        Dim Course As String = dgv.Rows(i).Cells(1).Value
+    '        'MsgBox("iteracion " & i)
+    '        'dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
+    '        CoursAddHWPanelComboBox.Items.Add(Course)
+
+    '    Next
+    'End Sub
 
     Private Sub SaveEditProfileButton_Click(sender As Object, e As EventArgs) Handles SaveEditProfileButton.Click
 
@@ -336,4 +339,34 @@ Public Class HomeForm
 
     End Sub
 
+    Private Sub AddHomeWorkPanel_VisibleChanged(sender As Object, e As EventArgs) Handles AddHomeWorkPanel.VisibleChanged
+
+        AddHomeWorkPanel.Left = 210
+        AddHomeWorkPanel.Top = 125
+        Dim dgv As DataGridView = CourseDataGridView
+        'LIMPIA EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
+        If CoursAddHWPanelComboBox.Items.Count > 0 Then
+            Dim courseCount As Integer = CoursAddHWPanelComboBox.Items.Count - 1
+
+            While courseCount >= 0
+                'CoursAddHWPanelComboBox.SelectedIndex = i
+                CoursAddHWPanelComboBox.Items.RemoveAt(courseCount)
+                courseCount = courseCount - 1
+            End While
+        End If
+        'VUELVE A LLENAR EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
+        For i As Integer = 0 To dgv.Rows.Count - 2
+
+                Dim Course As String = dgv.Rows(i).Cells(1).Value
+                'MsgBox("iteracion " & i)
+                'dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
+                CoursAddHWPanelComboBox.Items.Add(Course)
+
+            Next
+
+    End Sub
+
+    Private Sub AddHomeWorkPanel_Paint(sender As Object, e As PaintEventArgs) Handles AddHomeWorkPanel.Paint
+
+    End Sub
 End Class
