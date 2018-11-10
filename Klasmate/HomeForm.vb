@@ -28,32 +28,32 @@ Public Class HomeForm
         ' User.IdUser2
         'MsgBox("Second IdUser" & User.IdUser2)
         '/// aca se agrega el color, nombre del curso, dia, horaInicio y horaFin al DataGridView para que el usuario lo vea en el HomeForm
-        Try
-            connection.Open()
-            'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
-            Dim strSQL As String = "select s.color, s.nameSubject, sc.day, sc.startTime, sc.endTime, s.idSubject
-                                    from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
-                                    where k.idStudent = p.idStudent
-                                    and p.idPeriod = s.idPeriod
-                                    and k.idStudent =" & LoginForm.user.Id_User & "
-                                    and s.idSubject = a.idSubject
-                                    and a.idSchedule = sc.idSchedule;"
+        'Try
+        '    connection.Open()
+        '    'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+        '    Dim strSQL As String = "select s.color, s.nameSubject, sc.day, sc.startTime, sc.endTime, s.idSubject
+        '                            from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
+        '                            where k.idStudent = p.idStudent
+        '                            and p.idPeriod = s.idPeriod
+        '                            and k.idStudent =" & LoginForm.user.Id_User & "
+        '                            and s.idSubject = a.idSubject
+        '                            and a.idSchedule = sc.idSchedule;"
 
-            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+        '    'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
 
-            ' connection.Close()
-            Dim da As New SqlDataAdapter(strSQL, connection)
-            Dim ds As New DataSet
-            da.Fill(ds, strSQL)
-            CourseDataGridView.DataSource = ds.Tables(0)
+        '    ' connection.Close()
+        '    Dim da As New SqlDataAdapter(strSQL, connection)
+        '    Dim ds As New DataSet
+        '    da.Fill(ds, strSQL)
+        '    CourseDataGridView.DataSource = ds.Tables(0)
 
 
 
-        Catch ex As SqlException
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "General Error")
-        End Try
+        'Catch ex As SqlException
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "General Error")
+        'End Try
 
 
         'le cambia los colores a las celdas de acuerdo a la base de datos
