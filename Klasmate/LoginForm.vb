@@ -101,9 +101,26 @@ Public Class LoginForm
 
                 Else
                     'Esconde la pantalla de Login y muestra la de Home
+                    Dim selectQuery
+                    'Dim command As SqlCommand
+
+
+                    Connection.Open()
+                    'Dim reader As SqlDataReader
+                    'ESTO ES PARA QUE APARESCA EL NOMBRE DEL PERIODO LECTIVO EN LA PARTE DE ARRIBA
+                    selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & user.Id_User & " "
+                    command = New SqlCommand(selectQuery, Connection)
+                    reader = command.ExecuteReader
+
+
+                    reader.Read()
+                    HomeForm.PeriodHomeLabel.Text = reader.Item("namePeriod")
+
+                    reader.Close()
+                    Connection.Close()
                     Me.Hide()
-                HomeForm.Show()
-                EmailLoginTextBox.Text = "Correo"
+                    HomeForm.Show()
+                    EmailLoginTextBox.Text = "Correo"
                     PasswordLoginTextBox.Text = "Contraseña"
                 End If
             Else

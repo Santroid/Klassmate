@@ -41,6 +41,7 @@ Public Class ScheduleRegisterForm
         'el if es para que no se agregue el mismo periodo mas de una vez a la base de datos
         'MsgBox("This is before it added the periodo with the finish" & Period.PeriodCounter)
         If Period.PeriodCounter = 0 Then
+            HomeForm.PeriodHomeLabel.Text = period.Name_Period
             'declaramos la sentencia de INSERT para insertar a la BD
             insertQuery = "INSERT INTO Period(namePeriod, startDate, endDate, idStudent) values (@namePeriod, @startDate, @endDate, @idStudent)"
 
@@ -716,20 +717,20 @@ Public Class ScheduleRegisterForm
             .DataSource = knownColors.ToList
             .SelectedIndex = -1
         End With
-        With ColorWorkSRComboBox
-            .DrawMode = DrawMode.OwnerDrawFixed
-            .IntegralHeight = False
-            .MaxDropDownItems = 8
-            .DataSource = knownColors.ToList
-            .SelectedIndex = -1
-        End With
-        With ColorStudySRComboBox
-            .DrawMode = DrawMode.OwnerDrawFixed
-            .IntegralHeight = False
-            .MaxDropDownItems = 8
-            .DataSource = knownColors.ToList
-            .SelectedIndex = -1
-        End With
+        'With ColorWorkSRComboBox
+        '    .DrawMode = DrawMode.OwnerDrawFixed
+        '    .IntegralHeight = False
+        '    .MaxDropDownItems = 8
+        '    .DataSource = knownColors.ToList
+        '    .SelectedIndex = -1
+        'End With
+        'With ColorStudySRComboBox
+        '    .DrawMode = DrawMode.OwnerDrawFixed
+        '    .IntegralHeight = False
+        '    .MaxDropDownItems = 8
+        '    .DataSource = knownColors.ToList
+        '    .SelectedIndex = -1
+        'End With
 
     End Sub
 
@@ -778,8 +779,8 @@ Public Class ScheduleRegisterForm
     'Para agregarle colores al combobox de color cuando se agrega un horario de trabajo -Santi
 
     'Hace que se vean los colores como opciones en el combobox de horario de trabajo-Santi
-    Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs) _
-        Handles ColorWorkSRComboBox.DrawItem
+    Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs)
+
         Dim myComboBox As ComboBox = CType(sender, ComboBox)
         Dim mySelectedColor As Color = Color.FromName(myComboBox.Items(e.Index).ToString)
         Dim myRectangleSize As Integer = e.Bounds.Height - 3
@@ -804,14 +805,14 @@ Public Class ScheduleRegisterForm
 
     End Sub
 
-    'Cambia el color del fondo del combobox al color escogido de horario de trabajo -Santi
-    Private Sub ColorWorkSRComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ColorWorkSRComboBox.SelectedIndexChanged
-        If ColorWorkSRComboBox.SelectedIndex <> -1 Then
+    ''Cambia el color del fondo del combobox al color escogido de horario de trabajo -Santi
+    'Private Sub ColorWorkSRComboBox_SelectedIndexChanged(sender As Object, e As EventArgs)
+    '    If ColorWorkSRComboBox.SelectedIndex <> -1 Then
 
-            ColorWorkSRComboBox.BackColor = Color.FromName(ColorWorkSRComboBox.SelectedItem.ToString)
+    '        ColorWorkSRComboBox.BackColor = Color.FromName(ColorWorkSRComboBox.SelectedItem.ToString)
 
-        End If
-    End Sub
+    '    End If
+    'End Sub
 
     'Termina de agregarle colores al combobox de color cuando se agrega un horario de trabajo -Santi
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -820,8 +821,8 @@ Public Class ScheduleRegisterForm
     'Para agregarle colores al combobox de color cuando se agrega un horario de estudio -Santi
 
     'Hace que se vean los colores como opciones en el combobox Horario de Estudio -Santi
-    Private Sub ColorStudySRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs) _
-        Handles ColorStudySRComboBox.DrawItem
+    Private Sub ColorStudySRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs)
+
         Dim myComboBox As ComboBox = CType(sender, ComboBox)
         Dim mySelectedColor As Color = Color.FromName(myComboBox.Items(e.Index).ToString)
         Dim myRectangleSize As Integer = e.Bounds.Height - 3
@@ -847,13 +848,13 @@ Public Class ScheduleRegisterForm
     End Sub
 
     'Cambia el color del fondo del combobox al color escogido Horario de Estudio -Santi
-    Private Sub ColorStudySRComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ColorStudySRComboBox.SelectedIndexChanged
-        If ColorStudySRComboBox.SelectedIndex <> -1 Then
+    'Private Sub ColorStudySRComboBox_SelectedIndexChanged(sender As Object, e As EventArgs)
+    '    If ColorStudySRComboBox.SelectedIndex <> -1 Then
 
-            ColorStudySRComboBox.BackColor = Color.FromName(ColorStudySRComboBox.SelectedItem.ToString)
+    '        ColorStudySRComboBox.BackColor = Color.FromName(ColorStudySRComboBox.SelectedItem.ToString)
 
-        End If
-    End Sub
+    '    End If
+    'End Sub
     'Termina de agregarle colores al combobox de color cuando se agrega un horario de estudio -Santi
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -901,6 +902,7 @@ Public Class ScheduleRegisterForm
         MsgBox("This is before it added the periodo with the plus" & Period.PeriodCounter)
         'el if es para que no se agregue el mismo periodo mas de una vez a la base de datos
         If Period.PeriodCounter = 0 Then
+            HomeForm.PeriodHomeLabel.Text = period.Name_Period
             connection.Open()
             'declaramos la sentencia de INSERT para insertar a la BD
             insertQuery = "INSERT INTO Period(namePeriod, startDate, endDate, idStudent) values (@namePeriod, @startDate, @endDate, @idStudent)"
@@ -1355,96 +1357,104 @@ Public Class ScheduleRegisterForm
         End If
     End Sub
 
-    Private Sub DayWorkSRCheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DayWorkSRCheckedListBox.SelectedIndexChanged
-        '//LUNES//
-        If DayWorkSRCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
-            WLIDateTimePicker.Enabled = True
-            WLTDateTimePicker.Enabled = True
-            WLILabel.Enabled = True
-            WLTLabel.Enabled = True
-        Else
-            WLIDateTimePicker.Enabled = False
-            WLTDateTimePicker.Enabled = False
-            WLILabel.Enabled = False
-            WLTLabel.Enabled = False
-        End If
+    'Private Sub DayWorkSRCheckedListBox_SelectedIndexChanged(sender As Object, e As EventArgs)
+    '    '//LUNES//
+    '    If DayWorkSRCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
+    '        WLIDateTimePicker.Enabled = True
+    '        WLTDateTimePicker.Enabled = True
+    '        WLILabel.Enabled = True
+    '        WLTLabel.Enabled = True
+    '    Else
+    '        WLIDateTimePicker.Enabled = False
+    '        WLTDateTimePicker.Enabled = False
+    '        WLILabel.Enabled = False
+    '        WLTLabel.Enabled = False
+    '    End If
 
-        '//MARTES//
-        If DayWorkSRCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
-            WKIDateTimePicker.Enabled = True
-            WKTDateTimePicker.Enabled = True
-            WKILabel.Enabled = True
-            WKTLabel.Enabled = True
-        Else
-            WKIDateTimePicker.Enabled = False
-            WKTDateTimePicker.Enabled = False
-            WKILabel.Enabled = False
-            WKTLabel.Enabled = False
-        End If
+    '//MARTES//
+    'If DayWorkSRCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
+    '        WKIDateTimePicker.Enabled = True
+    '        WKTDateTimePicker.Enabled = True
+    '        WKILabel.Enabled = True
+    '        WKTLabel.Enabled = True
+    '    Else
+    '        WKIDateTimePicker.Enabled = False
+    '        WKTDateTimePicker.Enabled = False
+    '        WKILabel.Enabled = False
+    '        WKTLabel.Enabled = False
+    '    End If
 
-        '//MIERCOLES//
-        If DayWorkSRCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
-            WMIDateTimePicker.Enabled = True
-            WMTDateTimePicker.Enabled = True
-            WMILabel.Enabled = True
-            WMTLabel.Enabled = True
-        Else
-            WMIDateTimePicker.Enabled = False
-            WMTDateTimePicker.Enabled = False
-            WMILabel.Enabled = False
-            WMTLabel.Enabled = False
-        End If
+    '    '//MIERCOLES//
+    '    If DayWorkSRCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
+    '        WMIDateTimePicker.Enabled = True
+    '        WMTDateTimePicker.Enabled = True
+    '        WMILabel.Enabled = True
+    '        WMTLabel.Enabled = True
+    '    Else
+    '        WMIDateTimePicker.Enabled = False
+    '        WMTDateTimePicker.Enabled = False
+    '        WMILabel.Enabled = False
+    '        WMTLabel.Enabled = False
+    '    End If
 
-        '//JUEVES//
-        If DayWorkSRCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
-            WJIDateTimePicker.Enabled = True
-            WJTDateTimePicker.Enabled = True
-            WJILabel.Enabled = True
-            WJTLabel.Enabled = True
-        Else
-            WJIDateTimePicker.Enabled = False
-            WJTDateTimePicker.Enabled = False
-            WJILabel.Enabled = False
-            WJTLabel.Enabled = False
-        End If
+    '    '//JUEVES//
+    '    If DayWorkSRCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
+    '        WJIDateTimePicker.Enabled = True
+    '        WJTDateTimePicker.Enabled = True
+    '        WJILabel.Enabled = True
+    '        WJTLabel.Enabled = True
+    '    Else
+    '        WJIDateTimePicker.Enabled = False
+    '        WJTDateTimePicker.Enabled = False
+    '        WJILabel.Enabled = False
+    '        WJTLabel.Enabled = False
+    '    End If
 
-        '//VIERNES//
-        If DayWorkSRCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
-            WVIDateTimePicker.Enabled = True
-            WVTDateTimePicker.Enabled = True
-            WVILabel.Enabled = True
-            WVTLabel.Enabled = True
-        Else
-            WVIDateTimePicker.Enabled = False
-            WVTDateTimePicker.Enabled = False
-            WVILabel.Enabled = False
-            WVTLabel.Enabled = False
-        End If
+    '    '//VIERNES//
+    '    If DayWorkSRCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
+    '        WVIDateTimePicker.Enabled = True
+    '        WVTDateTimePicker.Enabled = True
+    '        WVILabel.Enabled = True
+    '        WVTLabel.Enabled = True
+    '    Else
+    '        WVIDateTimePicker.Enabled = False
+    '        WVTDateTimePicker.Enabled = False
+    '        WVILabel.Enabled = False
+    '        WVTLabel.Enabled = False
+    '    End If
 
-        '//SABADO//
-        If DayWorkSRCheckedListBox.GetItemCheckState(5) = CheckState.Checked Then
-            WSIDateTimePicker.Enabled = True
-            WSTDateTimePicker.Enabled = True
-            WSILabel.Enabled = True
-            WSTLabel.Enabled = True
-        Else
-            WSIDateTimePicker.Enabled = False
-            WSTDateTimePicker.Enabled = False
-            WSILabel.Enabled = False
-            WSTLabel.Enabled = False
-        End If
+    '    '//SABADO//
+    '    If DayWorkSRCheckedListBox.GetItemCheckState(5) = CheckState.Checked Then
+    '        WSIDateTimePicker.Enabled = True
+    '        WSTDateTimePicker.Enabled = True
+    '        WSILabel.Enabled = True
+    '        WSTLabel.Enabled = True
+    '    Else
+    '        WSIDateTimePicker.Enabled = False
+    '        WSTDateTimePicker.Enabled = False
+    '        WSILabel.Enabled = False
+    '        WSTLabel.Enabled = False
+    '    End If
 
-        '//DOMINGO//
-        If DayWorkSRCheckedListBox.GetItemCheckState(6) = CheckState.Checked Then
-            WDIDateTimePicker.Enabled = True
-            WDTDateTimePicker.Enabled = True
-            WDILabel.Enabled = True
-            WDTLabel.Enabled = True
+    '    '//DOMINGO//
+    '    If DayWorkSRCheckedListBox.GetItemCheckState(6) = CheckState.Checked Then
+    '        WDIDateTimePicker.Enabled = True
+    '        WDTDateTimePicker.Enabled = True
+    '        WDILabel.Enabled = True
+    '        WDTLabel.Enabled = True
+    '    Else
+    '        WDIDateTimePicker.Enabled = False
+    '        WDTDateTimePicker.Enabled = False
+    '        WDILabel.Enabled = False
+    '        WDTLabel.Enabled = False
+    '    End If
+    'End Sub
+
+    Private Sub NamePeriodTextBox_TextChanged(sender As Object, e As EventArgs) Handles NamePeriodTextBox.TextChanged
+        If NamePeriodTextBox.Text <> "" Then
+            AddCourseSRPanel.Enabled = True
         Else
-            WDIDateTimePicker.Enabled = False
-            WDTDateTimePicker.Enabled = False
-            WDILabel.Enabled = False
-            WDTLabel.Enabled = False
+            AddCourseSRPanel.Enabled = False
         End If
     End Sub
 

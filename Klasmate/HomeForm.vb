@@ -9,7 +9,8 @@ Public Class HomeForm
         'Dim user As New User
         Dim period As New Period
         ' Dim sch As New ScheduleRegisterForm
-
+        'Dim LUserId As Integer = LoginForm.user.Id_User
+        'Dim RUserId As Integer = RegisterForm.user.Id_User
         Dim connection As SqlConnection
 
         'Dim user As User
@@ -22,22 +23,7 @@ Public Class HomeForm
         'aquí conectamos con la base de datos
         connection = New SqlConnection(connectionString)
 
-        Dim selectQuery
-        Dim command As SqlCommand
-        'ESTO ES PARA QUE APARESCA EL NOMBRE DEL PERIODO LECTIVO EN LA PARTE DE ARRIBA
-        selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & LoginForm.user.Id_User & " OR idStudent =" & RegisterForm.user.Id_User & " ;"
 
-        command = New SqlCommand(selectQuery, connection)
-
-        connection.Open()
-        Dim reader As SqlDataReader = command.ExecuteReader
-
-
-        reader.Read()
-        period.Name_Period = reader.Item("namePeriod")
-        PeriodHomeLabel.Text = period.Name_Period
-        reader.Close()
-        connection.Close()
 
         ' User.IdUser2
         'MsgBox("Second IdUser" & User.IdUser2)
