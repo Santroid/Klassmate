@@ -64,14 +64,14 @@ Partial Class HomeForm
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.CourseDataGridView = New System.Windows.Forms.DataGridView()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.PeriodHomeLabel = New System.Windows.Forms.Label()
         Me.color = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nameSubject = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseDays = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseStartTme = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseEndTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.PeriodHomeLabel = New System.Windows.Forms.Label()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
@@ -513,52 +513,21 @@ Partial Class HomeForm
         '
         'CourseDataGridView
         '
+        Me.CourseDataGridView.AllowUserToAddRows = False
+        Me.CourseDataGridView.AllowUserToDeleteRows = False
+        Me.CourseDataGridView.AllowUserToResizeColumns = False
+        Me.CourseDataGridView.AllowUserToResizeRows = False
+        Me.CourseDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.CourseDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.CourseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CourseDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.color, Me.nameSubject, Me.CourseDays, Me.CourseStartTme, Me.CourseEndTime, Me.CourseID})
         Me.CourseDataGridView.Location = New System.Drawing.Point(3, 75)
+        Me.CourseDataGridView.MultiSelect = False
         Me.CourseDataGridView.Name = "CourseDataGridView"
+        Me.CourseDataGridView.ReadOnly = True
+        Me.CourseDataGridView.RowHeadersVisible = False
         Me.CourseDataGridView.Size = New System.Drawing.Size(653, 261)
         Me.CourseDataGridView.TabIndex = 9
-        '
-        'color
-        '
-        Me.color.DataPropertyName = "color"
-        Me.color.FillWeight = 25.0!
-        Me.color.HeaderText = ""
-        Me.color.Name = "color"
-        Me.color.Width = 25
-        '
-        'nameSubject
-        '
-        Me.nameSubject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.nameSubject.DataPropertyName = "nameSubject"
-        Me.nameSubject.HeaderText = "Nombre del Curso"
-        Me.nameSubject.Name = "nameSubject"
-        '
-        'CourseDays
-        '
-        Me.CourseDays.DataPropertyName = "day"
-        Me.CourseDays.HeaderText = "Dias"
-        Me.CourseDays.Name = "CourseDays"
-        '
-        'CourseStartTme
-        '
-        Me.CourseStartTme.DataPropertyName = "startTime"
-        Me.CourseStartTme.HeaderText = "Hora Inicio"
-        Me.CourseStartTme.Name = "CourseStartTme"
-        '
-        'CourseEndTime
-        '
-        Me.CourseEndTime.DataPropertyName = "endTime"
-        Me.CourseEndTime.HeaderText = "Hora Fin"
-        Me.CourseEndTime.Name = "CourseEndTime"
-        '
-        'CourseID
-        '
-        Me.CourseID.DataPropertyName = "idSubject"
-        Me.CourseID.HeaderText = "IDCurso"
-        Me.CourseID.Name = "CourseID"
-        Me.CourseID.Visible = False
         '
         'Label7
         '
@@ -578,6 +547,58 @@ Partial Class HomeForm
         Me.PeriodHomeLabel.Size = New System.Drawing.Size(39, 13)
         Me.PeriodHomeLabel.TabIndex = 11
         Me.PeriodHomeLabel.Text = "Label8"
+        '
+        'color
+        '
+        Me.color.DataPropertyName = "color"
+        Me.color.FillWeight = 15.0!
+        Me.color.HeaderText = ""
+        Me.color.Name = "color"
+        Me.color.ReadOnly = True
+        Me.color.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.color.ToolTipText = "Color"
+        '
+        'nameSubject
+        '
+        Me.nameSubject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.nameSubject.DataPropertyName = "nameSubject"
+        Me.nameSubject.HeaderText = "Nombre del Curso"
+        Me.nameSubject.Name = "nameSubject"
+        Me.nameSubject.ReadOnly = True
+        Me.nameSubject.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'CourseDays
+        '
+        Me.CourseDays.DataPropertyName = "day"
+        Me.CourseDays.HeaderText = "Dias"
+        Me.CourseDays.Name = "CourseDays"
+        Me.CourseDays.ReadOnly = True
+        Me.CourseDays.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'CourseStartTme
+        '
+        Me.CourseStartTme.DataPropertyName = "startTime"
+        Me.CourseStartTme.HeaderText = "Hora Inicio"
+        Me.CourseStartTme.Name = "CourseStartTme"
+        Me.CourseStartTme.ReadOnly = True
+        Me.CourseStartTme.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'CourseEndTime
+        '
+        Me.CourseEndTime.DataPropertyName = "endTime"
+        Me.CourseEndTime.HeaderText = "Hora Fin"
+        Me.CourseEndTime.Name = "CourseEndTime"
+        Me.CourseEndTime.ReadOnly = True
+        Me.CourseEndTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'CourseID
+        '
+        Me.CourseID.DataPropertyName = "idSubject"
+        Me.CourseID.HeaderText = "IDCurso"
+        Me.CourseID.Name = "CourseID"
+        Me.CourseID.ReadOnly = True
+        Me.CourseID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CourseID.Visible = False
         '
         'HomeForm
         '
@@ -651,13 +672,13 @@ Partial Class HomeForm
     Friend WithEvents LineShape7 As PowerPacks.LineShape
     Friend WithEvents RectangleShape3 As PowerPacks.RectangleShape
     Friend WithEvents CourseDataGridView As DataGridView
+    Friend WithEvents DeleteProfileButton As Button
+    Friend WithEvents Label7 As Label
+    Friend WithEvents PeriodHomeLabel As Label
     Friend WithEvents color As DataGridViewTextBoxColumn
     Friend WithEvents nameSubject As DataGridViewTextBoxColumn
     Friend WithEvents CourseDays As DataGridViewTextBoxColumn
     Friend WithEvents CourseStartTme As DataGridViewTextBoxColumn
     Friend WithEvents CourseEndTime As DataGridViewTextBoxColumn
     Friend WithEvents CourseID As DataGridViewTextBoxColumn
-    Friend WithEvents DeleteProfileButton As Button
-    Friend WithEvents Label7 As Label
-    Friend WithEvents PeriodHomeLabel As Label
 End Class

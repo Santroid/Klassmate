@@ -1,6 +1,8 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class RegisterForm
+    Public user As User
+    '  user = New User
     Private Sub CancelRegisterButton_Click(sender As Object, e As EventArgs) Handles CancelRegisterButton.Click
         'Esconde la pantalla de Registrar y vuelve a la pantalla de Login
         Me.Hide()
@@ -9,13 +11,12 @@ Public Class RegisterForm
     End Sub
 
     Private Sub RegisterButton_Click(sender As Object, e As EventArgs) Handles RegisterButton.Click
-
-        Dim user As User
         user = New User
 
 
+
         user.Name_User = NameRegisterTextBox.Text
-        user.Email_User = EmailRegisterTextBox.Text
+        User.Email_User = EmailRegisterTextBox.Text
         Dim connection As SqlConnection
         Dim command As SqlCommand
 
@@ -23,7 +24,7 @@ Public Class RegisterForm
         Dim selectQuery
         'aquí conectamos con la base de datos
         connection = New SqlConnection(connectionString)
-        selectQuery = "SELECT * FROM KMProfile WHERE email='" & user.Email_User & "'"
+        selectQuery = "SELECT * FROM KMProfile WHERE email='" & User.Email_User & "'"
 
         command = New SqlCommand(selectQuery, connection)
         'abriendo la conexión
@@ -36,7 +37,7 @@ Public Class RegisterForm
 
             connection.Close()
             'Si el formato de correo no es correcto manda un error -Santiago
-            If user.Email_User.Contains("@") = False Then
+            If User.Email_User.Contains("@") = False Then
                 EmailErrorLabel.Visible = True
                 EmailErrorLabel.Text = "El formato de correo no es correcto!"
 
@@ -44,7 +45,7 @@ Public Class RegisterForm
 
                 'si con
                 If PasswordRegisterTextBox.Text = Password2RegisterTextBox.Text Then
-                    user.Password_User = PasswordRegisterTextBox.Text
+                    User.Password_User = PasswordRegisterTextBox.Text
 
                     'Esconde la pantalla de Registrar y muestra la de agregar horarios -Santiago
                     Me.Hide()
@@ -58,9 +59,9 @@ Public Class RegisterForm
 
                     With command 'le asigna los valores a los espacios en la tabla
 
-                        .Parameters.AddWithValue("@name", user.Name_User)
-                        .Parameters.AddWithValue("@email", user.Email_User)
-                        .Parameters.AddWithValue("@password", user.Password_User)
+                        .Parameters.AddWithValue("@name", User.Name_User)
+                        .Parameters.AddWithValue("@email", User.Email_User)
+                        .Parameters.AddWithValue("@password", User.Password_User)
 
                     End With
 
@@ -88,8 +89,8 @@ Public Class RegisterForm
 
                     reader.Read()
 
-                    User.IdUser = reader.Item("idStudent")
-                    MsgBox("This is the global variable IdUser" & User.IdUser)
+                    User.Id_User = reader.Item("idStudent")
+                    'MsgBox("This is the global variable IdUser" & user.Id_User)
 
 
 

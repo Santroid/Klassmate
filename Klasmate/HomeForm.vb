@@ -6,6 +6,10 @@ Public Class HomeForm
     End Sub
 
     Private Sub HomeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Dim user As New User
+        Dim period As New Period
+        ' Dim sch As New ScheduleRegisterForm
+
         Dim connection As SqlConnection
 
         'Dim user As User
@@ -18,6 +22,22 @@ Public Class HomeForm
         'aquí conectamos con la base de datos
         connection = New SqlConnection(connectionString)
 
+        Dim selectQuery
+        Dim command As SqlCommand
+        'ESTO ES PARA QUE APARESCA EL NOMBRE DEL PERIODO LECTIVO EN LA PARTE DE ARRIBA
+        selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & LoginForm.user.Id_User & " OR idStudent =" & RegisterForm.user.Id_User & " ;"
+
+        command = New SqlCommand(selectQuery, connection)
+
+        connection.Open()
+        Dim reader As SqlDataReader = command.ExecuteReader
+
+
+        reader.Read()
+        period.Name_Period = reader.Item("namePeriod")
+        PeriodHomeLabel.Text = period.Name_Period
+        reader.Close()
+        connection.Close()
 
         ' User.IdUser2
         'MsgBox("Second IdUser" & User.IdUser2)
@@ -53,14 +73,14 @@ Public Class HomeForm
         'le cambia los colores a las celdas de acuerdo a la base de datos
         Dim dgv As DataGridView = CourseDataGridView
 
-        For i As Integer = 0 To dgv.Rows.Count - 2
+        For i As Integer = 0 To dgv.Rows.Count - 1
 
             Dim cellColor As String = dgv.Rows(i).Cells(0).Value
             'MsgBox(cellColor)
             dgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
 
         Next
-        For i As Integer = 0 To dgv.Rows.Count - 2
+        For i As Integer = 0 To dgv.Rows.Count - 1
 
             Dim cellColor As String = dgv.Rows(i).Cells(1).Value
             dgv.Rows(i).Cells(0).Value = ""
@@ -226,11 +246,11 @@ Public Class HomeForm
         MsgBox(CoursAddHWPanelComboBox.SelectedItem.ToString)
         '// agarra el idSubject del curso escogido en el combobox
         Dim dgv As DataGridView = CourseDataGridView
-        For i As Integer = 0 To dgv.Rows.Count - 2
+        For i As Integer = 0 To dgv.Rows.Count - 1
             If dgv.Rows(i).Cells(1).Value = CoursAddHWPanelComboBox.SelectedItem.ToString Then
                 Course.IdCourse2 = dgv.Rows(i).Cells(5).Value
 
-                i = dgv.Rows.Count - 2
+                i = dgv.Rows.Count - 1
             End If
 
 
@@ -261,25 +281,14 @@ Public Class HomeForm
         connection.Close()
 
         MsgBox("Tarea guardada con exito")
+        NameHWAddPanelTextBox.Text = ""
+        CoursAddHWPanelComboBox.SelectedIndex = -1
+        DdayAddPanelDateTimePicker.Value = Date.Today
         AddHomeWorkPanel.Hide()
 
 
     End Sub
 
-
-
-    'Private Sub AddHomeWorkPanel_Enter(sender As Object, e As EventArgs) Handles AddHomeWorkPanel.Enter
-
-    '    Dim dgv As DataGridView = CourseDataGridView
-    '    For i As Integer = 0 To dgv.Rows.Count - 2
-
-    '        Dim Course As String = dgv.Rows(i).Cells(1).Value
-    '        'MsgBox("iteracion " & i)
-    '        'dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
-    '        CoursAddHWPanelComboBox.Items.Add(Course)
-
-    '    Next
-    'End Sub
 
     Private Sub SaveEditProfileButton_Click(sender As Object, e As EventArgs) Handles SaveEditProfileButton.Click
 
@@ -355,18 +364,16 @@ Public Class HomeForm
             End While
         End If
         'VUELVE A LLENAR EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
-        For i As Integer = 0 To dgv.Rows.Count - 2
+        For i As Integer = 0 To dgv.Rows.Count - 1
 
-                Dim Course As String = dgv.Rows(i).Cells(1).Value
-                'MsgBox("iteracion " & i)
-                'dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
-                CoursAddHWPanelComboBox.Items.Add(Course)
+            Dim Course As String = dgv.Rows(i).Cells(1).Value
+            'MsgBox("iteracion " & i)
+            'dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
+            CoursAddHWPanelComboBox.Items.Add(Course)
 
-            Next
-
-    End Sub
-
-    Private Sub AddHomeWorkPanel_Paint(sender As Object, e As PaintEventArgs) Handles AddHomeWorkPanel.Paint
+        Next
 
     End Sub
+
+
 End Class
