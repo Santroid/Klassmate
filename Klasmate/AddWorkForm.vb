@@ -64,14 +64,12 @@ Public Class AddWorkForm
 
             'si Lunes esta marcado
             If Index = 0 Then
-
                 sch.Day_Schedule = "Lunes"
                 sch.TimeStart_Schedule = WLIDateTimePicker.Value
                 sch.TimeEnd_Schedule = WLTDateTimePicker.Value
 
                 'si Martes esta marcado
             ElseIf Index = 1 Then
-
                 sch.Day_Schedule = "Martes"
                 sch.TimeStart_Schedule = WKIDateTimePicker.Value
                 sch.TimeEnd_Schedule = WKTDateTimePicker.Value
@@ -91,7 +89,6 @@ Public Class AddWorkForm
                 'si viernes esta marcado
             ElseIf Index = 4 Then
                 sch.Day_Schedule = "Viernes"
-                ' MsgBox(sch.Day_Schedule)
                 sch.TimeStart_Schedule = WVIDateTimePicker.Value
                 sch.TimeEnd_Schedule = WVTDateTimePicker.Value
 
@@ -371,61 +368,6 @@ Public Class AddWorkForm
 
     End Sub
 
-    Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
-        Me.Hide()
-        HomeForm.Show()
-    End Sub
-
-    Private Sub ColorWorkSRComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ColorWorkSRComboBox.SelectedIndexChanged
-        If ColorWorkSRComboBox.SelectedIndex <> -1 Then
-            ColorWorkSRComboBox.BackColor = Color.FromName(ColorWorkSRComboBox.SelectedItem.ToString)
-        End If
-    End Sub
-
-    Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs)
-
-        Dim myComboBox As ComboBox = CType(sender, ComboBox)
-        Dim mySelectedColor As Color = Color.FromName(myComboBox.Items(e.Index).ToString)
-        Dim myRectangleSize As Integer = e.Bounds.Height - 3
-
-        e.DrawBackground()
-
-        Using myBrush As New SolidBrush(e.ForeColor)
-            Using mySelectedBrush As New SolidBrush(mySelectedColor)
-                e.Graphics.FillRectangle(mySelectedBrush,
-                                        e.Bounds.Left + 5,
-                                        e.Bounds.Top + 2,
-                                        70,
-                                        myRectangleSize)
-                e.Graphics.DrawRectangle(New Pen(Brushes.Black),
-                                        e.Bounds.Left + 5,
-                                        e.Bounds.Top + 2,
-                                        70,
-                                        myRectangleSize)
-            End Using
-        End Using
-
-    End Sub
-
-    Private Sub AddWorkForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Un contador para saber si ya se registro un periodo lectivo
-        Period.PeriodCounter = 0
-        'MsgBox("This is the periodocounter at load " & Period.PeriodCounter)
-        Dim knownColors = System.Enum.GetNames(GetType(KnownColor)).
-            Where(Function(kc) GetType(SystemColors).GetProperty(kc) Is Nothing _
-            AndAlso kc <> KnownColor.Transparent.ToString()).
-            OrderBy(Function(kc) kc)
-
-        With ColorWorkSRComboBox
-            .DrawMode = DrawMode.OwnerDrawFixed
-            .IntegralHeight = False
-            .MaxDropDownItems = 8
-            .DataSource = knownColors.ToList
-            .SelectedIndex = 0
-            .SelectedItem = Color.AliceBlue
-        End With
-    End Sub
-
     Private Sub AddWorkSRButton2_Click(sender As Object, e As EventArgs) Handles AddWorkSRButton2.Click
 
         Dim user As New User
@@ -477,6 +419,7 @@ Public Class AddWorkForm
         End Try
 
         '// SE AGREGAN LOS DIAS Y HORAS DEL CURSO A LA TABLA "SHEDULE" Y SE RELACIONA CON "ACTIVITY HAS SCHEDULE" ///////
+
         For Each Index In DayWorkSRCheckedListBox.CheckedIndices
 
             'si Lunes esta marcado
@@ -524,53 +467,63 @@ Public Class AddWorkForm
                 sch.TimeEnd_Schedule = WDTDateTimePicker.Value
             End If
 
-            Try
-                Connect()
-                insertQuery = "INSERT INTO Schedule(day, startTime, endTime) values (@day, @startTime, @endTime)"
-                command = New SqlCommand(insertQuery, ConnectionBD.Connection)
-                With command 'le asigna los valores a los espacios en la tabla
-                    .Parameters.AddWithValue("@day", sch.Day_Schedule)
-                    .Parameters.AddWithValue("@startTime", sch.TimeStart_Schedule.TimeOfDay)
-                    .Parameters.AddWithValue("@endTime", sch.TimeEnd_Schedule.TimeOfDay)
-                End With
-                command.ExecuteNonQuery()
-            Catch ex As Exception
-                MsgBox("No fue posible registrar el horario de trabajo 3" + ex.Message)
-            Finally
-                Disconnect()
-            End Try
-
-            Try
-                Connect()
-                selectQuery = "SELECT TOP 1 * FROM Schedule ORDER BY idSchedule DESC"
-                command = New SqlCommand(selectQuery, ConnectionBD.Connection)
-            Catch ex As Exception
-                MsgBox("No fue posible registrar el horario de trabajo 4" + ex.Message)
-            Finally
-                Disconnect()
-            End Try
-
-            Try
-                Connect()
-                insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idSubject) values (@idSchedule, @idSubject)"
-                command = New SqlCommand(insertQuery, ConnectionBD.Connection)
-                reader = command.ExecuteReader
-                reader.Read()
-                Dim IdSch As Integer = reader.Item("idSchedule")
-                With command 'le asigna los valores a los espacios en la tabla
-                    .Parameters.AddWithValue("@idSchedule", IdSch)
-                    .Parameters.AddWithValue("@idSubject", Work.Id_WorkSch)
-                End With
-                command.ExecuteNonQuery()
-            Catch ex As Exception
-                ' MsgBox("No fue posible registrar el horario de trabajo 5" + ex.Message)
-            Finally
-                Disconnect()
-            End Try
-
         Next
-        Me.Hide()
+
+        NameWorkSRTextBox.Clear()
+            ColorWorkSRComboBox.SelectedIndex = -1
+            ColorWorkSRComboBox.BackColor = Color.AliceBlue
+            For Index = 0 To DayWorkSRCheckedListBox.Items.Count - 1
+                DayWorkSRCheckedListBox.SetItemChecked(Index, False)
+                DayWorkSRCheckedListBox.SetItemCheckState(Index, CheckState.Unchecked)
+            Next
+            Me.Hide()
         HomeForm.Show()
+
+        Try
+            Connect()
+            insertQuery = "INSERT INTO Schedule(day, startTime, endTime) values (@day, @startTime, @endTime)"
+            command = New SqlCommand(insertQuery, ConnectionBD.Connection)
+            With command 'le asigna los valores a los espacios en la tabla
+                .Parameters.AddWithValue("@day", sch.Day_Schedule)
+                .Parameters.AddWithValue("@startTime", sch.TimeStart_Schedule.TimeOfDay)
+                .Parameters.AddWithValue("@endTime", sch.TimeEnd_Schedule.TimeOfDay)
+            End With
+            command.ExecuteNonQuery()
+        Catch ex As Exception
+            MsgBox("No fue posible registrar el horario de trabajo 3" + ex.Message)
+        Finally
+            Disconnect()
+        End Try
+
+        Try
+            Connect()
+            selectQuery = "SELECT TOP 1 * FROM Schedule ORDER BY idSchedule DESC"
+            command = New SqlCommand(selectQuery, ConnectionBD.Connection)
+        Catch ex As Exception
+            MsgBox("No fue posible registrar el horario de trabajo 4" + ex.Message)
+        Finally
+            Disconnect()
+        End Try
+
+        Try
+            Connect()
+            insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idSubject) values (@idSchedule, @idSubject)"
+            command = New SqlCommand(insertQuery, ConnectionBD.Connection)
+            reader = command.ExecuteReader
+            reader.Read()
+            Dim IdSch As Integer = reader.Item("idSchedule")
+            With command 'le asigna los valores a los espacios en la tabla
+                .Parameters.AddWithValue("@idSchedule", IdSch)
+                .Parameters.AddWithValue("@idSubject", Work.Id_WorkSch)
+            End With
+            command.ExecuteNonQuery()
+        Catch ex As Exception
+            ' MsgBox("No fue posible registrar el horario de trabajo 5" + ex.Message)
+        Finally
+            Disconnect()
+        End Try
+
+
 
         '//LUNES//
         If DayWorkSRCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
@@ -680,6 +633,61 @@ Public Class AddWorkForm
         End If
 
         '\\\\\\\\\ TERMINA DE AGREGAR UN CURSO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO \\\\\\\\\\\\
+    End Sub
+
+    Private Sub ColorWorkSRComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ColorWorkSRComboBox.SelectedIndexChanged
+        If ColorWorkSRComboBox.SelectedIndex <> -1 Then
+            ColorWorkSRComboBox.BackColor = Color.FromName(ColorWorkSRComboBox.SelectedItem.ToString)
+        End If
+    End Sub
+
+    Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs)
+
+        Dim myComboBox As ComboBox = CType(sender, ComboBox)
+        Dim mySelectedColor As Color = Color.FromName(myComboBox.Items(e.Index).ToString)
+        Dim myRectangleSize As Integer = e.Bounds.Height - 3
+
+        e.DrawBackground()
+
+        Using myBrush As New SolidBrush(e.ForeColor)
+            Using mySelectedBrush As New SolidBrush(mySelectedColor)
+                e.Graphics.FillRectangle(mySelectedBrush,
+                                        e.Bounds.Left + 5,
+                                        e.Bounds.Top + 2,
+                                        70,
+                                        myRectangleSize)
+                e.Graphics.DrawRectangle(New Pen(Brushes.Black),
+                                        e.Bounds.Left + 5,
+                                        e.Bounds.Top + 2,
+                                        70,
+                                        myRectangleSize)
+            End Using
+        End Using
+
+    End Sub
+
+    Private Sub AddWorkForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Un contador para saber si ya se registro un periodo lectivo
+        Period.PeriodCounter = 0
+        'MsgBox("This is the periodocounter at load " & Period.PeriodCounter)
+        Dim knownColors = System.Enum.GetNames(GetType(KnownColor)).
+            Where(Function(kc) GetType(SystemColors).GetProperty(kc) Is Nothing _
+            AndAlso kc <> KnownColor.Transparent.ToString()).
+            OrderBy(Function(kc) kc)
+
+        With ColorWorkSRComboBox
+            .DrawMode = DrawMode.OwnerDrawFixed
+            .IntegralHeight = False
+            .MaxDropDownItems = 8
+            .DataSource = knownColors.ToList
+            .SelectedIndex = 0
+            .SelectedItem = Color.AliceBlue
+        End With
+    End Sub
+
+    Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
+        Me.Hide()
+        HomeForm.Show()
     End Sub
 
 End Class
