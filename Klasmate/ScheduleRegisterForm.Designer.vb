@@ -70,6 +70,7 @@ Partial Class ScheduleRegisterForm
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.SaveSRButton = New System.Windows.Forms.Button()
+        Me.IdUserLabel = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.AddCourseSRPanel.SuspendLayout()
         Me.SuspendLayout()
@@ -77,6 +78,7 @@ Partial Class ScheduleRegisterForm
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Panel1.Controls.Add(Me.IdUserLabel)
         Me.Panel1.Controls.Add(Me.PeriodNameLabel)
         Me.Panel1.Controls.Add(Me.NamePeriodTextBox)
         Me.Panel1.Controls.Add(Me.Label3)
@@ -595,6 +597,16 @@ Partial Class ScheduleRegisterForm
         Me.SaveSRButton.Text = "Terminar"
         Me.SaveSRButton.UseVisualStyleBackColor = True
         '
+        'IdUserLabel
+        '
+        Me.IdUserLabel.AutoSize = True
+        Me.IdUserLabel.Location = New System.Drawing.Point(178, 31)
+        Me.IdUserLabel.Name = "IdUserLabel"
+        Me.IdUserLabel.Size = New System.Drawing.Size(39, 13)
+        Me.IdUserLabel.TabIndex = 7
+        Me.IdUserLabel.Text = "Label9"
+        Me.IdUserLabel.Visible = False
+        '
         'ScheduleRegisterForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -662,4 +674,5 @@ Partial Class ScheduleRegisterForm
     Friend WithEvents LTLabel As Label
     Friend WithEvents LTDateTimePicker As DateTimePicker
     Friend WithEvents DefaultDateTimePicker As DateTimePicker
+    Friend WithEvents IdUserLabel As Label
 End Class

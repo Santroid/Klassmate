@@ -55,25 +55,29 @@ Public Class HomeForm
         '    MsgBox(ex.Message, MsgBoxStyle.Critical, "General Error")
         'End Try
 
-
-        'le cambia los colores a las celdas de acuerdo a la base de datos
+        'ESTO ES PARA QUE LE PONGA LOS COLORES AL DGV SOLO UNA VEZ Y NO SE REPITA
         Dim dgv As DataGridView = CourseDataGridView
 
-        For i As Integer = 0 To dgv.Rows.Count - 1
+        If dgv.Rows(0).Cells(0).Value <> "" Then
+            'le cambia los colores a las celdas de acuerdo a la base de datos
 
-            Dim cellColor As String = dgv.Rows(i).Cells(0).Value
-            'MsgBox(cellColor)
-            dgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
 
-        Next
-        For i As Integer = 0 To dgv.Rows.Count - 1
+            For i As Integer = 0 To dgv.Rows.Count - 1
 
-            Dim cellColor As String = dgv.Rows(i).Cells(1).Value
-            dgv.Rows(i).Cells(0).Value = ""
+                Dim cellColor As String = dgv.Rows(i).Cells(0).Value
+                'MsgBox(cellColor)
+                dgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
 
-        Next
-        dgv.ClearSelection()
+            Next
+            For i As Integer = 0 To dgv.Rows.Count - 1
 
+                Dim cellColor As String = dgv.Rows(i).Cells(1).Value
+                dgv.Rows(i).Cells(0).Value = ""
+
+            Next
+            dgv.ClearSelection()
+
+        End If
     End Sub
 
     Private Sub AddHomeButton_Click(sender As Object, e As EventArgs)
@@ -173,7 +177,7 @@ Public Class HomeForm
 
     Private Sub TermAddHomeLabel_Click(sender As Object, e As EventArgs) Handles TermAddHomeLabel.Click
         'Esconde el form de inicio y muestra el de agregar horarios
-
+        ScheduleRegisterForm.IdUserLabel.Text = LoginForm.user.Id_User
         ScheduleRegisterForm.Show()
     End Sub
 
