@@ -62,6 +62,7 @@ Partial Class AddWorkForm
         Me.WLILabel = New System.Windows.Forms.Label()
         Me.WLIDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.DefaultDateTimePicker = New System.Windows.Forms.DateTimePicker()
+        Me.IdUserLabel = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Cancel
@@ -474,11 +475,22 @@ Partial Class AddWorkForm
         Me.DefaultDateTimePicker.Value = New Date(2018, 11, 4, 0, 0, 0, 0)
         Me.DefaultDateTimePicker.Visible = False
         '
+        'IdUserLabel
+        '
+        Me.IdUserLabel.AutoSize = True
+        Me.IdUserLabel.Location = New System.Drawing.Point(342, 10)
+        Me.IdUserLabel.Name = "IdUserLabel"
+        Me.IdUserLabel.Size = New System.Drawing.Size(39, 13)
+        Me.IdUserLabel.TabIndex = 102
+        Me.IdUserLabel.Text = "Label9"
+        Me.IdUserLabel.Visible = False
+        '
         'AddWorkForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(500, 235)
+        Me.Controls.Add(Me.IdUserLabel)
         Me.Controls.Add(Me.DefaultDateTimePicker)
         Me.Controls.Add(Me.WDTLabel)
         Me.Controls.Add(Me.WDTDateTimePicker)
@@ -567,4 +579,5 @@ Partial Class AddWorkForm
     Friend WithEvents WLILabel As Label
     Friend WithEvents WLIDateTimePicker As DateTimePicker
     Friend WithEvents DefaultDateTimePicker As DateTimePicker
+    Friend WithEvents IdUserLabel As Label
 End Class
