@@ -2,12 +2,6 @@
 
 Public Class AddWorkForm
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Cancel.Click
-        'Cuando el boton de cancelar en el Form de agregar horarios de trabajo, se esconde eso Form y se muestra el form de inicio
-        Me.Hide()
-        HomeForm.Show()
-    End Sub
-
     Private Sub AddWorkSRButton_Click(sender As Object, e As EventArgs) Handles AddWorkSRButton.Click
 
         Dim user As New User
@@ -38,19 +32,15 @@ Public Class AddWorkForm
         Dim reader As SqlDataReader '= command.ExecuteReader
 
         'declaramos la sentencia de INSERT para insertar a la BD
-        insertQuery = "INSERT INTO Subject(nameSubject, color, idPeriod) values (@nameSubject, @color, @idPeriod)"
+        insertQuery = "INSERT INTO Actitivy(name, color, idStudent) values (@name, @color, @idStudent)"
 
         command = New SqlCommand(insertQuery, connection)
         connection.Open()
 
-        ' MsgBox("This is the global variable after the if " & Period.IdPeriod)
         With command 'le asigna los valores a los espacios en la tabla
-
-            '.Parameters.AddWithValue("@idStudent", User.IdUser)
-            .Parameters.AddWithValue("@nameSubject", course.Name_Course)
-            .Parameters.AddWithValue("@color", course.Color_Course.ToString)
-            .Parameters.AddWithValue("@idPeriod", Period.IdPeriod)
-
+            .Parameters.AddWithValue("@name", Work.Name_WorkSch)
+            .Parameters.AddWithValue("@color", Work.Color_Work.ToString)
+            .Parameters.AddWithValue("@idStudent", user.Id_User)
         End With
 
 
@@ -74,8 +64,8 @@ Public Class AddWorkForm
 
         reader.Read()
 
-        Course.IdCourse = reader.Item("idSubject")
-        MsgBox("global variable idcourse" & Course.IdCourse)
+        Work.Id_WorkSch = reader.Item("idActivity")
+        MsgBox("global variable idcourse" & Work.Id_WorkSch)
 
         connection.Close()
 
@@ -86,30 +76,25 @@ Public Class AddWorkForm
             If Index = 0 Then
 
                 sch.Day_Schedule = "Lunes"
-                ' MsgBox(sch.Day_Schedule)
                 sch.TimeStart_Schedule = WLIDateTimePicker.Value
                 sch.TimeEnd_Schedule = WLTDateTimePicker.Value
-                ' MsgBox("time of day" & sch.TimeEnd_Schedule.TimeOfDay.ToString)
 
                 'si Martes esta marcado
             ElseIf Index = 1 Then
 
                 sch.Day_Schedule = "Martes"
-                ' MsgBox(sch.Day_Schedule)
                 sch.TimeStart_Schedule = WKIDateTimePicker.Value
                 sch.TimeEnd_Schedule = WKTDateTimePicker.Value
 
                 'si miercoles esta marcado
             ElseIf Index = 2 Then
                 sch.Day_Schedule = "Miercoles"
-                ' MsgBox(sch.Day_Schedule)
                 sch.TimeStart_Schedule = WMIDateTimePicker.Value
                 sch.TimeEnd_Schedule = WMTDateTimePicker.Value
 
                 'si jueves esta marcado
             ElseIf Index = 3 Then
                 sch.Day_Schedule = "Jueves"
-                ' MsgBox(sch.Day_Schedule)
                 sch.TimeStart_Schedule = WJIDateTimePicker.Value
                 sch.TimeEnd_Schedule = WJTDateTimePicker.Value
 
@@ -123,14 +108,12 @@ Public Class AddWorkForm
                 'si sabado esta marcado
             ElseIf Index = 5 Then
                 sch.Day_Schedule = "Sabado"
-                ' MsgBox(sch.Day_Schedule)
                 sch.TimeStart_Schedule = WSIDateTimePicker.Value
                 sch.TimeEnd_Schedule = WSTDateTimePicker.Value
 
                 'si domingo esta marcado
             ElseIf Index = 6 Then
                 sch.Day_Schedule = "Domingo"
-                ' MsgBox(sch.Day_Schedule)
                 sch.TimeStart_Schedule = WDIDateTimePicker.Value
                 sch.TimeEnd_Schedule = WDTDateTimePicker.Value
 
@@ -140,25 +123,18 @@ Public Class AddWorkForm
             command = New SqlCommand(insertQuery, connection)
             connection.Open()
 
-            'MsgBox("This is the global variable after the if " & Period.IdPeriod)
             With command 'le asigna los valores a los espacios en la tabla
-
                 '.Parameters.AddWithValue("@idStudent", User.IdUser)
                 .Parameters.AddWithValue("@day", sch.Day_Schedule)
                 .Parameters.AddWithValue("@startTime", sch.TimeStart_Schedule.TimeOfDay)
                 .Parameters.AddWithValue("@endTime", sch.TimeEnd_Schedule.TimeOfDay)
-
             End With
 
 
             'ejecutamos la consulta
             command.ExecuteNonQuery()
 
-
             connection.Close()
-
-
-
 
             'declaramos la sentencia de INSERT para insertar a la BD
             selectQuery = "SELECT TOP 1 * FROM Schedule ORDER BY idSchedule DESC"
@@ -185,13 +161,9 @@ Public Class AddWorkForm
 
 
             With command 'le asigna los valores a los espacios en la tabla
-
-
                 .Parameters.AddWithValue("@idSchedule", IdSch)
                 .Parameters.AddWithValue("@idSubject", Course.IdCourse)
-
             End With
-
 
             'ejecutamos la consulta
             command.ExecuteNonQuery()
@@ -227,8 +199,6 @@ Public Class AddWorkForm
 
         '//MARTES//
         If DayWorkSRCheckedListBox.GetItemCheckState(1) = CheckState.Checked Then
-
-            ' MsgBox("Monday has been checked")
             WKIDateTimePicker.Enabled = True
             WKTDateTimePicker.Enabled = True
             WKILabel.Enabled = True
@@ -244,8 +214,6 @@ Public Class AddWorkForm
 
         '//MIERCOLES//
         If DayWorkSRCheckedListBox.GetItemCheckState(2) = CheckState.Checked Then
-
-            ' MsgBox("Monday has been checked")
             WMIDateTimePicker.Enabled = True
             WMTDateTimePicker.Enabled = True
             WMILabel.Enabled = True
@@ -261,8 +229,6 @@ Public Class AddWorkForm
 
         '//JUEVES//
         If DayWorkSRCheckedListBox.GetItemCheckState(3) = CheckState.Checked Then
-
-            ' MsgBox("Monday has been checked")
             WJIDateTimePicker.Enabled = True
             WJTDateTimePicker.Enabled = True
             WJILabel.Enabled = True
@@ -278,8 +244,6 @@ Public Class AddWorkForm
 
         '//VIERNES//
         If DayWorkSRCheckedListBox.GetItemCheckState(4) = CheckState.Checked Then
-
-            '  MsgBox("Monday has been checked")
             WVIDateTimePicker.Enabled = True
             WVTDateTimePicker.Enabled = True
             WVILabel.Enabled = True
@@ -295,8 +259,6 @@ Public Class AddWorkForm
 
         '//SABADO//
         If DayWorkSRCheckedListBox.GetItemCheckState(5) = CheckState.Checked Then
-
-            ' MsgBox("Monday has been checked")
             WSIDateTimePicker.Enabled = True
             WSTDateTimePicker.Enabled = True
             WSILabel.Enabled = True
@@ -312,8 +274,6 @@ Public Class AddWorkForm
 
         '//DOMINGO//
         If DayWorkSRCheckedListBox.GetItemCheckState(6) = CheckState.Checked Then
-
-            ' MsgBox("Monday has been checked")
             WDIDateTimePicker.Enabled = True
             WDTDateTimePicker.Enabled = True
             WDILabel.Enabled = True
@@ -426,4 +386,8 @@ Public Class AddWorkForm
 
     End Sub
 
+    Private Sub Cancel_Click(sender As Object, e As EventArgs) Handles Cancel.Click
+        Me.Hide()
+        HomeForm.Show()
+    End Sub
 End Class
