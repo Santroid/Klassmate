@@ -590,7 +590,7 @@ Partial Class ScheduleRegisterForm
         '
         'SaveSRButton
         '
-        Me.SaveSRButton.Location = New System.Drawing.Point(12, 244)
+        Me.SaveSRButton.Location = New System.Drawing.Point(12, 246)
         Me.SaveSRButton.Name = "SaveSRButton"
         Me.SaveSRButton.Size = New System.Drawing.Size(795, 23)
         Me.SaveSRButton.TabIndex = 24
