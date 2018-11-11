@@ -73,6 +73,8 @@ Public Class LoginForm
         user.Email_User = EmailLoginTextBox.Text
         user.Password_User = PasswordLoginTextBox.Text
 
+        Dim period As New Period
+
 
         Dim command As SqlCommand
 
@@ -91,6 +93,8 @@ Public Class LoginForm
                 reader.Read()
 
                 user.Id_User = reader.Item("idStudent")
+                ScheduleRegisterForm.IdUserLabel.Text = user.Id_User
+                AddCourseForm.IdUserLabel.Text = user.Id_User
                 User.IdUser = reader.Item("idStudent")
                 User.IdUser2 = reader.Item("idStudent")
                 'MsgBox("This is user.Id_User " & user.Id_User)
@@ -104,18 +108,35 @@ Public Class LoginForm
                     'Esconde la pantalla de Login y muestra la de Home
                     Dim selectQuery
                     'Dim command As SqlCommand
-
+                    'Dim getQuery As String
 
                     'Connection.Open()
                     'Dim reader As SqlDataReader
                     'ESTO ES PARA QUE APARESCA EL NOMBRE DEL PERIODO LECTIVO EN LA PARTE DE ARRIBA
-                    selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & user.Id_User & " "
+                    'getQuery = "Select namePeriod from Period  where idStudent = " & user.Id_User & " "
+
+                    ' selectQuery = "SELECT TOP 1 * FROM (" & getQuery & ") ORDER BY namePeriod DESC"
+
+                    selectQuery = "
+                                    SELECT TOP 1
+                                       namePeriod
+                                    FROM
+                                        Period
+                                    WHERE
+                                         idStudent = " & user.Id_User & "
+                                    ORDER BY
+                                        namePeriod DESC
+                                    
+                                    
+                                ;"
+                    'selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & user.Id_User & " "
                     command = New SqlCommand(selectQuery, Connection)
                     reader = command.ExecuteReader
 
 
                     reader.Read()
                     HomeForm.PeriodHomeLabel.Text = reader.Item("namePeriod")
+                    Period.Id_Period = reader.Item("idPeriod")
 
                     reader.Close()
                     Connection.Close()
@@ -125,6 +146,7 @@ Public Class LoginForm
                         Dim strSQL As String = "select s.color, s.nameSubject, sc.day, sc.startTime, sc.endTime, s.idSubject
                                     from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
+                                    and p.idPeriod =" & period.Id_Period & "
                                     and p.idPeriod = s.idPeriod
                                     and k.idStudent =" & user.Id_User & "
                                     and s.idSubject = a.idSubject
@@ -169,6 +191,8 @@ Public Class LoginForm
             user.Email_User = EmailLoginTextBox.Text
             user.Password_User = PasswordLoginTextBox.Text
 
+            Dim period As New Period
+
 
             Dim command As SqlCommand
 
@@ -187,6 +211,8 @@ Public Class LoginForm
                     reader.Read()
 
                     user.Id_User = reader.Item("idStudent")
+                    ScheduleRegisterForm.IdUserLabel.Text = user.Id_User
+                    AddCourseForm.IdUserLabel.Text = user.Id_User
                     User.IdUser = reader.Item("idStudent")
                     User.IdUser2 = reader.Item("idStudent")
                     If reader.Item("status") = False Then
@@ -194,12 +220,30 @@ Public Class LoginForm
 
                     Else
                         reader.Close()
+                        Dim selectQuery
+                        selectQuery = "SELECT TOP 1 namePeriod, idPeriod
+                                       FROM Period
+                                       WHERE idStudent = " & user.Id_User & " ORDER BY namePeriod DESC ;"
+
+                        'selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & user.Id_User & " "
+                        command = New SqlCommand(selectQuery, Connection)
+                        reader = command.ExecuteReader
+
+
+                        reader.Read()
+                        HomeForm.PeriodHomeLabel.Text = reader.Item("namePeriod")
+                        period.Id_Period = reader.Item("idPeriod")
+
+                        reader.Close()
+                        Connection.Close()
+
                         Try
                             'Connection.Open()
                             'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
                             Dim strSQL As String = "select s.color, s.nameSubject, sc.day, sc.startTime, sc.endTime, s.idSubject
                                     from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
+                                    and p.idPeriod =" & period.Id_Period & "
                                     and p.idPeriod = s.idPeriod
                                     and k.idStudent =" & user.Id_User & "
                                     and s.idSubject = a.idSubject

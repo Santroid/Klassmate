@@ -89,7 +89,8 @@ Public Class RegisterForm
 
                     reader.Read()
 
-                    User.Id_User = reader.Item("idStudent")
+                    user.Id_User = reader.Item("idStudent")
+                    ScheduleRegisterForm.IdUserLabel.Text = user.Id_User
                     'MsgBox("This is the global variable IdUser" & user.Id_User)
 
 
