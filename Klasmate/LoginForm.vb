@@ -119,7 +119,7 @@ Public Class LoginForm
 
                     selectQuery = "
                                     SELECT TOP 1
-                                       namePeriod
+                                       namePeriod, idPeriod
                                     FROM
                                         Period
                                     WHERE

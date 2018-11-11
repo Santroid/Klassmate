@@ -64,14 +64,14 @@ Partial Class HomeForm
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.CourseDataGridView = New System.Windows.Forms.DataGridView()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.PeriodHomeLabel = New System.Windows.Forms.Label()
         Me.color = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nameSubject = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseDays = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseStartTme = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseEndTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.PeriodHomeLabel = New System.Windows.Forms.Label()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
@@ -529,25 +529,6 @@ Partial Class HomeForm
         Me.CourseDataGridView.Size = New System.Drawing.Size(653, 261)
         Me.CourseDataGridView.TabIndex = 9
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(109, 23)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(67, 20)
-        Me.Label7.TabIndex = 10
-        Me.Label7.Text = "Periodo:"
-        '
-        'PeriodHomeLabel
-        '
-        Me.PeriodHomeLabel.AutoSize = True
-        Me.PeriodHomeLabel.Location = New System.Drawing.Point(182, 28)
-        Me.PeriodHomeLabel.Name = "PeriodHomeLabel"
-        Me.PeriodHomeLabel.Size = New System.Drawing.Size(39, 13)
-        Me.PeriodHomeLabel.TabIndex = 11
-        Me.PeriodHomeLabel.Text = "Label8"
-        '
         'color
         '
         Me.color.DataPropertyName = "color"
@@ -599,6 +580,25 @@ Partial Class HomeForm
         Me.CourseID.ReadOnly = True
         Me.CourseID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.CourseID.Visible = False
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(109, 23)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(67, 20)
+        Me.Label7.TabIndex = 10
+        Me.Label7.Text = "Periodo:"
+        '
+        'PeriodHomeLabel
+        '
+        Me.PeriodHomeLabel.AutoSize = True
+        Me.PeriodHomeLabel.Location = New System.Drawing.Point(182, 28)
+        Me.PeriodHomeLabel.Name = "PeriodHomeLabel"
+        Me.PeriodHomeLabel.Size = New System.Drawing.Size(39, 13)
+        Me.PeriodHomeLabel.TabIndex = 11
+        Me.PeriodHomeLabel.Text = "Label8"
         '
         'HomeForm
         '

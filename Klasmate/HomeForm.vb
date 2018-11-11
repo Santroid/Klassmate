@@ -365,5 +365,7 @@ Public Class HomeForm
 
     End Sub
 
-
+    Private Sub AddHomePanel_Leave(sender As Object, e As EventArgs) Handles AddHomePanel.Leave
+        AddHomePanel.Hide()
+    End Sub
 End Class
