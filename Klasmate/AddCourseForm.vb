@@ -10,4 +10,8 @@
         Me.Hide()
         HomeForm.Show()
     End Sub
+
+    Private Sub AddCoursSRButton_Click(sender As Object, e As EventArgs) Handles AddCoursSRButton.Click
+
+    End Sub
 End Class

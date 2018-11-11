@@ -40,10 +40,10 @@ Partial Class LoginForm
         Me.RegisterLinkLabel.AutoSize = True
         Me.RegisterLinkLabel.Location = New System.Drawing.Point(42, 186)
         Me.RegisterLinkLabel.Name = "RegisterLinkLabel"
-        Me.RegisterLinkLabel.Size = New System.Drawing.Size(73, 26)
+        Me.RegisterLinkLabel.Size = New System.Drawing.Size(64, 26)
         Me.RegisterLinkLabel.TabIndex = 3
         Me.RegisterLinkLabel.TabStop = True
-        Me.RegisterLinkLabel.Text = "¿Eres nuevo?" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Regístrate"
+        Me.RegisterLinkLabel.Text = "¿Es nuevo?" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Regístrese"
         Me.RegisterLinkLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'ForgotPasswordLinkLabel
@@ -90,7 +90,7 @@ Partial Class LoginForm
         Me.CancelLoginButton.Name = "CancelLoginButton"
         Me.CancelLoginButton.Size = New System.Drawing.Size(90, 34)
         Me.CancelLoginButton.TabIndex = 8
-        Me.CancelLoginButton.Text = "Cancelar"
+        Me.CancelLoginButton.Text = "Limpiar"
         Me.CancelLoginButton.UseVisualStyleBackColor = True
         '
         'IDLabel
