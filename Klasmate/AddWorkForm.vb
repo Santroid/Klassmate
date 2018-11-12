@@ -47,8 +47,8 @@ Public Class AddWorkForm
         With command 'le asigna los valores a los espacios en la tabla
 
             '.Parameters.AddWithValue("@idStudent", User.IdUser)
-            .Parameters.AddWithValue("@nameSubject", course.Name_Course)
-            .Parameters.AddWithValue("@color", course.Color_Course.ToString)
+            '.Parameters.AddWithValue("@nameSubject", Course.Name_Course)
+            '.Parameters.AddWithValue("@color", Course.Color_Course.ToString)
             .Parameters.AddWithValue("@idPeriod", Period.IdPeriod)
 
         End With
@@ -426,4 +426,7 @@ Public Class AddWorkForm
 
     End Sub
 
+    Private Sub AddWorkForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
