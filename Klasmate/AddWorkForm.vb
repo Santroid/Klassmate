@@ -641,7 +641,7 @@ Public Class AddWorkForm
         End If
     End Sub
 
-    Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs)
+    Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs) Handles ColorWorkSRComboBox.DrawItem
 
         Dim myComboBox As ComboBox = CType(sender, ComboBox)
         Dim mySelectedColor As Color = Color.FromName(myComboBox.Items(e.Index).ToString)
