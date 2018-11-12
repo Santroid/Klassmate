@@ -23,6 +23,7 @@ Partial Class ScheduleRegisterForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.IdUserLabel = New System.Windows.Forms.Label()
         Me.PeriodNameLabel = New System.Windows.Forms.Label()
         Me.NamePeriodTextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -70,7 +71,6 @@ Partial Class ScheduleRegisterForm
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.SaveSRButton = New System.Windows.Forms.Button()
-        Me.IdUserLabel = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.AddCourseSRPanel.SuspendLayout()
         Me.SuspendLayout()
@@ -90,6 +90,16 @@ Partial Class ScheduleRegisterForm
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(795, 100)
         Me.Panel1.TabIndex = 0
+        '
+        'IdUserLabel
+        '
+        Me.IdUserLabel.AutoSize = True
+        Me.IdUserLabel.Location = New System.Drawing.Point(178, 31)
+        Me.IdUserLabel.Name = "IdUserLabel"
+        Me.IdUserLabel.Size = New System.Drawing.Size(39, 13)
+        Me.IdUserLabel.TabIndex = 7
+        Me.IdUserLabel.Text = "Label9"
+        Me.IdUserLabel.Visible = False
         '
         'PeriodNameLabel
         '
@@ -596,16 +606,6 @@ Partial Class ScheduleRegisterForm
         Me.SaveSRButton.TabIndex = 24
         Me.SaveSRButton.Text = "Terminar"
         Me.SaveSRButton.UseVisualStyleBackColor = True
-        '
-        'IdUserLabel
-        '
-        Me.IdUserLabel.AutoSize = True
-        Me.IdUserLabel.Location = New System.Drawing.Point(178, 31)
-        Me.IdUserLabel.Name = "IdUserLabel"
-        Me.IdUserLabel.Size = New System.Drawing.Size(39, 13)
-        Me.IdUserLabel.TabIndex = 7
-        Me.IdUserLabel.Text = "Label9"
-        Me.IdUserLabel.Visible = False
         '
         'ScheduleRegisterForm
         '

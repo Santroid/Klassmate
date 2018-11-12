@@ -311,30 +311,7 @@ Public Class HomeForm
 
     Private Sub DeleteProfileButton_Click(sender As Object, e As EventArgs) Handles DeleteProfileButton.Click
 
-        Dim connection As SqlConnection
-        Dim command As New SqlCommand
-
-        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
-        'aquí conectamos con la base de datos
-        connection = New SqlConnection(connectionString)
-
-        Dim updateQuery As String
-        updateQuery = "UPDATE KMProfile SET status=@status WHERE idStudent= " & LoginForm.user.Id_User & " "
-        command = New SqlCommand(updateQuery, connection)
-
-        With command
-            .Parameters.AddWithValue("@status", False)
-        End With
-
-
-        connection.Open()
-        command.ExecuteNonQuery()
-        command.Dispose()
-        connection.Close()
-        MsgBox("Perfil borrado")
-
-        Me.Close()
-        LoginForm.Show()
+        ConfirmationForm.Show()
 
     End Sub
 
@@ -365,7 +342,5 @@ Public Class HomeForm
 
     End Sub
 
-    Private Sub AddHomePanel_Leave(sender As Object, e As EventArgs) Handles AddHomePanel.Leave
-        AddHomePanel.Hide()
-    End Sub
+
 End Class
