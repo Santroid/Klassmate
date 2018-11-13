@@ -61,7 +61,6 @@ Public Class HomeForm
         If dgv.Rows(0).Cells(0).Value <> "" Then
             'le cambia los colores a las celdas de acuerdo a la base de datos
 
-
             For i As Integer = 0 To dgv.Rows.Count - 1
 
                 Dim cellColor As String = dgv.Rows(i).Cells(0).Value

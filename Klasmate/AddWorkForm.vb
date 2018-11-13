@@ -470,13 +470,13 @@ Public Class AddWorkForm
         Next
 
         NameWorkSRTextBox.Clear()
-        ColorWorkSRComboBox.SelectedIndex = -1
-        ColorWorkSRComboBox.BackColor = Color.AliceBlue
-        For Index = 0 To DayWorkSRCheckedListBox.Items.Count - 1
-            DayWorkSRCheckedListBox.SetItemChecked(Index, False)
-            DayWorkSRCheckedListBox.SetItemCheckState(Index, CheckState.Unchecked)
-        Next
-        Me.Hide()
+            ColorWorkSRComboBox.SelectedIndex = -1
+            ColorWorkSRComboBox.BackColor = Color.AliceBlue
+            For Index = 0 To DayWorkSRCheckedListBox.Items.Count - 1
+                DayWorkSRCheckedListBox.SetItemChecked(Index, False)
+                DayWorkSRCheckedListBox.SetItemCheckState(Index, CheckState.Unchecked)
+            Next
+            Me.Hide()
         HomeForm.Show()
 
         Try
@@ -641,8 +641,7 @@ Public Class AddWorkForm
         End If
     End Sub
 
-    Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs) _
-       Handles ColorWorkSRComboBox.DrawItem
+    Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs) Handles ColorWorkSRComboBox.DrawItem
 
         Dim myComboBox As ComboBox = CType(sender, ComboBox)
         Dim mySelectedColor As Color = Color.FromName(myComboBox.Items(e.Index).ToString)
@@ -669,7 +668,7 @@ Public Class AddWorkForm
 
     Private Sub AddWorkForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Un contador para saber si ya se registro un periodo lectivo
-        'Period.PeriodCounter = 0
+        Period.PeriodCounter = 0
         'MsgBox("This is the periodocounter at load " & Period.PeriodCounter)
         Dim knownColors = System.Enum.GetNames(GetType(KnownColor)).
             Where(Function(kc) GetType(SystemColors).GetProperty(kc) Is Nothing _
