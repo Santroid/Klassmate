@@ -58,7 +58,7 @@ Public Class HomeForm
         'ESTO ES PARA QUE LE PONGA LOS COLORES AL DGV SOLO UNA VEZ Y NO SE REPITA
         Dim dgv As DataGridView = CourseDataGridView
 
-        If dgv.Rows(0).Cells(0).Value <> "" Then
+        If ColorCounterLabel.Text <> " " Then
             'le cambia los colores a las celdas de acuerdo a la base de datos
 
             For i As Integer = 0 To dgv.Rows.Count - 1
@@ -340,6 +340,5 @@ Public Class HomeForm
         Next
 
     End Sub
-
 
 End Class

@@ -23,7 +23,7 @@ Public Class AddWorkForm
 
         Try
             Connect()
-            insertQuery = "INSERT INTO Activity(name, color, idStudent) values (@name, @color, @idStudent)"
+            insertQuery = "INSERT INTO Activity(name, color, idStudent, type, idPeriod) values (@name, @color, @idStudent, @type, @idPeriod)"
 
             command = New SqlCommand(insertQuery, ConnectionBD.Connection)
 
@@ -31,6 +31,8 @@ Public Class AddWorkForm
                 .Parameters.AddWithValue("@name", Work.Name_WorkSch)
                 .Parameters.AddWithValue("@color", Work.Color_Work.ToString)
                 .Parameters.AddWithValue("@idStudent", User.IdUser)
+                .Parameters.AddWithValue("@type", 1)
+                .Parameters.AddWithValue("@idPeriod", Integer.Parse(HomeForm.IdPeriodLabel.Text))
             End With
             command.ExecuteNonQuery()
         Catch ex As Exception
@@ -48,6 +50,9 @@ Public Class AddWorkForm
 
             reader = command.ExecuteReader
             reader.Read()
+
+            Work.Id_WorkSch = reader.Item("idActivity")
+            reader.Close()
 
             MsgBox("Horario guardado con éxito")
             'Work.Id_WorkSch = reader.Item("idActivity")
@@ -123,11 +128,15 @@ Public Class AddWorkForm
             Finally
                 Disconnect()
             End Try
-
+            Dim IdSch As Integer
             Try
                 Connect()
                 selectQuery = "SELECT TOP 1 * FROM Schedule ORDER BY idSchedule DESC"
                 command = New SqlCommand(selectQuery, ConnectionBD.Connection)
+                reader = command.ExecuteReader
+                reader.Read()
+                IdSch = reader.Item("idSchedule")
+                reader.Close()
             Catch ex As Exception
                 MsgBox("No fue posible registrar el horario de trabajo 4" + ex.Message)
             Finally
@@ -136,14 +145,12 @@ Public Class AddWorkForm
 
             Try
                 Connect()
-                insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idSubject) values (@idSchedule, @idSubject)"
+                insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idActivity) values (@idSchedule, @idActivity)"
                 command = New SqlCommand(insertQuery, ConnectionBD.Connection)
-                reader = command.ExecuteReader
-                reader.Read()
-                Dim IdSch As Integer = reader.Item("idSchedule")
+
                 With command 'le asigna los valores a los espacios en la tabla
                     .Parameters.AddWithValue("@idSchedule", IdSch)
-                    .Parameters.AddWithValue("@idSubject", Work.Id_WorkSch)
+                    .Parameters.AddWithValue("@idActivity", Work.Id_WorkSch)
                 End With
                 command.ExecuteNonQuery()
             Catch ex As Exception
@@ -389,7 +396,7 @@ Public Class AddWorkForm
 
         Try
             Connect()
-            insertQuery = "INSERT INTO Activity(name, color, idStudent) values (@name, @color, @idStudent)"
+            insertQuery = "INSERT INTO Activity(name, color, idStudent, type, idPeriod) values (@name, @color, @idStudent, @type, @idPeriod)"
 
             command = New SqlCommand(insertQuery, ConnectionBD.Connection)
 
@@ -397,6 +404,8 @@ Public Class AddWorkForm
                 .Parameters.AddWithValue("@name", Work.Name_WorkSch)
                 .Parameters.AddWithValue("@color", Work.Color_Work.ToString)
                 .Parameters.AddWithValue("@idStudent", User.IdUser)
+                .Parameters.AddWithValue("@type", 1)
+                .Parameters.AddWithValue("@idPeriod", Integer.Parse(HomeForm.IdPeriodLabel.Text))
             End With
             command.ExecuteNonQuery()
         Catch ex As Exception
@@ -411,6 +420,8 @@ Public Class AddWorkForm
             command = New SqlCommand(selectQuery, ConnectionBD.Connection)
             reader = command.ExecuteReader
             reader.Read()
+            Work.Id_WorkSch = reader.Item("idActivity")
+            reader.Close()
             MsgBox("Horario guardado con éxito")
         Catch ex As Exception
             MsgBox("No fue posible registrar el horario de trabajo 2" + ex.Message)
@@ -470,13 +481,13 @@ Public Class AddWorkForm
         Next
 
         NameWorkSRTextBox.Clear()
-            ColorWorkSRComboBox.SelectedIndex = -1
-            ColorWorkSRComboBox.BackColor = Color.AliceBlue
-            For Index = 0 To DayWorkSRCheckedListBox.Items.Count - 1
-                DayWorkSRCheckedListBox.SetItemChecked(Index, False)
-                DayWorkSRCheckedListBox.SetItemCheckState(Index, CheckState.Unchecked)
-            Next
-            Me.Hide()
+        ColorWorkSRComboBox.SelectedIndex = 0
+        ColorWorkSRComboBox.BackColor = Color.AliceBlue
+        For Index = 0 To DayWorkSRCheckedListBox.Items.Count - 1
+            DayWorkSRCheckedListBox.SetItemChecked(Index, False)
+            DayWorkSRCheckedListBox.SetItemCheckState(Index, CheckState.Unchecked)
+        Next
+        Me.Hide()
         HomeForm.Show()
 
         Try
@@ -494,11 +505,15 @@ Public Class AddWorkForm
         Finally
             Disconnect()
         End Try
-
+        Dim IdSch As Integer
         Try
             Connect()
             selectQuery = "SELECT TOP 1 * FROM Schedule ORDER BY idSchedule DESC"
             command = New SqlCommand(selectQuery, ConnectionBD.Connection)
+            reader = command.ExecuteReader
+            reader.Read()
+            IdSch = reader.Item("idSchedule")
+            reader.Close()
         Catch ex As Exception
             MsgBox("No fue posible registrar el horario de trabajo 4" + ex.Message)
         Finally
@@ -507,14 +522,14 @@ Public Class AddWorkForm
 
         Try
             Connect()
-            insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idSubject) values (@idSchedule, @idSubject)"
+            insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idActivity) values (@idSchedule, @idActivity)"
             command = New SqlCommand(insertQuery, ConnectionBD.Connection)
             reader = command.ExecuteReader
             reader.Read()
-            Dim IdSch As Integer = reader.Item("idSchedule")
+
             With command 'le asigna los valores a los espacios en la tabla
                 .Parameters.AddWithValue("@idSchedule", IdSch)
-                .Parameters.AddWithValue("@idSubject", Work.Id_WorkSch)
+                .Parameters.AddWithValue("@idActivity", Work.Id_WorkSch)
             End With
             command.ExecuteNonQuery()
         Catch ex As Exception
@@ -641,7 +656,9 @@ Public Class AddWorkForm
         End If
     End Sub
 
+
     Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs) Handles ColorWorkSRComboBox.DrawItem
+
 
         Dim myComboBox As ComboBox = CType(sender, ComboBox)
         Dim mySelectedColor As Color = Color.FromName(myComboBox.Items(e.Index).ToString)
@@ -668,7 +685,7 @@ Public Class AddWorkForm
 
     Private Sub AddWorkForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Un contador para saber si ya se registro un periodo lectivo
-        Period.PeriodCounter = 0
+        'Period.PeriodCounter = 0
         'MsgBox("This is the periodocounter at load " & Period.PeriodCounter)
         Dim knownColors = System.Enum.GetNames(GetType(KnownColor)).
             Where(Function(kc) GetType(SystemColors).GetProperty(kc) Is Nothing _

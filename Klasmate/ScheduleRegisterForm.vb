@@ -17,10 +17,10 @@ Public Class ScheduleRegisterForm
         period.Name_Period = NamePeriodTextBox.Text
         period.StartDate_Period = StartPeriodRegisterDateTimePicker.Value
         period.EndDate_Period = EndPeriodRegisterDateTimePicker.Value
-        period.Id_Period = 0
+        ' period.Id_Period = 0
 
         Dim IdUser As Integer = Integer.Parse(IdUserLabel.Text)
-
+        AddCourseForm.IdUserLabel.Text = IdUser
         Dim sch As Schedule
         sch = New Schedule
 
@@ -80,6 +80,7 @@ Public Class ScheduleRegisterForm
 
             period.Id_Period = reader.Item("idPeriod")
             Period.IdPeriod = reader.Item("idPeriod")
+            HomeForm.IdPeriodLabel.Text = reader.Item("idPeriod")
             'MsgBox(period.Id_Period)
 
             connection.Close()
@@ -411,7 +412,9 @@ Public Class ScheduleRegisterForm
             ' connection.Close()
             Dim da As New SqlDataAdapter(strSQL, connection)
             Dim ds As New DataSet
-            Call CType(HomeForm.CourseDataGridView.DataSource, DataTable).Rows.Clear()
+            If HomeForm.ColorCounterLabel.Text = " " Then
+                Call CType(HomeForm.CourseDataGridView.DataSource, DataTable).Rows.Clear()
+            End If
             da.Fill(ds, strSQL)
             HomeForm.CourseDataGridView.DataSource = ds.Tables(0)
 
@@ -422,26 +425,28 @@ Public Class ScheduleRegisterForm
 
                 Dim cellColor As String = dgv.Rows(i).Cells(0).Value
                 'MsgBox(cellColor)
-                dgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+                dgv.Rows(i).Cells(0).Style.BackColor = Color.FromName(cellColor)
 
             Next
             For i As Integer = 0 To dgv.Rows.Count - 1
 
-                Dim cellColor As String = dgv.Rows(i).Cells(1).Value
+                'Dim cellColor As String = dgv.Rows(i).Cells(1).Value
                 dgv.Rows(i).Cells(0).Value = ""
 
             Next
             dgv.ClearSelection()
+            HomeForm.ColorCounterLabel.Text = " "
 
+            Me.Close()
 
+            HomeForm.Show()
 
         Catch ex As SqlException
             MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "General Error")
         End Try
-        Me.Close()
-        HomeForm.Show()
+
     End Sub
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ TERMINA EL BOTON DE TERMINAR \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -510,89 +515,6 @@ Public Class ScheduleRegisterForm
     'Termina de agregarle colores al combobox de color cuando se agrega un curso -Santi
     '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-
-    '///////////////////////////////////////////////////////////////////////////////////////////////
-    'Para agregarle colores al combobox de color cuando se agrega un horario de trabajo -Santi
-
-    'Hace que se vean los colores como opciones en el combobox de horario de trabajo-Santi
-    Private Sub ColorWorkSRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs)
-
-        Dim myComboBox As ComboBox = CType(sender, ComboBox)
-        Dim mySelectedColor As Color = Color.FromName(myComboBox.Items(e.Index).ToString)
-        Dim myRectangleSize As Integer = e.Bounds.Height - 3
-
-
-        e.DrawBackground()
-
-        Using myBrush As New SolidBrush(e.ForeColor)
-            Using mySelectedBrush As New SolidBrush(mySelectedColor)
-                e.Graphics.FillRectangle(mySelectedBrush,
-                                        e.Bounds.Left + 5,
-                                        e.Bounds.Top + 2,
-                                        70,
-                                        myRectangleSize)
-                e.Graphics.DrawRectangle(New Pen(Brushes.Black),
-                                        e.Bounds.Left + 5,
-                                        e.Bounds.Top + 2,
-                                        70,
-                                        myRectangleSize)
-            End Using
-        End Using
-
-    End Sub
-
-    ''Cambia el color del fondo del combobox al color escogido de horario de trabajo -Santi
-    'Private Sub ColorWorkSRComboBox_SelectedIndexChanged(sender As Object, e As EventArgs)
-    '    If ColorWorkSRComboBox.SelectedIndex <> -1 Then
-
-    '        ColorWorkSRComboBox.BackColor = Color.FromName(ColorWorkSRComboBox.SelectedItem.ToString)
-
-    '    End If
-    'End Sub
-
-    'Termina de agregarle colores al combobox de color cuando se agrega un horario de trabajo -Santi
-    '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-    '///////////////////////////////////////////////////////////////////////////////////////////////
-    'Para agregarle colores al combobox de color cuando se agrega un horario de estudio -Santi
-
-    'Hace que se vean los colores como opciones en el combobox Horario de Estudio -Santi
-    Private Sub ColorStudySRComboBox_DrawItem(sender As Object, e As DrawItemEventArgs)
-
-        Dim myComboBox As ComboBox = CType(sender, ComboBox)
-        Dim mySelectedColor As Color = Color.FromName(myComboBox.Items(e.Index).ToString)
-        Dim myRectangleSize As Integer = e.Bounds.Height - 3
-
-
-        e.DrawBackground()
-
-        Using myBrush As New SolidBrush(e.ForeColor)
-            Using mySelectedBrush As New SolidBrush(mySelectedColor)
-                e.Graphics.FillRectangle(mySelectedBrush,
-                                        e.Bounds.Left + 5,
-                                        e.Bounds.Top + 2,
-                                        70,
-                                        myRectangleSize)
-                e.Graphics.DrawRectangle(New Pen(Brushes.Black),
-                                        e.Bounds.Left + 5,
-                                        e.Bounds.Top + 2,
-                                        70,
-                                        myRectangleSize)
-            End Using
-        End Using
-
-    End Sub
-
-    'Cambia el color del fondo del combobox al color escogido Horario de Estudio -Santi
-    'Private Sub ColorStudySRComboBox_SelectedIndexChanged(sender As Object, e As EventArgs)
-    '    If ColorStudySRComboBox.SelectedIndex <> -1 Then
-
-    '        ColorStudySRComboBox.BackColor = Color.FromName(ColorStudySRComboBox.SelectedItem.ToString)
-
-    '    End If
-    'End Sub
-    'Termina de agregarle colores al combobox de color cuando se agrega un horario de estudio -Santi
-    '\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     '////// AGREGA UN CURSO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO /////////////
     Private Sub AddCoursSRButton_Click(sender As Object, e As EventArgs) Handles AddCoursSRButton.Click
@@ -676,6 +598,7 @@ Public Class ScheduleRegisterForm
 
             period.Id_Period = reader.Item("idPeriod")
             Period.IdPeriod = reader.Item("idPeriod")
+            HomeForm.IdPeriodLabel.Text = reader.Item("idPeriod")
             'MsgBox(period.Id_Period)
             ' MsgBox("This is the global variable " & Period.IdPeriod)
 

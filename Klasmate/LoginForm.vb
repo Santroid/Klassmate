@@ -136,7 +136,8 @@ Public Class LoginForm
 
                     reader.Read()
                     HomeForm.PeriodHomeLabel.Text = reader.Item("namePeriod")
-                    Period.Id_Period = reader.Item("idPeriod")
+                    period.Id_Period = reader.Item("idPeriod")
+                    HomeForm.IdPeriodLabel.Text = reader.Item("idPeriod")
 
                     reader.Close()
                     Connection.Close()
@@ -169,6 +170,7 @@ Public Class LoginForm
                     End Try
                     Me.Hide()
                     reader.Close()
+
                     HomeForm.Show()
                     EmailLoginTextBox.Text = "Correo"
                     PasswordLoginTextBox.Text = "Contraseña"
@@ -233,7 +235,7 @@ Public Class LoginForm
                         reader.Read()
                         HomeForm.PeriodHomeLabel.Text = reader.Item("namePeriod")
                         period.Id_Period = reader.Item("idPeriod")
-
+                        HomeForm.IdPeriodLabel.Text = reader.Item("idPeriod")
                         reader.Close()
                         Connection.Close()
 
