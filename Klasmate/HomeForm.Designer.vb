@@ -22,6 +22,10 @@ Partial Class HomeForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.AddHomePanel = New System.Windows.Forms.Panel()
         Me.HomeworkAddHomeLabel = New System.Windows.Forms.Label()
@@ -64,21 +68,45 @@ Partial Class HomeForm
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.CourseDataGridView = New System.Windows.Forms.DataGridView()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.PeriodHomeLabel = New System.Windows.Forms.Label()
+        Me.ColorCounterLabel = New System.Windows.Forms.Label()
+        Me.IdPeriodLabel = New System.Windows.Forms.Label()
         Me.color = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nameSubject = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseDays = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseStartTme = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseEndTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.PeriodHomeLabel = New System.Windows.Forms.Label()
-        Me.ColorCounterLabel = New System.Windows.Forms.Label()
-        Me.IdPeriodLabel = New System.Windows.Forms.Label()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
         Me.AddHomeWorkPanel.SuspendLayout()
         CType(Me.CourseDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ProgressBar1
@@ -166,7 +194,7 @@ Partial Class HomeForm
         Me.OptionsHomePanel.Controls.Add(Me.ExitHomeLabel)
         Me.OptionsHomePanel.Controls.Add(Me.ProfileEditHomeLabel)
         Me.OptionsHomePanel.Controls.Add(Me.ScheduleEditHomeLabel)
-        Me.OptionsHomePanel.Location = New System.Drawing.Point(701, 49)
+        Me.OptionsHomePanel.Location = New System.Drawing.Point(841, 46)
         Me.OptionsHomePanel.Name = "OptionsHomePanel"
         Me.OptionsHomePanel.Size = New System.Drawing.Size(99, 125)
         Me.OptionsHomePanel.TabIndex = 5
@@ -352,7 +380,7 @@ Partial Class HomeForm
         Me.AddHomeWorkPanel.Controls.Add(Me.Label4)
         Me.AddHomeWorkPanel.Controls.Add(Me.Label3)
         Me.AddHomeWorkPanel.Controls.Add(Me.Label2)
-        Me.AddHomeWorkPanel.Location = New System.Drawing.Point(499, 250)
+        Me.AddHomeWorkPanel.Location = New System.Drawing.Point(678, 250)
         Me.AddHomeWorkPanel.Name = "AddHomeWorkPanel"
         Me.AddHomeWorkPanel.Size = New System.Drawing.Size(253, 254)
         Me.AddHomeWorkPanel.TabIndex = 7
@@ -431,7 +459,7 @@ Partial Class HomeForm
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
         Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape8, Me.LineShape7, Me.RectangleShape3, Me.LineShape3, Me.LineShape2, Me.LineShape1, Me.RectangleShape1})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(800, 641)
+        Me.ShapeContainer1.Size = New System.Drawing.Size(939, 537)
         Me.ShapeContainer1.TabIndex = 8
         Me.ShapeContainer1.TabStop = False
         '
@@ -470,46 +498,50 @@ Partial Class HomeForm
         '
         'LineShape3
         '
+        Me.LineShape3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LineShape3.BorderColor = System.Drawing.SystemColors.ControlDarkDark
         Me.LineShape3.BorderWidth = 3
         Me.LineShape3.Cursor = System.Windows.Forms.Cursors.Hand
         Me.LineShape3.Name = "LineShape3"
-        Me.LineShape3.X1 = 768
-        Me.LineShape3.X2 = 791
+        Me.LineShape3.X1 = 906
+        Me.LineShape3.X2 = 929
         Me.LineShape3.Y1 = 36
         Me.LineShape3.Y2 = 36
         '
         'LineShape2
         '
+        Me.LineShape2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LineShape2.BorderColor = System.Drawing.SystemColors.ControlDarkDark
         Me.LineShape2.BorderWidth = 3
         Me.LineShape2.Cursor = System.Windows.Forms.Cursors.Hand
         Me.LineShape2.Name = "LineShape2"
-        Me.LineShape2.X1 = 768
-        Me.LineShape2.X2 = 791
+        Me.LineShape2.X1 = 906
+        Me.LineShape2.X2 = 929
         Me.LineShape2.Y1 = 24
         Me.LineShape2.Y2 = 24
         '
         'LineShape1
         '
+        Me.LineShape1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LineShape1.BorderColor = System.Drawing.SystemColors.ControlDarkDark
         Me.LineShape1.BorderWidth = 3
         Me.LineShape1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.LineShape1.Name = "LineShape1"
-        Me.LineShape1.X1 = 768
-        Me.LineShape1.X2 = 791
+        Me.LineShape1.X1 = 907
+        Me.LineShape1.X2 = 930
         Me.LineShape1.Y1 = 12
         Me.LineShape1.Y2 = 12
         '
         'RectangleShape1
         '
+        Me.RectangleShape1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.RectangleShape1.BackColor = System.Drawing.Color.White
         Me.RectangleShape1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.RectangleShape1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.RectangleShape1.FillColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.RectangleShape1.FillGradientColor = System.Drawing.Color.Silver
         Me.RectangleShape1.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid
-        Me.RectangleShape1.Location = New System.Drawing.Point(758, -1)
+        Me.RectangleShape1.Location = New System.Drawing.Point(896, -1)
         Me.RectangleShape1.Name = "RectangleShape1"
         Me.RectangleShape1.Size = New System.Drawing.Size(42, 49)
         '
@@ -528,60 +560,8 @@ Partial Class HomeForm
         Me.CourseDataGridView.Name = "CourseDataGridView"
         Me.CourseDataGridView.ReadOnly = True
         Me.CourseDataGridView.RowHeadersVisible = False
-        Me.CourseDataGridView.Size = New System.Drawing.Size(653, 261)
+        Me.CourseDataGridView.Size = New System.Drawing.Size(395, 261)
         Me.CourseDataGridView.TabIndex = 9
-        '
-        'color
-        '
-        Me.color.DataPropertyName = "color"
-        Me.color.FillWeight = 15.0!
-        Me.color.HeaderText = ""
-        Me.color.Name = "color"
-        Me.color.ReadOnly = True
-        Me.color.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.color.ToolTipText = "Color"
-        '
-        'nameSubject
-        '
-        Me.nameSubject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.nameSubject.DataPropertyName = "nameSubject"
-        Me.nameSubject.HeaderText = "Nombre del Curso"
-        Me.nameSubject.Name = "nameSubject"
-        Me.nameSubject.ReadOnly = True
-        Me.nameSubject.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'CourseDays
-        '
-        Me.CourseDays.DataPropertyName = "day"
-        Me.CourseDays.HeaderText = "Dias"
-        Me.CourseDays.Name = "CourseDays"
-        Me.CourseDays.ReadOnly = True
-        Me.CourseDays.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'CourseStartTme
-        '
-        Me.CourseStartTme.DataPropertyName = "startTime"
-        Me.CourseStartTme.HeaderText = "Hora Inicio"
-        Me.CourseStartTme.Name = "CourseStartTme"
-        Me.CourseStartTme.ReadOnly = True
-        Me.CourseStartTme.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'CourseEndTime
-        '
-        Me.CourseEndTime.DataPropertyName = "endTime"
-        Me.CourseEndTime.HeaderText = "Hora Fin"
-        Me.CourseEndTime.Name = "CourseEndTime"
-        Me.CourseEndTime.ReadOnly = True
-        Me.CourseEndTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'CourseID
-        '
-        Me.CourseID.DataPropertyName = "idSubject"
-        Me.CourseID.HeaderText = "IDCurso"
-        Me.CourseID.Name = "CourseID"
-        Me.CourseID.ReadOnly = True
-        Me.CourseID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CourseID.Visible = False
         '
         'Label7
         '
@@ -621,21 +601,314 @@ Partial Class HomeForm
         Me.IdPeriodLabel.TabIndex = 13
         Me.IdPeriodLabel.Text = "IdPeriodLabel"
         '
+        'color
+        '
+        Me.color.DataPropertyName = "color"
+        Me.color.FillWeight = 15.0!
+        Me.color.HeaderText = ""
+        Me.color.Name = "color"
+        Me.color.ReadOnly = True
+        Me.color.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.color.ToolTipText = "Color"
+        '
+        'nameSubject
+        '
+        Me.nameSubject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.nameSubject.DataPropertyName = "nameSubject"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nameSubject.DefaultCellStyle = DataGridViewCellStyle2
+        Me.nameSubject.FillWeight = 50.0!
+        Me.nameSubject.HeaderText = "Nombre del Curso"
+        Me.nameSubject.Name = "nameSubject"
+        Me.nameSubject.ReadOnly = True
+        Me.nameSubject.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'CourseDays
+        '
+        Me.CourseDays.DataPropertyName = "day"
+        Me.CourseDays.FillWeight = 40.0!
+        Me.CourseDays.HeaderText = "Dias"
+        Me.CourseDays.Name = "CourseDays"
+        Me.CourseDays.ReadOnly = True
+        Me.CourseDays.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'CourseStartTme
+        '
+        Me.CourseStartTme.DataPropertyName = "startTime"
+        Me.CourseStartTme.FillWeight = 40.0!
+        Me.CourseStartTme.HeaderText = "Hora Inicio"
+        Me.CourseStartTme.Name = "CourseStartTme"
+        Me.CourseStartTme.ReadOnly = True
+        Me.CourseStartTme.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'CourseEndTime
+        '
+        Me.CourseEndTime.DataPropertyName = "endTime"
+        Me.CourseEndTime.FillWeight = 40.0!
+        Me.CourseEndTime.HeaderText = "Hora Fin"
+        Me.CourseEndTime.Name = "CourseEndTime"
+        Me.CourseEndTime.ReadOnly = True
+        Me.CourseEndTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'CourseID
+        '
+        Me.CourseID.DataPropertyName = "idSubject"
+        Me.CourseID.HeaderText = "IDCurso"
+        Me.CourseID.Name = "CourseID"
+        Me.CourseID.ReadOnly = True
+        Me.CourseID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CourseID.Visible = False
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToResizeColumns = False
+        Me.DataGridView1.AllowUserToResizeRows = False
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6})
+        Me.DataGridView1.Location = New System.Drawing.Point(414, 75)
+        Me.DataGridView1.MultiSelect = False
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.RowHeadersVisible = False
+        Me.DataGridView1.Size = New System.Drawing.Size(395, 261)
+        Me.DataGridView1.TabIndex = 14
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.AllowUserToAddRows = False
+        Me.DataGridView2.AllowUserToDeleteRows = False
+        Me.DataGridView2.AllowUserToResizeColumns = False
+        Me.DataGridView2.AllowUserToResizeRows = False
+        Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12})
+        Me.DataGridView2.Location = New System.Drawing.Point(3, 362)
+        Me.DataGridView2.MultiSelect = False
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.ReadOnly = True
+        Me.DataGridView2.RowHeadersVisible = False
+        Me.DataGridView2.Size = New System.Drawing.Size(395, 160)
+        Me.DataGridView2.TabIndex = 15
+        '
+        'DataGridView3
+        '
+        Me.DataGridView3.AllowUserToAddRows = False
+        Me.DataGridView3.AllowUserToDeleteRows = False
+        Me.DataGridView3.AllowUserToResizeColumns = False
+        Me.DataGridView3.AllowUserToResizeRows = False
+        Me.DataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18})
+        Me.DataGridView3.Location = New System.Drawing.Point(414, 362)
+        Me.DataGridView3.MultiSelect = False
+        Me.DataGridView3.Name = "DataGridView3"
+        Me.DataGridView3.ReadOnly = True
+        Me.DataGridView3.RowHeadersVisible = False
+        Me.DataGridView3.Size = New System.Drawing.Size(395, 160)
+        Me.DataGridView3.TabIndex = 16
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "color"
+        Me.DataGridViewTextBoxColumn7.FillWeight = 15.0!
+        Me.DataGridViewTextBoxColumn7.HeaderText = ""
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.ReadOnly = True
+        Me.DataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DataGridViewTextBoxColumn7.ToolTipText = "Color"
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn8.DataPropertyName = "nameSubject"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridViewTextBoxColumn8.FillWeight = 50.0!
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Horario de Estudio"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.ReadOnly = True
+        Me.DataGridViewTextBoxColumn8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.DataPropertyName = "day"
+        Me.DataGridViewTextBoxColumn9.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Dias"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.ReadOnly = True
+        Me.DataGridViewTextBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.DataPropertyName = "startTime"
+        Me.DataGridViewTextBoxColumn10.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn10.HeaderText = "Hora Inicio"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        Me.DataGridViewTextBoxColumn10.ReadOnly = True
+        Me.DataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.DataPropertyName = "endTime"
+        Me.DataGridViewTextBoxColumn11.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn11.HeaderText = "Hora Fin"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        Me.DataGridViewTextBoxColumn11.ReadOnly = True
+        Me.DataGridViewTextBoxColumn11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn12
+        '
+        Me.DataGridViewTextBoxColumn12.DataPropertyName = "idSubject"
+        Me.DataGridViewTextBoxColumn12.HeaderText = "IDCurso"
+        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
+        Me.DataGridViewTextBoxColumn12.ReadOnly = True
+        Me.DataGridViewTextBoxColumn12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DataGridViewTextBoxColumn12.Visible = False
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.DataPropertyName = "color"
+        Me.DataGridViewTextBoxColumn13.FillWeight = 15.0!
+        Me.DataGridViewTextBoxColumn13.HeaderText = ""
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        Me.DataGridViewTextBoxColumn13.ReadOnly = True
+        Me.DataGridViewTextBoxColumn13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DataGridViewTextBoxColumn13.ToolTipText = "Color"
+        '
+        'DataGridViewTextBoxColumn14
+        '
+        Me.DataGridViewTextBoxColumn14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn14.DataPropertyName = "nameSubject"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn14.DefaultCellStyle = DataGridViewCellStyle5
+        Me.DataGridViewTextBoxColumn14.FillWeight = 50.0!
+        Me.DataGridViewTextBoxColumn14.HeaderText = "Horario de trabajo"
+        Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
+        Me.DataGridViewTextBoxColumn14.ReadOnly = True
+        Me.DataGridViewTextBoxColumn14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn15
+        '
+        Me.DataGridViewTextBoxColumn15.DataPropertyName = "day"
+        Me.DataGridViewTextBoxColumn15.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn15.HeaderText = "Dias"
+        Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
+        Me.DataGridViewTextBoxColumn15.ReadOnly = True
+        Me.DataGridViewTextBoxColumn15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn16
+        '
+        Me.DataGridViewTextBoxColumn16.DataPropertyName = "startTime"
+        Me.DataGridViewTextBoxColumn16.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn16.HeaderText = "Hora Inicio"
+        Me.DataGridViewTextBoxColumn16.Name = "DataGridViewTextBoxColumn16"
+        Me.DataGridViewTextBoxColumn16.ReadOnly = True
+        Me.DataGridViewTextBoxColumn16.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn17
+        '
+        Me.DataGridViewTextBoxColumn17.DataPropertyName = "endTime"
+        Me.DataGridViewTextBoxColumn17.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn17.HeaderText = "Hora Fin"
+        Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
+        Me.DataGridViewTextBoxColumn17.ReadOnly = True
+        Me.DataGridViewTextBoxColumn17.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn18
+        '
+        Me.DataGridViewTextBoxColumn18.DataPropertyName = "idSubject"
+        Me.DataGridViewTextBoxColumn18.HeaderText = "IDCurso"
+        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
+        Me.DataGridViewTextBoxColumn18.ReadOnly = True
+        Me.DataGridViewTextBoxColumn18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DataGridViewTextBoxColumn18.Visible = False
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "color"
+        Me.DataGridViewTextBoxColumn1.FillWeight = 15.0!
+        Me.DataGridViewTextBoxColumn1.HeaderText = ""
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DataGridViewTextBoxColumn1.ToolTipText = "Color"
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "nameSubject"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DataGridViewTextBoxColumn2.FillWeight = 50.0!
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Nombre de Tarea"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.DataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "day"
+        Me.DataGridViewTextBoxColumn3.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Dias"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.DataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn4
+        '
+        Me.DataGridViewTextBoxColumn4.DataPropertyName = "startTime"
+        Me.DataGridViewTextBoxColumn4.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn4.HeaderText = "Hora Inicio"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
+        Me.DataGridViewTextBoxColumn4.ReadOnly = True
+        Me.DataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.DataPropertyName = "endTime"
+        Me.DataGridViewTextBoxColumn5.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Hora Fin"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.ReadOnly = True
+        Me.DataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "idSubject"
+        Me.DataGridViewTextBoxColumn6.HeaderText = "IDCurso"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.ReadOnly = True
+        Me.DataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DataGridViewTextBoxColumn6.Visible = False
+        '
         'HomeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 641)
+        Me.ClientSize = New System.Drawing.Size(939, 537)
+        Me.Controls.Add(Me.DataGridView3)
+        Me.Controls.Add(Me.DataGridView2)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.CourseDataGridView)
         Me.Controls.Add(Me.IdPeriodLabel)
         Me.Controls.Add(Me.ColorCounterLabel)
-        Me.Controls.Add(Me.AddHomeWorkPanel)
         Me.Controls.Add(Me.PeriodHomeLabel)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.OptionsHomePanel)
         Me.Controls.Add(Me.AddHomePanel)
-        Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.ProgressBar1)
-        Me.Controls.Add(Me.CourseDataGridView)
+        Me.Controls.Add(Me.AddHomeWorkPanel)
+        Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.ShapeContainer1)
         Me.Name = "HomeForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -649,6 +922,9 @@ Partial Class HomeForm
         Me.AddHomeWorkPanel.ResumeLayout(False)
         Me.AddHomeWorkPanel.PerformLayout()
         CType(Me.CourseDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -698,12 +974,33 @@ Partial Class HomeForm
     Friend WithEvents DeleteProfileButton As Button
     Friend WithEvents Label7 As Label
     Friend WithEvents PeriodHomeLabel As Label
+    Friend WithEvents ColorCounterLabel As Label
+    Friend WithEvents IdPeriodLabel As Label
     Friend WithEvents color As DataGridViewTextBoxColumn
     Friend WithEvents nameSubject As DataGridViewTextBoxColumn
     Friend WithEvents CourseDays As DataGridViewTextBoxColumn
     Friend WithEvents CourseStartTme As DataGridViewTextBoxColumn
     Friend WithEvents CourseEndTime As DataGridViewTextBoxColumn
     Friend WithEvents CourseID As DataGridViewTextBoxColumn
-    Friend WithEvents ColorCounterLabel As Label
-    Friend WithEvents IdPeriodLabel As Label
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn12 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridView3 As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn14 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn15 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
 End Class

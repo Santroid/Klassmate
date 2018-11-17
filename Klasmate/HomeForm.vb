@@ -341,4 +341,7 @@ Public Class HomeForm
 
     End Sub
 
+    Private Sub AddHomeWorkPanel_Paint(sender As Object, e As PaintEventArgs) Handles AddHomeWorkPanel.Paint
+
+    End Sub
 End Class
