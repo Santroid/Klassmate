@@ -81,6 +81,7 @@ Public Class ScheduleRegisterForm
             period.Id_Period = reader.Item("idPeriod")
             Period.IdPeriod = reader.Item("idPeriod")
             HomeForm.IdPeriodLabel.Text = reader.Item("idPeriod")
+            HomeForm.IdUserLabel.Text = IdUser
             'MsgBox(period.Id_Period)
 
             connection.Close()
@@ -410,6 +411,8 @@ Public Class ScheduleRegisterForm
             'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
 
             ' connection.Close()
+            HomeForm.Show()
+
             Dim da As New SqlDataAdapter(strSQL, connection)
             Dim ds As New DataSet
             If HomeForm.ColorCounterLabel.Text = " " Then
@@ -439,7 +442,7 @@ Public Class ScheduleRegisterForm
 
             Me.Close()
 
-            HomeForm.Show()
+
 
         Catch ex As SqlException
             MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
@@ -599,6 +602,7 @@ Public Class ScheduleRegisterForm
             period.Id_Period = reader.Item("idPeriod")
             Period.IdPeriod = reader.Item("idPeriod")
             HomeForm.IdPeriodLabel.Text = reader.Item("idPeriod")
+            HomeForm.IdUserLabel.Text = IdUser
             'MsgBox(period.Id_Period)
             ' MsgBox("This is the global variable " & Period.IdPeriod)
 

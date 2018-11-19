@@ -43,7 +43,7 @@ Public Class AddCourseForm
         'Dim selectQuery
         selectQuery = " SELECT TOP 1 namePeriod, idPeriod
                         FROM Period
-                        WHERE idStudent = " & IdUser & " ORDER BY namePeriod DESC ;"
+                        WHERE idStudent = " & IdUser & " ORDER BY idPeriod DESC ;"
 
 
         command = New SqlCommand(selectQuery, connection)
@@ -555,7 +555,7 @@ Public Class AddCourseForm
         'Dim selectQuery
         selectQuery = " SELECT TOP 1 namePeriod, idPeriod
                         FROM Period
-                        WHERE idStudent = " & IdUser & " ORDER BY namePeriod DESC ;"
+                        WHERE idStudent = " & IdUser & " ORDER BY idPeriod DESC ;"
 
 
         command = New SqlCommand(selectQuery, connection)

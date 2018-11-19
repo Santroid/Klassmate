@@ -118,17 +118,9 @@ Public Class LoginForm
                     ' selectQuery = "SELECT TOP 1 * FROM (" & getQuery & ") ORDER BY namePeriod DESC"
 
                     selectQuery = "
-                                    SELECT TOP 1
-                                       namePeriod, idPeriod
-                                    FROM
-                                        Period
-                                    WHERE
-                                         idStudent = " & user.Id_User & "
-                                    ORDER BY
-                                        namePeriod DESC
-                                    
-                                    
-                                ;"
+                                    SELECT TOP 1 namePeriod, idPeriod FROM Period
+                                    WHERE idStudent = " & user.Id_User & "
+                                    ORDER BY idPeriod DESC ;"
                     'selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & user.Id_User & " "
                     command = New SqlCommand(selectQuery, Connection)
                     reader = command.ExecuteReader
@@ -138,6 +130,7 @@ Public Class LoginForm
                     HomeForm.PeriodHomeLabel.Text = reader.Item("namePeriod")
                     period.Id_Period = reader.Item("idPeriod")
                     HomeForm.IdPeriodLabel.Text = reader.Item("idPeriod")
+                    AddCourseForm.IdUserLabel.Text = user.Id_User
 
                     reader.Close()
                     Connection.Close()
@@ -161,6 +154,27 @@ Public Class LoginForm
                         da.Fill(ds, strSQL)
                         HomeForm.CourseDataGridView.DataSource = ds.Tables(0)
 
+
+                        Connection.Close()
+
+                            '///// CARGA LA TABLA DE TAREAS//////
+                            Connection.Open()
+                            'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+                            Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
+                                    from Subject s, Period p, Task t
+                                    where p.idPeriod =" & period.Id_Period & "
+                                    and p.idPeriod = s.idPeriod
+                                    and s.idSubject = t.idSubject
+                                    and p.idStudent =" & user.Id_User & "
+                                    ;"
+
+                            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+                            ' connection.Close()
+                            Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
+                            Dim ds2 As New DataSet
+                            da2.Fill(ds2, HWstrSQL)
+                        HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
 
 
                     Catch ex As SqlException
@@ -214,6 +228,7 @@ Public Class LoginForm
 
                     user.Id_User = reader.Item("idStudent")
                     ScheduleRegisterForm.IdUserLabel.Text = user.Id_User
+                    HomeForm.IdUserLabel.Text = user.Id_User
                     AddCourseForm.IdUserLabel.Text = user.Id_User
                     User.IdUser = reader.Item("idStudent")
                     User.IdUser2 = reader.Item("idStudent")
@@ -225,7 +240,7 @@ Public Class LoginForm
                         Dim selectQuery
                         selectQuery = "SELECT TOP 1 namePeriod, idPeriod
                                        FROM Period
-                                       WHERE idStudent = " & user.Id_User & " ORDER BY namePeriod DESC ;"
+                                       WHERE idStudent = " & user.Id_User & " ORDER BY idPeriod DESC ;"
 
                         'selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & user.Id_User & " "
                         command = New SqlCommand(selectQuery, Connection)
@@ -259,7 +274,26 @@ Public Class LoginForm
                             da.Fill(ds, strSQL)
                             HomeForm.CourseDataGridView.DataSource = ds.Tables(0)
 
+                            Connection.Close()
 
+                            '///// CARGA LA TABLA DE TAREAS//////
+                            Connection.Open()
+                            'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+                            Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
+                                    from Subject s, Period p, Task t
+                                    where p.idPeriod =" & period.Id_Period & "
+                                    and p.idPeriod = s.idPeriod
+                                    and s.idSubject = t.idSubject
+                                    and p.idStudent =" & user.Id_User & "
+                                    ;"
+
+                            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+                            ' connection.Close()
+                            Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
+                            Dim ds2 As New DataSet
+                            da2.Fill(ds2, HWstrSQL)
+                            HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
 
                         Catch ex As SqlException
                             MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")

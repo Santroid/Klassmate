@@ -22,10 +22,10 @@ Partial Class HomeForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.AddHomePanel = New System.Windows.Forms.Panel()
         Me.HomeworkAddHomeLabel = New System.Windows.Forms.Label()
@@ -68,43 +68,44 @@ Partial Class HomeForm
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.CourseDataGridView = New System.Windows.Forms.DataGridView()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.PeriodHomeLabel = New System.Windows.Forms.Label()
-        Me.ColorCounterLabel = New System.Windows.Forms.Label()
-        Me.IdPeriodLabel = New System.Windows.Forms.Label()
         Me.color = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nameSubject = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseDays = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseStartTme = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseEndTime = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CourseID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.PeriodHomeLabel = New System.Windows.Forms.Label()
+        Me.ColorCounterLabel = New System.Windows.Forms.Label()
+        Me.IdPeriodLabel = New System.Windows.Forms.Label()
+        Me.HomeworkDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdUserLabel = New System.Windows.Forms.Label()
+        Me.HWcolorcoutnerLabel = New System.Windows.Forms.Label()
+        Me.CleanHWSelButton = New System.Windows.Forms.Button()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
         Me.AddHomeWorkPanel.SuspendLayout()
         CType(Me.CourseDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.HomeworkDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -563,48 +564,10 @@ Partial Class HomeForm
         Me.CourseDataGridView.Size = New System.Drawing.Size(395, 261)
         Me.CourseDataGridView.TabIndex = 9
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(109, 23)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(67, 20)
-        Me.Label7.TabIndex = 10
-        Me.Label7.Text = "Periodo:"
-        '
-        'PeriodHomeLabel
-        '
-        Me.PeriodHomeLabel.AutoSize = True
-        Me.PeriodHomeLabel.Location = New System.Drawing.Point(182, 28)
-        Me.PeriodHomeLabel.Name = "PeriodHomeLabel"
-        Me.PeriodHomeLabel.Size = New System.Drawing.Size(39, 13)
-        Me.PeriodHomeLabel.TabIndex = 11
-        Me.PeriodHomeLabel.Text = "Label8"
-        '
-        'ColorCounterLabel
-        '
-        Me.ColorCounterLabel.AutoSize = True
-        Me.ColorCounterLabel.Location = New System.Drawing.Point(282, 20)
-        Me.ColorCounterLabel.Name = "ColorCounterLabel"
-        Me.ColorCounterLabel.Size = New System.Drawing.Size(94, 13)
-        Me.ColorCounterLabel.TabIndex = 12
-        Me.ColorCounterLabel.Text = "ColorCounterLabel"
-        Me.ColorCounterLabel.Visible = False
-        '
-        'IdPeriodLabel
-        '
-        Me.IdPeriodLabel.AutoSize = True
-        Me.IdPeriodLabel.Location = New System.Drawing.Point(187, 15)
-        Me.IdPeriodLabel.Name = "IdPeriodLabel"
-        Me.IdPeriodLabel.Size = New System.Drawing.Size(72, 13)
-        Me.IdPeriodLabel.TabIndex = 13
-        Me.IdPeriodLabel.Text = "IdPeriodLabel"
-        '
         'color
         '
         Me.color.DataPropertyName = "color"
-        Me.color.FillWeight = 15.0!
+        Me.color.FillWeight = 10.0!
         Me.color.HeaderText = ""
         Me.color.Name = "color"
         Me.color.ReadOnly = True
@@ -615,10 +578,10 @@ Partial Class HomeForm
         '
         Me.nameSubject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.nameSubject.DataPropertyName = "nameSubject"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nameSubject.DefaultCellStyle = DataGridViewCellStyle2
-        Me.nameSubject.FillWeight = 50.0!
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nameSubject.DefaultCellStyle = DataGridViewCellStyle1
+        Me.nameSubject.FillWeight = 80.0!
         Me.nameSubject.HeaderText = "Nombre del Curso"
         Me.nameSubject.Name = "nameSubject"
         Me.nameSubject.ReadOnly = True
@@ -660,23 +623,102 @@ Partial Class HomeForm
         Me.CourseID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.CourseID.Visible = False
         '
-        'DataGridView1
+        'Label7
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AllowUserToResizeColumns = False
-        Me.DataGridView1.AllowUserToResizeRows = False
-        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6})
-        Me.DataGridView1.Location = New System.Drawing.Point(414, 75)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(395, 261)
-        Me.DataGridView1.TabIndex = 14
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Location = New System.Drawing.Point(109, 23)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(67, 20)
+        Me.Label7.TabIndex = 10
+        Me.Label7.Text = "Periodo:"
+        '
+        'PeriodHomeLabel
+        '
+        Me.PeriodHomeLabel.AutoSize = True
+        Me.PeriodHomeLabel.Location = New System.Drawing.Point(182, 28)
+        Me.PeriodHomeLabel.Name = "PeriodHomeLabel"
+        Me.PeriodHomeLabel.Size = New System.Drawing.Size(39, 13)
+        Me.PeriodHomeLabel.TabIndex = 11
+        Me.PeriodHomeLabel.Text = "Label8"
+        '
+        'ColorCounterLabel
+        '
+        Me.ColorCounterLabel.AutoSize = True
+        Me.ColorCounterLabel.Location = New System.Drawing.Point(304, 23)
+        Me.ColorCounterLabel.Name = "ColorCounterLabel"
+        Me.ColorCounterLabel.Size = New System.Drawing.Size(94, 13)
+        Me.ColorCounterLabel.TabIndex = 12
+        Me.ColorCounterLabel.Text = "ColorCounterLabel"
+        Me.ColorCounterLabel.Visible = False
+        '
+        'IdPeriodLabel
+        '
+        Me.IdPeriodLabel.AutoSize = True
+        Me.IdPeriodLabel.Location = New System.Drawing.Point(187, 15)
+        Me.IdPeriodLabel.Name = "IdPeriodLabel"
+        Me.IdPeriodLabel.Size = New System.Drawing.Size(72, 13)
+        Me.IdPeriodLabel.TabIndex = 13
+        Me.IdPeriodLabel.Text = "IdPeriodLabel"
+        '
+        'HomeworkDataGridView
+        '
+        Me.HomeworkDataGridView.AllowUserToAddRows = False
+        Me.HomeworkDataGridView.AllowUserToDeleteRows = False
+        Me.HomeworkDataGridView.AllowUserToResizeColumns = False
+        Me.HomeworkDataGridView.AllowUserToResizeRows = False
+        Me.HomeworkDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.HomeworkDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.HomeworkDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.HomeworkDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn6})
+        Me.HomeworkDataGridView.Location = New System.Drawing.Point(414, 75)
+        Me.HomeworkDataGridView.MultiSelect = False
+        Me.HomeworkDataGridView.Name = "HomeworkDataGridView"
+        Me.HomeworkDataGridView.ReadOnly = True
+        Me.HomeworkDataGridView.RowHeadersVisible = False
+        Me.HomeworkDataGridView.Size = New System.Drawing.Size(395, 261)
+        Me.HomeworkDataGridView.TabIndex = 14
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "color"
+        Me.DataGridViewTextBoxColumn1.FillWeight = 10.0!
+        Me.DataGridViewTextBoxColumn1.HeaderText = ""
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DataGridViewTextBoxColumn1.ToolTipText = "Color"
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "nameTask"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridViewTextBoxColumn2.FillWeight = 80.0!
+        Me.DataGridViewTextBoxColumn2.HeaderText = "Nombre de Tarea"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.ReadOnly = True
+        Me.DataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "duedate"
+        Me.DataGridViewTextBoxColumn3.FillWeight = 40.0!
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Dias"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
+        Me.DataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'DataGridViewTextBoxColumn6
+        '
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "idTask"
+        Me.DataGridViewTextBoxColumn6.HeaderText = "IDCurso"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
+        Me.DataGridViewTextBoxColumn6.ReadOnly = True
+        Me.DataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.DataGridViewTextBoxColumn6.Visible = False
         '
         'DataGridView2
         '
@@ -696,24 +738,6 @@ Partial Class HomeForm
         Me.DataGridView2.Size = New System.Drawing.Size(395, 160)
         Me.DataGridView2.TabIndex = 15
         '
-        'DataGridView3
-        '
-        Me.DataGridView3.AllowUserToAddRows = False
-        Me.DataGridView3.AllowUserToDeleteRows = False
-        Me.DataGridView3.AllowUserToResizeColumns = False
-        Me.DataGridView3.AllowUserToResizeRows = False
-        Me.DataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
-        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18})
-        Me.DataGridView3.Location = New System.Drawing.Point(414, 362)
-        Me.DataGridView3.MultiSelect = False
-        Me.DataGridView3.Name = "DataGridView3"
-        Me.DataGridView3.ReadOnly = True
-        Me.DataGridView3.RowHeadersVisible = False
-        Me.DataGridView3.Size = New System.Drawing.Size(395, 160)
-        Me.DataGridView3.TabIndex = 16
-        '
         'DataGridViewTextBoxColumn7
         '
         Me.DataGridViewTextBoxColumn7.DataPropertyName = "color"
@@ -728,9 +752,9 @@ Partial Class HomeForm
         '
         Me.DataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.DataGridViewTextBoxColumn8.DataPropertyName = "nameSubject"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridViewTextBoxColumn8.FillWeight = 50.0!
         Me.DataGridViewTextBoxColumn8.HeaderText = "Horario de Estudio"
         Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
@@ -773,6 +797,24 @@ Partial Class HomeForm
         Me.DataGridViewTextBoxColumn12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.DataGridViewTextBoxColumn12.Visible = False
         '
+        'DataGridView3
+        '
+        Me.DataGridView3.AllowUserToAddRows = False
+        Me.DataGridView3.AllowUserToDeleteRows = False
+        Me.DataGridView3.AllowUserToResizeColumns = False
+        Me.DataGridView3.AllowUserToResizeRows = False
+        Me.DataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView3.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18})
+        Me.DataGridView3.Location = New System.Drawing.Point(414, 362)
+        Me.DataGridView3.MultiSelect = False
+        Me.DataGridView3.Name = "DataGridView3"
+        Me.DataGridView3.ReadOnly = True
+        Me.DataGridView3.RowHeadersVisible = False
+        Me.DataGridView3.Size = New System.Drawing.Size(395, 160)
+        Me.DataGridView3.TabIndex = 16
+        '
         'DataGridViewTextBoxColumn13
         '
         Me.DataGridViewTextBoxColumn13.DataPropertyName = "color"
@@ -787,9 +829,9 @@ Partial Class HomeForm
         '
         Me.DataGridViewTextBoxColumn14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.DataGridViewTextBoxColumn14.DataPropertyName = "nameSubject"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn14.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn14.DefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewTextBoxColumn14.FillWeight = 50.0!
         Me.DataGridViewTextBoxColumn14.HeaderText = "Horario de trabajo"
         Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
@@ -832,74 +874,43 @@ Partial Class HomeForm
         Me.DataGridViewTextBoxColumn18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.DataGridViewTextBoxColumn18.Visible = False
         '
-        'DataGridViewTextBoxColumn1
+        'IdUserLabel
         '
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "color"
-        Me.DataGridViewTextBoxColumn1.FillWeight = 15.0!
-        Me.DataGridViewTextBoxColumn1.HeaderText = ""
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        Me.DataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DataGridViewTextBoxColumn1.ToolTipText = "Color"
+        Me.IdUserLabel.AutoSize = True
+        Me.IdUserLabel.Location = New System.Drawing.Point(473, 29)
+        Me.IdUserLabel.Name = "IdUserLabel"
+        Me.IdUserLabel.Size = New System.Drawing.Size(64, 13)
+        Me.IdUserLabel.TabIndex = 17
+        Me.IdUserLabel.Text = "IdUserLabel"
         '
-        'DataGridViewTextBoxColumn2
+        'HWcolorcoutnerLabel
         '
-        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "nameSubject"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridViewTextBoxColumn2.FillWeight = 50.0!
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Nombre de Tarea"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        Me.DataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.HWcolorcoutnerLabel.AutoSize = True
+        Me.HWcolorcoutnerLabel.Location = New System.Drawing.Point(305, 11)
+        Me.HWcolorcoutnerLabel.Name = "HWcolorcoutnerLabel"
+        Me.HWcolorcoutnerLabel.Size = New System.Drawing.Size(111, 13)
+        Me.HWcolorcoutnerLabel.TabIndex = 18
+        Me.HWcolorcoutnerLabel.Text = "HWcolorcoutnerLabel"
+        Me.HWcolorcoutnerLabel.Visible = False
         '
-        'DataGridViewTextBoxColumn3
+        'CleanHWSelButton
         '
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "day"
-        Me.DataGridViewTextBoxColumn3.FillWeight = 40.0!
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Dias"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        Me.DataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "startTime"
-        Me.DataGridViewTextBoxColumn4.FillWeight = 40.0!
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Hora Inicio"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        Me.DataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.DataPropertyName = "endTime"
-        Me.DataGridViewTextBoxColumn5.FillWeight = 40.0!
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Hora Fin"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        Me.DataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.DataPropertyName = "idSubject"
-        Me.DataGridViewTextBoxColumn6.HeaderText = "IDCurso"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.ReadOnly = True
-        Me.DataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.DataGridViewTextBoxColumn6.Visible = False
+        Me.CleanHWSelButton.Location = New System.Drawing.Point(535, 305)
+        Me.CleanHWSelButton.Name = "CleanHWSelButton"
+        Me.CleanHWSelButton.Size = New System.Drawing.Size(108, 25)
+        Me.CleanHWSelButton.TabIndex = 19
+        Me.CleanHWSelButton.Text = "Limpiar Seleccion"
+        Me.CleanHWSelButton.UseVisualStyleBackColor = True
+        Me.CleanHWSelButton.Visible = False
         '
         'HomeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(939, 537)
-        Me.Controls.Add(Me.DataGridView3)
-        Me.Controls.Add(Me.DataGridView2)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.CourseDataGridView)
+        Me.Controls.Add(Me.CleanHWSelButton)
+        Me.Controls.Add(Me.HWcolorcoutnerLabel)
+        Me.Controls.Add(Me.IdUserLabel)
         Me.Controls.Add(Me.IdPeriodLabel)
         Me.Controls.Add(Me.ColorCounterLabel)
         Me.Controls.Add(Me.PeriodHomeLabel)
@@ -909,6 +920,10 @@ Partial Class HomeForm
         Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.AddHomeWorkPanel)
         Me.Controls.Add(Me.EditProfilePanel)
+        Me.Controls.Add(Me.HomeworkDataGridView)
+        Me.Controls.Add(Me.DataGridView2)
+        Me.Controls.Add(Me.DataGridView3)
+        Me.Controls.Add(Me.CourseDataGridView)
         Me.Controls.Add(Me.ShapeContainer1)
         Me.Name = "HomeForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -922,7 +937,7 @@ Partial Class HomeForm
         Me.AddHomeWorkPanel.ResumeLayout(False)
         Me.AddHomeWorkPanel.PerformLayout()
         CType(Me.CourseDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.HomeworkDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -976,19 +991,7 @@ Partial Class HomeForm
     Friend WithEvents PeriodHomeLabel As Label
     Friend WithEvents ColorCounterLabel As Label
     Friend WithEvents IdPeriodLabel As Label
-    Friend WithEvents color As DataGridViewTextBoxColumn
-    Friend WithEvents nameSubject As DataGridViewTextBoxColumn
-    Friend WithEvents CourseDays As DataGridViewTextBoxColumn
-    Friend WithEvents CourseStartTme As DataGridViewTextBoxColumn
-    Friend WithEvents CourseEndTime As DataGridViewTextBoxColumn
-    Friend WithEvents CourseID As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents HomeworkDataGridView As DataGridView
     Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
@@ -1003,4 +1006,17 @@ Partial Class HomeForm
     Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
+    Friend WithEvents IdUserLabel As Label
+    Friend WithEvents color As DataGridViewTextBoxColumn
+    Friend WithEvents nameSubject As DataGridViewTextBoxColumn
+    Friend WithEvents CourseDays As DataGridViewTextBoxColumn
+    Friend WithEvents CourseStartTme As DataGridViewTextBoxColumn
+    Friend WithEvents CourseEndTime As DataGridViewTextBoxColumn
+    Friend WithEvents CourseID As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents HWcolorcoutnerLabel As Label
+    Friend WithEvents CleanHWSelButton As Button
 End Class

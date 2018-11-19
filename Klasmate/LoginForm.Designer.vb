@@ -33,6 +33,7 @@ Partial Class LoginForm
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.HWCounterLabel = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'RegisterLinkLabel
@@ -149,11 +150,22 @@ Partial Class LoginForm
         Me.Label1.TabIndex = 10
         Me.Label1.Text = "K"
         '
+        'HWCounterLabel
+        '
+        Me.HWCounterLabel.AutoSize = True
+        Me.HWCounterLabel.Location = New System.Drawing.Point(42, 286)
+        Me.HWCounterLabel.Name = "HWCounterLabel"
+        Me.HWCounterLabel.Size = New System.Drawing.Size(89, 13)
+        Me.HWCounterLabel.TabIndex = 14
+        Me.HWCounterLabel.Text = "HWCounterLabel"
+        Me.HWCounterLabel.Visible = False
+        '
         'LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 319)
+        Me.Controls.Add(Me.HWCounterLabel)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -183,4 +195,5 @@ Partial Class LoginForm
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents HWCounterLabel As Label
 End Class
