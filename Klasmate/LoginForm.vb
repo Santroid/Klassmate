@@ -14,6 +14,8 @@ Public Class LoginForm
             PasswordLoginTextBox.Text = "Contraseña"
             PasswordLoginTextBox.UseSystemPasswordChar = False
         End If
+
+        LoginErrorLabel.Visible = False
     End Sub
 
     Private Sub EmailLoginTextBox_TextChanged(sender As Object, e As EventArgs) Handles EmailLoginTextBox.TextChanged
@@ -54,18 +56,21 @@ Public Class LoginForm
             PasswordLoginTextBox.UseSystemPasswordChar = True
             EmailLoginTextBox.Text = "Correo"
         End If
+        LoginErrorLabel.Visible = False
     End Sub
 
     Private Sub RegisterLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles RegisterLinkLabel.LinkClicked
         'Esconde la pantalla de Login y muestra la pantalla de Registrar
         Me.Hide()
         RegisterForm.Show()
+        LoginErrorLabel.Visible = False
     End Sub
 
     Private Sub ForgotPasswordLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ForgotPasswordLinkLabel.LinkClicked
         'Esconde la pantalla de Login y muestra la de Recuperar Contraseña
         Me.Hide()
         ForgotPasswordForm.Show()
+        LoginErrorLabel.Visible = False
     End Sub
 
     Private Sub LoginButton_Click(sender As Object, e As EventArgs) Handles LoginButton.Click
@@ -101,8 +106,8 @@ Public Class LoginForm
                 'MsgBox("This is  User.IdUser " & User.IdUser)
                 'MsgBox("This is  User.IdUser2 " & User.IdUser)
                 If reader.Item("status") = False Then
-                    MsgBox("El usuario asociado a ese correo esta inactivo")
-
+                    LoginErrorLabel.Text = "El usuario asociado a ese correo esta inactivo"
+                    LoginErrorLabel.Visible = True
                 Else
                     reader.Close()
                     'Esconde la pantalla de Login y muestra la de Home
@@ -175,6 +180,7 @@ Public Class LoginForm
                             Dim ds2 As New DataSet
                             da2.Fill(ds2, HWstrSQL)
                         HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
+                        LoginErrorLabel.Visible = False
 
 
                     Catch ex As SqlException
@@ -190,7 +196,8 @@ Public Class LoginForm
                     PasswordLoginTextBox.Text = "Contraseña"
                 End If
             Else
-                MsgBox("¡Correo o contraseña incorrecta!")
+                LoginErrorLabel.Text = "Correo o contraseña incorrecta"
+                LoginErrorLabel.Visible = True
             End If
         Catch ex As SqlException
             MsgBox("No se logró conectar a la base de datos de KlassMate" & ex.Message)
@@ -233,7 +240,8 @@ Public Class LoginForm
                     User.IdUser = reader.Item("idStudent")
                     User.IdUser2 = reader.Item("idStudent")
                     If reader.Item("status") = False Then
-                        MsgBox("El usuario asociado a ese correo esta inactivo")
+                        LoginErrorLabel.Text = "El usuario asociado a ese correo esta inactivo"
+                        LoginErrorLabel.Visible = True
 
                     Else
                         reader.Close()
@@ -304,12 +312,14 @@ Public Class LoginForm
                         reader.Close()
                         'Esconde la pantalla de Login y muestra la de Home
                         Me.Hide()
-                    HomeForm.Show()
+                        LoginErrorLabel.Visible = False
+                        HomeForm.Show()
                     EmailLoginTextBox.Text = "Correo"
                         PasswordLoginTextBox.Text = "Contraseña"
                     End If
                 Else
-                    MsgBox("¡Correo o contraseña incorrecta!")
+                    LoginErrorLabel.Text = "Correo o contraseña incorrecta"
+                    LoginErrorLabel.Visible = True
                 End If
             Catch ex As SqlException
                 MsgBox("No se logró conectar a la base de datos de KlassMate" & ex.Message)

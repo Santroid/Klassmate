@@ -861,7 +861,7 @@ Public Class AddCourseForm
             DILabel.Enabled = False
             DTLabel.Enabled = False
         End If
-
+        MsgBox("Curso guardado con exito.")
         '\\\\\\\\\ TERMINA DE AGREGAR UN CURSO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO \\\\\\\\\\\\
     End Sub
 
