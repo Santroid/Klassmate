@@ -43,7 +43,7 @@ Public Class AddCourseForm
         'Dim selectQuery
         selectQuery = " SELECT TOP 1 namePeriod, idPeriod
                         FROM Period
-                        WHERE idStudent = " & IdUser & " ORDER BY namePeriod DESC ;"
+                        WHERE idStudent = " & IdUser & " ORDER BY idPeriod DESC ;"
 
 
         command = New SqlCommand(selectQuery, connection)
@@ -555,7 +555,7 @@ Public Class AddCourseForm
         'Dim selectQuery
         selectQuery = " SELECT TOP 1 namePeriod, idPeriod
                         FROM Period
-                        WHERE idStudent = " & IdUser & " ORDER BY namePeriod DESC ;"
+                        WHERE idStudent = " & IdUser & " ORDER BY idPeriod DESC ;"
 
 
         command = New SqlCommand(selectQuery, connection)
@@ -861,7 +861,7 @@ Public Class AddCourseForm
             DILabel.Enabled = False
             DTLabel.Enabled = False
         End If
-
+        MsgBox("Curso guardado con exito.")
         '\\\\\\\\\ TERMINA DE AGREGAR UN CURSO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO \\\\\\\\\\\\
     End Sub
 

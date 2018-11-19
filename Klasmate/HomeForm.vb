@@ -77,6 +77,23 @@ Public Class HomeForm
             dgv.ClearSelection()
 
         End If
+
+        'le cambia los colores a las celdas de tareas de acuerdo a la base de datos
+        Dim hwdgv As DataGridView = HomeworkDataGridView
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(0).Value
+            'MsgBox(cellColor)
+            hwdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+        Next
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(1).Value
+            hwdgv.Rows(i).Cells(0).Value = ""
+
+        Next
+        hwdgv.ClearSelection()
     End Sub
 
     Private Sub AddHomeButton_Click(sender As Object, e As EventArgs)
@@ -109,6 +126,7 @@ Public Class HomeForm
 
     Private Sub ProfileEditHomeLabel_Click(sender As Object, e As EventArgs) Handles ProfileEditHomeLabel.Click
         'cuando se oprime la opcion de editar perfil se despliega el panel de editar perfil
+        OptionsHomePanel.Hide()
         EditProfilePanel.Show()
 
         Dim connection As SqlConnection
@@ -167,34 +185,37 @@ Public Class HomeForm
     Private Sub HomeworkAddHomeLabel_Click(sender As Object, e As EventArgs) Handles HomeworkAddHomeLabel.Click
         'cuando se oprime la opcion de agregar tarea se despliega el panel de agregar tarea
         AddHomeWorkPanel.Show()
+        AddHomePanel.Hide()
     End Sub
 
     Private Sub ScheduleEditHomeLabel_Click(sender As Object, e As EventArgs) Handles ScheduleEditHomeLabel.Click
         'cuando se oprime la opcion de editar horario se esconde el form de inicio y se muestra el form de editar horarios
         EditScheduleForm.Show()
+        OptionsHomePanel.Hide()
     End Sub
 
     Private Sub TermAddHomeLabel_Click(sender As Object, e As EventArgs) Handles TermAddHomeLabel.Click
         'Esconde el form de inicio y muestra el de agregar horarios
-        ScheduleRegisterForm.IdUserLabel.Text = LoginForm.user.Id_User
+        ScheduleRegisterForm.IdUserLabel.Text = IdUserLabel.Text
         ScheduleRegisterForm.Show()
+        AddHomePanel.Hide()
     End Sub
 
     Private Sub CourseAddHomeLabel_Click(sender As Object, e As EventArgs) Handles CourseAddHomeLabel.Click
         'cuando se oprime la opcion de agregar curso se esconde el form de inicio y se muestra el form de agregar curso
-
+        AddHomePanel.Hide()
         AddCourseForm.Show()
     End Sub
 
     Private Sub StudyAddHomeLabel_Click(sender As Object, e As EventArgs) Handles StudyAddHomeLabel.Click
         'cuando se oprime la opcion de agregar horario de estudio se esconde el form de inicio y se muestra el form de agregar horario de estudio
-
+        AddHomePanel.Hide()
         AddStudyForm.Show()
     End Sub
 
     Private Sub WorkAddHomeLabel_Click(sender As Object, e As EventArgs) Handles WorkAddHomeLabel.Click
         'cuando se oprime la opcion de agregar horario de trabajo se esconde el form de inicio y se muestra el form de agregar horario de trabajo
-
+        AddHomePanel.Hide()
         AddWorkForm.Show()
     End Sub
 
@@ -219,42 +240,53 @@ Public Class HomeForm
     End Sub
 
     Private Sub SaveHWAddButton_Click(sender As Object, e As EventArgs) Handles SaveHWAddButton.Click
-
+        LoginForm.HWCounterLabel.Text = "1"
 
         Dim connection As SqlConnection
         Dim command As SqlCommand
 
         Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
         Dim insertQuery
+        Dim selectQuery
         'aquí conectamos con la base de datos
         connection = New SqlConnection(connectionString)
-        'declaramos la sentencia de INSERT para insertar a la BD
-        insertQuery = "INSERT INTO Task(nameTask, duedate, idSubject) values (@nameTask, @duedate, @idSubject)"
-
-        command = New SqlCommand(insertQuery, connection)
-        MsgBox(CoursAddHWPanelComboBox.SelectedItem.ToString)
+        ' MsgBox(CoursAddHWPanelComboBox.SelectedItem.ToString)
         '// agarra el idSubject del curso escogido en el combobox
         Dim dgv As DataGridView = CourseDataGridView
+        Dim SubColor As String
         For i As Integer = 0 To dgv.Rows.Count - 1
             If dgv.Rows(i).Cells(1).Value = CoursAddHWPanelComboBox.SelectedItem.ToString Then
-                Course.IdCourse2 = dgv.Rows(i).Cells(5).Value
+                Course.IdCourse2 = dgv.Rows(i).Cells(5).Value.ToString
 
                 i = dgv.Rows.Count - 1
             End If
 
-
-            'MsgBox("iteracion " & i)
-            'dgv.Rows(i).Cells(1).Style.BackColor = Drawing.Color.FromName(cellColor)
-
-
         Next
+        Connect()
 
+        'ESTO ES PARA QUE LA TAREA TENGA EL MISMO COLOR QUE EL CURSO
+        selectQuery = "SELECT color FROM Subject WHERE idSubject= " & Integer.Parse(Course.IdCourse2) & " "
+        command = New SqlCommand(selectQuery, ConnectionBD.Connection)
 
+        'ejecuta el lector de la base de datos
+        Dim reader As SqlDataReader = command.ExecuteReader
+
+        reader.Read()
+        SubColor = reader.Item("color").ToString
+        connection.Close()
+        reader.Close()
+
+        'declaramos la sentencia de INSERT para insertar a la BD
+        insertQuery = "INSERT INTO Task(nameTask, duedate, idSubject, color) values (@nameTask, @duedate, @idSubject, @color)"
+
+        command = New SqlCommand(insertQuery, connection)
+        ' MsgBox(DdayAddPanelDateTimePicker.Value.ToString("dd/MMM/yyyy"))
         With command 'le asigna los valores a los espacios en la tabla
 
             .Parameters.AddWithValue("@nameTask", NameHWAddPanelTextBox.Text)
             .Parameters.AddWithValue("@duedate", DdayAddPanelDateTimePicker.Value)
             .Parameters.AddWithValue("@idSubject", Course.IdCourse2)
+            .Parameters.AddWithValue("@color", SubColor)
 
 
 
@@ -266,7 +298,7 @@ Public Class HomeForm
         'ejecutamos la consulta
         command.ExecuteNonQuery()
 
-        connection.Dispose()
+
         connection.Close()
 
         MsgBox("Tarea guardada con exito")
@@ -274,7 +306,49 @@ Public Class HomeForm
         CoursAddHWPanelComboBox.SelectedIndex = -1
         DdayAddPanelDateTimePicker.Value = Date.Today
         AddHomeWorkPanel.Hide()
+        connection.Open()
+        '///// CARGA LA TABLA DE TAREAS//////
+        'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+        Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
+                                    from Subject s, Period p, Task t
+                                    where p.idPeriod =" & Integer.Parse(IdPeriodLabel.Text) & "
+                                    and p.idPeriod = s.idPeriod
+                                    and s.idSubject = t.idSubject
+                                    and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
+                                    ;"
+        Dim da2 As New SqlDataAdapter(HWstrSQL, connection)
+        Dim ds2 As New DataSet
+        'If ColorCounterLabel.Text = " " Then
+        Call CType(HomeworkDataGridView.DataSource, DataTable).Rows.Clear()
+        'End If
+        'da2.Fill(ds2, HWstrSQL)
+        'HomeworkDataGridView.DataSource = ds2.Tables(0)
 
+
+
+        'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+        ' connection.Close()
+
+        da2.Fill(ds2, HWstrSQL)
+        HomeworkDataGridView.DataSource = ds2.Tables(0)
+        'le cambia los colores a las celdas de tareas de acuerdo a la base de datos
+        Dim hwdgv As DataGridView = HomeworkDataGridView
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(0).Value
+            'MsgBox(cellColor)
+            hwdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+        Next
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(1).Value
+            hwdgv.Rows(i).Cells(0).Value = ""
+
+        Next
+        hwdgv.ClearSelection()
+        connection.Close()
 
     End Sub
 
@@ -315,7 +389,7 @@ Public Class HomeForm
     End Sub
 
     Private Sub AddHomeWorkPanel_VisibleChanged(sender As Object, e As EventArgs) Handles AddHomeWorkPanel.VisibleChanged
-
+        OptionsHomePanel.Hide()
         AddHomeWorkPanel.Left = 210
         AddHomeWorkPanel.Top = 125
         Dim dgv As DataGridView = CourseDataGridView
@@ -341,7 +415,113 @@ Public Class HomeForm
 
     End Sub
 
-    Private Sub AddHomeWorkPanel_Paint(sender As Object, e As PaintEventArgs) Handles AddHomeWorkPanel.Paint
+    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
+        OptionsHomePanel.Hide()
+    End Sub
 
+    '///////ESTO ES PARA QUE SOLO SALGAN LAS TAREAS SEGUN EL CURSO QUE ESCOGA EL USUARIO//////////////////
+    Private Sub CourseDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles CourseDataGridView.CellContentClick
+
+        Dim index As String = CourseDataGridView.CurrentRow.Index
+        'MsgBox(index.ToString)
+        Dim selectedCoursId As Integer = CourseDataGridView.Rows(index).Cells(5).Value
+        'MsgBox(selectedCoursId.ToString)
+
+        Connection.Open()
+        '///// CARGA LA TABLA DE TAREAS//////
+        'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+        Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
+                                    from Subject s, Period p, Task t
+                                    where p.idPeriod =" & Integer.Parse(IdPeriodLabel.Text) & "
+                                    and p.idPeriod = s.idPeriod
+                                    and s.idSubject = " & selectedCoursId & "
+                                    and s.idSubject = t.idSubject
+                                    and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
+                                    ;"
+        Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
+        Dim ds2 As New DataSet
+        'If ColorCounterLabel.Text = " " Then
+        Call CType(HomeworkDataGridView.DataSource, DataTable).Rows.Clear()
+        'End If
+        'da2.Fill(ds2, HWstrSQL)
+        'HomeworkDataGridView.DataSource = ds2.Tables(0)
+
+
+
+        'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+        ' connection.Close()
+
+        da2.Fill(ds2, HWstrSQL)
+        HomeworkDataGridView.DataSource = ds2.Tables(0)
+        'le cambia los colores a las celdas de tareas de acuerdo a la base de datos
+        Dim hwdgv As DataGridView = HomeworkDataGridView
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(0).Value
+            'MsgBox(cellColor)
+            hwdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+        Next
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(1).Value
+            hwdgv.Rows(i).Cells(0).Value = ""
+
+        Next
+        hwdgv.ClearSelection()
+        Connection.Close()
+
+        CleanHWSelButton.Visible = True
+    End Sub
+
+
+    '////ESTO ES PARA QUE CUANDO SE OPRIME EL BOTON DE LIMPIAR LA SELECCION, SE VUELVAN A MOSTRAR TODAS LAS TAREAS/////////////
+    Private Sub CleanHWSelButton_Click(sender As Object, e As EventArgs) Handles CleanHWSelButton.Click
+        Connection.Open()
+        '///// CARGA LA TABLA DE TAREAS//////
+        'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+        Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
+                                    from Subject s, Period p, Task t
+                                    where p.idPeriod =" & Integer.Parse(IdPeriodLabel.Text) & "
+                                    and p.idPeriod = s.idPeriod
+                                    and s.idSubject = t.idSubject
+                                    and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
+                                    ;"
+        Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
+        Dim ds2 As New DataSet
+        'If ColorCounterLabel.Text = " " Then
+        Call CType(HomeworkDataGridView.DataSource, DataTable).Rows.Clear()
+        'End If
+        'da2.Fill(ds2, HWstrSQL)
+        'HomeworkDataGridView.DataSource = ds2.Tables(0)
+
+
+
+        'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+        ' connection.Close()
+
+        da2.Fill(ds2, HWstrSQL)
+        HomeworkDataGridView.DataSource = ds2.Tables(0)
+        'le cambia los colores a las celdas de tareas de acuerdo a la base de datos
+        Dim hwdgv As DataGridView = HomeworkDataGridView
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(0).Value
+            'MsgBox(cellColor)
+            hwdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+        Next
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(1).Value
+            hwdgv.Rows(i).Cells(0).Value = ""
+
+        Next
+        hwdgv.ClearSelection()
+        Connection.Close()
+        CourseDataGridView.ClearSelection()
+        CleanHWSelButton.Visible = False
     End Sub
 End Class

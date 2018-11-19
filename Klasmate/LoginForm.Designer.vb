@@ -33,6 +33,8 @@ Partial Class LoginForm
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.HWCounterLabel = New System.Windows.Forms.Label()
+        Me.LoginErrorLabel = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'RegisterLinkLabel
@@ -149,11 +151,35 @@ Partial Class LoginForm
         Me.Label1.TabIndex = 10
         Me.Label1.Text = "K"
         '
+        'HWCounterLabel
+        '
+        Me.HWCounterLabel.AutoSize = True
+        Me.HWCounterLabel.Location = New System.Drawing.Point(42, 286)
+        Me.HWCounterLabel.Name = "HWCounterLabel"
+        Me.HWCounterLabel.Size = New System.Drawing.Size(89, 13)
+        Me.HWCounterLabel.TabIndex = 14
+        Me.HWCounterLabel.Text = "HWCounterLabel"
+        Me.HWCounterLabel.Visible = False
+        '
+        'LoginErrorLabel
+        '
+        Me.LoginErrorLabel.AutoSize = True
+        Me.LoginErrorLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LoginErrorLabel.ForeColor = System.Drawing.Color.Red
+        Me.LoginErrorLabel.Location = New System.Drawing.Point(42, 170)
+        Me.LoginErrorLabel.Name = "LoginErrorLabel"
+        Me.LoginErrorLabel.Size = New System.Drawing.Size(45, 15)
+        Me.LoginErrorLabel.TabIndex = 15
+        Me.LoginErrorLabel.Text = "Label5"
+        Me.LoginErrorLabel.Visible = False
+        '
         'LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 319)
+        Me.ClientSize = New System.Drawing.Size(310, 319)
+        Me.Controls.Add(Me.LoginErrorLabel)
+        Me.Controls.Add(Me.HWCounterLabel)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -183,4 +209,6 @@ Partial Class LoginForm
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents HWCounterLabel As Label
+    Friend WithEvents LoginErrorLabel As Label
 End Class

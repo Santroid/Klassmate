@@ -14,6 +14,8 @@ Public Class LoginForm
             PasswordLoginTextBox.Text = "Contraseña"
             PasswordLoginTextBox.UseSystemPasswordChar = False
         End If
+
+        LoginErrorLabel.Visible = False
     End Sub
 
     Private Sub EmailLoginTextBox_TextChanged(sender As Object, e As EventArgs) Handles EmailLoginTextBox.TextChanged
@@ -54,18 +56,21 @@ Public Class LoginForm
             PasswordLoginTextBox.UseSystemPasswordChar = True
             EmailLoginTextBox.Text = "Correo"
         End If
+        LoginErrorLabel.Visible = False
     End Sub
 
     Private Sub RegisterLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles RegisterLinkLabel.LinkClicked
         'Esconde la pantalla de Login y muestra la pantalla de Registrar
         Me.Hide()
         RegisterForm.Show()
+        LoginErrorLabel.Visible = False
     End Sub
 
     Private Sub ForgotPasswordLinkLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles ForgotPasswordLinkLabel.LinkClicked
         'Esconde la pantalla de Login y muestra la de Recuperar Contraseña
         Me.Hide()
         ForgotPasswordForm.Show()
+        LoginErrorLabel.Visible = False
     End Sub
 
     Private Sub LoginButton_Click(sender As Object, e As EventArgs) Handles LoginButton.Click
@@ -101,8 +106,8 @@ Public Class LoginForm
                 'MsgBox("This is  User.IdUser " & User.IdUser)
                 'MsgBox("This is  User.IdUser2 " & User.IdUser)
                 If reader.Item("status") = False Then
-                    MsgBox("El usuario asociado a ese correo esta inactivo")
-
+                    LoginErrorLabel.Text = "El usuario asociado a ese correo esta inactivo"
+                    LoginErrorLabel.Visible = True
                 Else
                     reader.Close()
                     'Esconde la pantalla de Login y muestra la de Home
@@ -118,17 +123,9 @@ Public Class LoginForm
                     ' selectQuery = "SELECT TOP 1 * FROM (" & getQuery & ") ORDER BY namePeriod DESC"
 
                     selectQuery = "
-                                    SELECT TOP 1
-                                       namePeriod, idPeriod
-                                    FROM
-                                        Period
-                                    WHERE
-                                         idStudent = " & user.Id_User & "
-                                    ORDER BY
-                                        namePeriod DESC
-                                    
-                                    
-                                ;"
+                                    SELECT TOP 1 namePeriod, idPeriod FROM Period
+                                    WHERE idStudent = " & user.Id_User & "
+                                    ORDER BY idPeriod DESC ;"
                     'selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & user.Id_User & " "
                     command = New SqlCommand(selectQuery, Connection)
                     reader = command.ExecuteReader
@@ -138,6 +135,7 @@ Public Class LoginForm
                     HomeForm.PeriodHomeLabel.Text = reader.Item("namePeriod")
                     period.Id_Period = reader.Item("idPeriod")
                     HomeForm.IdPeriodLabel.Text = reader.Item("idPeriod")
+                    AddCourseForm.IdUserLabel.Text = user.Id_User
 
                     reader.Close()
                     Connection.Close()
@@ -162,6 +160,28 @@ Public Class LoginForm
                         HomeForm.CourseDataGridView.DataSource = ds.Tables(0)
 
 
+                        Connection.Close()
+
+                            '///// CARGA LA TABLA DE TAREAS//////
+                            Connection.Open()
+                            'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+                            Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
+                                    from Subject s, Period p, Task t
+                                    where p.idPeriod =" & period.Id_Period & "
+                                    and p.idPeriod = s.idPeriod
+                                    and s.idSubject = t.idSubject
+                                    and p.idStudent =" & user.Id_User & "
+                                    ;"
+
+                            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+                            ' connection.Close()
+                            Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
+                            Dim ds2 As New DataSet
+                            da2.Fill(ds2, HWstrSQL)
+                        HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
+                        LoginErrorLabel.Visible = False
+
 
                     Catch ex As SqlException
                         MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
@@ -176,7 +196,8 @@ Public Class LoginForm
                     PasswordLoginTextBox.Text = "Contraseña"
                 End If
             Else
-                MsgBox("¡Correo o contraseña incorrecta!")
+                LoginErrorLabel.Text = "Correo o contraseña incorrecta"
+                LoginErrorLabel.Visible = True
             End If
         Catch ex As SqlException
             MsgBox("No se logró conectar a la base de datos de KlassMate" & ex.Message)
@@ -214,18 +235,20 @@ Public Class LoginForm
 
                     user.Id_User = reader.Item("idStudent")
                     ScheduleRegisterForm.IdUserLabel.Text = user.Id_User
+                    HomeForm.IdUserLabel.Text = user.Id_User
                     AddCourseForm.IdUserLabel.Text = user.Id_User
                     User.IdUser = reader.Item("idStudent")
                     User.IdUser2 = reader.Item("idStudent")
                     If reader.Item("status") = False Then
-                        MsgBox("El usuario asociado a ese correo esta inactivo")
+                        LoginErrorLabel.Text = "El usuario asociado a ese correo esta inactivo"
+                        LoginErrorLabel.Visible = True
 
                     Else
                         reader.Close()
                         Dim selectQuery
                         selectQuery = "SELECT TOP 1 namePeriod, idPeriod
                                        FROM Period
-                                       WHERE idStudent = " & user.Id_User & " ORDER BY namePeriod DESC ;"
+                                       WHERE idStudent = " & user.Id_User & " ORDER BY idPeriod DESC ;"
 
                         'selectQuery = "SELECT namePeriod FROM Period WHERE idStudent=" & user.Id_User & " "
                         command = New SqlCommand(selectQuery, Connection)
@@ -259,7 +282,26 @@ Public Class LoginForm
                             da.Fill(ds, strSQL)
                             HomeForm.CourseDataGridView.DataSource = ds.Tables(0)
 
+                            Connection.Close()
 
+                            '///// CARGA LA TABLA DE TAREAS//////
+                            Connection.Open()
+                            'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+                            Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
+                                    from Subject s, Period p, Task t
+                                    where p.idPeriod =" & period.Id_Period & "
+                                    and p.idPeriod = s.idPeriod
+                                    and s.idSubject = t.idSubject
+                                    and p.idStudent =" & user.Id_User & "
+                                    ;"
+
+                            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+                            ' connection.Close()
+                            Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
+                            Dim ds2 As New DataSet
+                            da2.Fill(ds2, HWstrSQL)
+                            HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
 
                         Catch ex As SqlException
                             MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
@@ -270,12 +312,14 @@ Public Class LoginForm
                         reader.Close()
                         'Esconde la pantalla de Login y muestra la de Home
                         Me.Hide()
-                    HomeForm.Show()
+                        LoginErrorLabel.Visible = False
+                        HomeForm.Show()
                     EmailLoginTextBox.Text = "Correo"
                         PasswordLoginTextBox.Text = "Contraseña"
                     End If
                 Else
-                    MsgBox("¡Correo o contraseña incorrecta!")
+                    LoginErrorLabel.Text = "Correo o contraseña incorrecta"
+                    LoginErrorLabel.Visible = True
                 End If
             Catch ex As SqlException
                 MsgBox("No se logró conectar a la base de datos de KlassMate" & ex.Message)

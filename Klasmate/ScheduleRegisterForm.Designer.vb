@@ -71,6 +71,7 @@ Partial Class ScheduleRegisterForm
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.SaveSRButton = New System.Windows.Forms.Button()
+        Me.CancelRegisterButton = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.AddCourseSRPanel.SuspendLayout()
         Me.SuspendLayout()
@@ -602,16 +603,26 @@ Partial Class ScheduleRegisterForm
         '
         Me.SaveSRButton.Location = New System.Drawing.Point(12, 246)
         Me.SaveSRButton.Name = "SaveSRButton"
-        Me.SaveSRButton.Size = New System.Drawing.Size(795, 23)
+        Me.SaveSRButton.Size = New System.Drawing.Size(394, 23)
         Me.SaveSRButton.TabIndex = 24
         Me.SaveSRButton.Text = "Terminar"
         Me.SaveSRButton.UseVisualStyleBackColor = True
+        '
+        'CancelRegisterButton
+        '
+        Me.CancelRegisterButton.Location = New System.Drawing.Point(412, 246)
+        Me.CancelRegisterButton.Name = "CancelRegisterButton"
+        Me.CancelRegisterButton.Size = New System.Drawing.Size(395, 23)
+        Me.CancelRegisterButton.TabIndex = 25
+        Me.CancelRegisterButton.Text = "Cancelar"
+        Me.CancelRegisterButton.UseVisualStyleBackColor = True
         '
         'ScheduleRegisterForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(813, 275)
+        Me.Controls.Add(Me.CancelRegisterButton)
         Me.Controls.Add(Me.SaveSRButton)
         Me.Controls.Add(Me.AddCourseSRPanel)
         Me.Controls.Add(Me.Panel1)
@@ -675,4 +686,5 @@ Partial Class ScheduleRegisterForm
     Friend WithEvents LTDateTimePicker As DateTimePicker
     Friend WithEvents DefaultDateTimePicker As DateTimePicker
     Friend WithEvents IdUserLabel As Label
+    Friend WithEvents CancelRegisterButton As Button
 End Class
