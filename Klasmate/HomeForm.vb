@@ -344,4 +344,8 @@ Public Class HomeForm
     Private Sub AddHomeWorkPanel_Paint(sender As Object, e As PaintEventArgs) Handles AddHomeWorkPanel.Paint
 
     End Sub
+
+    Private Sub CourseDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles CourseDataGridView.CellContentClick
+
+    End Sub
 End Class
