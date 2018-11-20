@@ -83,7 +83,7 @@ Partial Class HomeForm
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.StudSchDataGridView = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -106,7 +106,7 @@ Partial Class HomeForm
         Me.AddHomeWorkPanel.SuspendLayout()
         CType(Me.CourseDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HomeworkDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.StudSchDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -720,23 +720,23 @@ Partial Class HomeForm
         Me.DataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.DataGridViewTextBoxColumn6.Visible = False
         '
-        'DataGridView2
+        'StudSchDataGridView
         '
-        Me.DataGridView2.AllowUserToAddRows = False
-        Me.DataGridView2.AllowUserToDeleteRows = False
-        Me.DataGridView2.AllowUserToResizeColumns = False
-        Me.DataGridView2.AllowUserToResizeRows = False
-        Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12})
-        Me.DataGridView2.Location = New System.Drawing.Point(3, 362)
-        Me.DataGridView2.MultiSelect = False
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.ReadOnly = True
-        Me.DataGridView2.RowHeadersVisible = False
-        Me.DataGridView2.Size = New System.Drawing.Size(395, 160)
-        Me.DataGridView2.TabIndex = 15
+        Me.StudSchDataGridView.AllowUserToAddRows = False
+        Me.StudSchDataGridView.AllowUserToDeleteRows = False
+        Me.StudSchDataGridView.AllowUserToResizeColumns = False
+        Me.StudSchDataGridView.AllowUserToResizeRows = False
+        Me.StudSchDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.StudSchDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.StudSchDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.StudSchDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12})
+        Me.StudSchDataGridView.Location = New System.Drawing.Point(3, 362)
+        Me.StudSchDataGridView.MultiSelect = False
+        Me.StudSchDataGridView.Name = "StudSchDataGridView"
+        Me.StudSchDataGridView.ReadOnly = True
+        Me.StudSchDataGridView.RowHeadersVisible = False
+        Me.StudSchDataGridView.Size = New System.Drawing.Size(395, 160)
+        Me.StudSchDataGridView.TabIndex = 15
         '
         'DataGridViewTextBoxColumn7
         '
@@ -921,7 +921,7 @@ Partial Class HomeForm
         Me.Controls.Add(Me.AddHomeWorkPanel)
         Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.HomeworkDataGridView)
-        Me.Controls.Add(Me.DataGridView2)
+        Me.Controls.Add(Me.StudSchDataGridView)
         Me.Controls.Add(Me.DataGridView3)
         Me.Controls.Add(Me.CourseDataGridView)
         Me.Controls.Add(Me.ShapeContainer1)
@@ -938,7 +938,7 @@ Partial Class HomeForm
         Me.AddHomeWorkPanel.PerformLayout()
         CType(Me.CourseDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HomeworkDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.StudSchDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -992,7 +992,7 @@ Partial Class HomeForm
     Friend WithEvents ColorCounterLabel As Label
     Friend WithEvents IdPeriodLabel As Label
     Friend WithEvents HomeworkDataGridView As DataGridView
-    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents StudSchDataGridView As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
