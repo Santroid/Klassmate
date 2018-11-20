@@ -489,7 +489,7 @@ Partial Class AddCourseForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(552, 270)
+        Me.ClientSize = New System.Drawing.Size(564, 270)
         Me.Controls.Add(Me.IdUserLabel)
         Me.Controls.Add(Me.DefaultDateTimePicker)
         Me.Controls.Add(Me.DTLabel)

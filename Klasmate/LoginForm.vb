@@ -302,6 +302,15 @@ Public Class LoginForm
                             Dim ds2 As New DataSet
                             da2.Fill(ds2, HWstrSQL)
                             HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
+                            '\\\\\\\\\\\\\ TERMINA DE CARGAR LAS TAREAS \\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+                            '//////// CARGA HORARIO DE ESTUDIO //////////////
+
+                            '\\\\\\\\\\\\\\\\ TERMINA DE CARGAR HORARIO DE ESTUDIO \\\\\\\\\\\\
+
+                            '//////// CARGA HORARIO DE TRABAJO //////////////
+
+                            '\\\\\\\\\\\\\\\\ TERMINA DE CARGAR HORARIO DE TRABAJO \\\\\\\\\\\\
 
                         Catch ex As SqlException
                             MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")

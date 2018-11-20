@@ -150,9 +150,9 @@ Partial Class RegisterForm
         Me.EmailErrorLabel.ForeColor = System.Drawing.Color.Red
         Me.EmailErrorLabel.Location = New System.Drawing.Point(53, 171)
         Me.EmailErrorLabel.Name = "EmailErrorLabel"
-        Me.EmailErrorLabel.Size = New System.Drawing.Size(179, 13)
+        Me.EmailErrorLabel.Size = New System.Drawing.Size(173, 13)
         Me.EmailErrorLabel.TabIndex = 15
-        Me.EmailErrorLabel.Text = "¡El formato de correo no es correcto!"
+        Me.EmailErrorLabel.Text = "El formato de correo no es correcto"
         Me.EmailErrorLabel.Visible = False
         '
         'PasswordErrorLabel
@@ -161,9 +161,9 @@ Partial Class RegisterForm
         Me.PasswordErrorLabel.ForeColor = System.Drawing.Color.Red
         Me.PasswordErrorLabel.Location = New System.Drawing.Point(53, 315)
         Me.PasswordErrorLabel.Name = "PasswordErrorLabel"
-        Me.PasswordErrorLabel.Size = New System.Drawing.Size(228, 13)
+        Me.PasswordErrorLabel.Size = New System.Drawing.Size(222, 13)
         Me.PasswordErrorLabel.TabIndex = 17
-        Me.PasswordErrorLabel.Text = "¡Las contraseñenas ingresadas no son iguales!"
+        Me.PasswordErrorLabel.Text = "Las contraseñenas ingresadas no son iguales"
         Me.PasswordErrorLabel.Visible = False
         '
         'RegisterForm
