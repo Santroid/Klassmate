@@ -180,6 +180,7 @@ Public Class LoginForm
                             Dim ds2 As New DataSet
                             da2.Fill(ds2, HWstrSQL)
                         HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
+                        Connection.Close()
                         '\\\\\\\\\\\\\ TERMINA DE CARGAR LAS TAREAS \\\\\\\\\\\\\\\\\\\\\\\\\\\
 
                         '//////// CARGA HORARIO DE ESTUDIO //////////////
@@ -200,8 +201,9 @@ Public Class LoginForm
                         ' connection.Close()
                         Dim da3 As New SqlDataAdapter(SSstrSQL, Connection)
                         Dim ds3 As New DataSet
-                        da2.Fill(ds3, SSstrSQL)
+                        da3.Fill(ds3, SSstrSQL)
                         HomeForm.StudSchDataGridView.DataSource = ds3.Tables(0)
+                        Connection.Close()
                         '\\\\\\\\\\\\\\\\ TERMINA DE CARGAR HORARIO DE ESTUDIO \\\\\\\\\\\\
                         LoginErrorLabel.Visible = False
 
@@ -324,7 +326,8 @@ Public Class LoginForm
                             Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
                             Dim ds2 As New DataSet
                             da2.Fill(ds2, HWstrSQL)
-                            HomeForm.StudSchDataGridView.DataSource = ds2.Tables(0)
+                            HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
+                            Connection.Close()
                             '\\\\\\\\\\\\\ TERMINA DE CARGAR LAS TAREAS \\\\\\\\\\\\\\\\\\\\\\\\\\\
 
                             '//////// CARGA HORARIO DE ESTUDIO //////////////
@@ -345,8 +348,9 @@ Public Class LoginForm
                             ' connection.Close()
                             Dim da3 As New SqlDataAdapter(SSstrSQL, Connection)
                             Dim ds3 As New DataSet
-                            da2.Fill(ds3, SSstrSQL)
+                            da3.Fill(ds3, SSstrSQL)
                             HomeForm.StudSchDataGridView.DataSource = ds3.Tables(0)
+                            Connection.Close()
                             '\\\\\\\\\\\\\\\\ TERMINA DE CARGAR HORARIO DE ESTUDIO \\\\\\\\\\\\
 
                             '//////// CARGA HORARIO DE TRABAJO //////////////
