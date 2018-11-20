@@ -94,6 +94,23 @@ Public Class HomeForm
 
         Next
         hwdgv.ClearSelection()
+
+        'le cambia los colores a las celdas de horario de estudio de acuerdo a la base de datos
+        Dim SSdgv As DataGridView = StudSchDataGridView
+        For i As Integer = 0 To SSdgv.Rows.Count - 1
+
+            Dim cellColor As String = SSdgv.Rows(i).Cells(0).Value
+            'MsgBox(cellColor)
+            SSdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+        Next
+        For i As Integer = 0 To SSdgv.Rows.Count - 1
+
+            Dim cellColor As String = SSdgv.Rows(i).Cells(1).Value
+            SSdgv.Rows(i).Cells(0).Value = ""
+
+        Next
+        SSdgv.ClearSelection()
     End Sub
 
     Private Sub AddHomeButton_Click(sender As Object, e As EventArgs)
@@ -516,11 +533,5 @@ Public Class HomeForm
         CleanHWSelButton.Visible = False
     End Sub
 
-    Private Sub DataGridView3_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles WSDataGridView.CellContentClick
 
-    End Sub
-
-    Private Sub HomeworkDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles HomeworkDataGridView.CellContentClick
-
-    End Sub
 End Class

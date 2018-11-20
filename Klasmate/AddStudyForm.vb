@@ -497,7 +497,56 @@ Public Class AddStudyForm
             SDTLabel.Enabled = False
         End If
 
-        '\\\\\\\\\ TERMINA DE AGREGAR UN CURSO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO \\\\\\\\\\\\
+        '\\\\\\\\\ TERMINA DE AGREGAR UN HORARIO DE ESTUDIO A LA BASE DE DATOS Y MUESTRA LA PAGINA DE INICIO \\\\\\\\\\\\
+        Try
+            Connection.Open()
+            'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+            Dim SSstrSQL As String = "select ac.color, ac.name, sc.day, sc.startTime, sc.endTime, ac.idActivity
+                                    from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
+                                    where k.idStudent = p.idStudent
+                                    and p.idPeriod =" & Integer.Parse(HomeForm.IdPeriodLabel.Text) & "
+                                    and k.idStudent = ac.idStudent
+                                    and k.idStudent =" & User.IdUser & "
+                                    and ac.idActivity = a.idActivity
+                                    and a.idSchedule = sc.idSchedule
+                                    and ac.type = " & 0 & ";"
+
+            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+            ' connection.Close()
+            Dim da3 As New SqlDataAdapter(SSstrSQL, Connection)
+            Dim ds3 As New DataSet
+            Call CType(HomeForm.StudSchDataGridView.DataSource, DataTable).Rows.Clear()
+            da3.Fill(ds3, SSstrSQL)
+            HomeForm.StudSchDataGridView.DataSource = ds3.Tables(0)
+
+
+            'le cambia los colores a las celdas de horario de estudio de acuerdo a la base de datos
+            Dim SSdgv As DataGridView = HomeForm.StudSchDataGridView
+            For i As Integer = 0 To SSdgv.Rows.Count - 1
+
+                Dim cellColor As String = SSdgv.Rows(i).Cells(0).Value
+                'MsgBox(cellColor)
+                SSdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+            Next
+            For i As Integer = 0 To SSdgv.Rows.Count - 1
+
+                Dim cellColor As String = SSdgv.Rows(i).Cells(1).Value
+                SSdgv.Rows(i).Cells(0).Value = ""
+
+            Next
+            SSdgv.ClearSelection()
+
+
+            Connection.Close()
+        Catch ex As SqlException
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "General Error")
+        End Try
+
+        '\\\\\\\\\ TERMINA DE AGREGAR UN CURSO A LA BASE DE DATOS  \\\\\\\\\\\\
     End Sub
 
     ' Verificar qué día escogió para habilitar la hora
