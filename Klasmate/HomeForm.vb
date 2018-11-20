@@ -524,4 +524,12 @@ Public Class HomeForm
         CourseDataGridView.ClearSelection()
         CleanHWSelButton.Visible = False
     End Sub
+
+    Private Sub DataGridView3_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles WSDataGridView.CellContentClick
+
+    End Sub
+
+    Private Sub HomeworkDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles HomeworkDataGridView.CellContentClick
+
+    End Sub
 End Class
