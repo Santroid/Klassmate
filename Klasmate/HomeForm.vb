@@ -308,7 +308,7 @@ Public Class HomeForm
         AddHomeWorkPanel.Hide()
         connection.Open()
         '///// CARGA LA TABLA DE TAREAS//////
-        'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+        'aca se escoge solo el color, nombre de la tarea, dia de entregaque le pertenecen al usuario y al mismo periodo
         Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
                                     from Subject s, Period p, Task t
                                     where p.idPeriod =" & Integer.Parse(IdPeriodLabel.Text) & "
@@ -320,15 +320,6 @@ Public Class HomeForm
         Dim ds2 As New DataSet
         'If ColorCounterLabel.Text = " " Then
         Call CType(HomeworkDataGridView.DataSource, DataTable).Rows.Clear()
-        'End If
-        'da2.Fill(ds2, HWstrSQL)
-        'HomeworkDataGridView.DataSource = ds2.Tables(0)
-
-
-
-        'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
-
-        ' connection.Close()
 
         da2.Fill(ds2, HWstrSQL)
         HomeworkDataGridView.DataSource = ds2.Tables(0)

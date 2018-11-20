@@ -39,7 +39,7 @@ Public Class RegisterForm
             'Si el formato de correo no es correcto manda un error -Santiago
             If User.Email_User.Contains("@") = False Then
                 EmailErrorLabel.Visible = True
-                EmailErrorLabel.Text = "El formato de correo no es correcto!"
+                EmailErrorLabel.Text = "El formato de correo no es correcto"
 
             Else
 
