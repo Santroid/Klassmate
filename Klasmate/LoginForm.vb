@@ -180,13 +180,12 @@ Public Class LoginForm
                             Dim ds2 As New DataSet
                             da2.Fill(ds2, HWstrSQL)
                         HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
+                        '\\\\\\\\\\\\\ TERMINA DE CARGAR LAS TAREAS \\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-                        '//////// CARGA HORARIO DE TRABAJO //////////////
-
+                        '//////// CARGA HORARIO DE ESTUDIO //////////////
                         Connection.Open()
-                        '///// CARGA LA TABLA DE HORARIO DE TRABAJO //////
                         'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
-                        Dim wsstrSQL As String = "select ac.color, ac.name, sc.day, sc.startTime, sc.endTime, s.idActivity
+                        Dim SSstrSQL As String = "select ac.color, ac.name, sc.day, sc.startTime, sc.endTime, ac.idActivity
                                     from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod =" & period.Id_Period & "
@@ -194,16 +193,17 @@ Public Class LoginForm
                                     and k.idStudent =" & user.Id_User & "
                                     and ac.idActivity = a.idActivity
                                     and a.idSchedule = sc.idSchedule
-                                    and ac.type = " & 1 & " ;"
-                        Dim da4 As New SqlDataAdapter(wsstrSQL, Connection)
-                        Dim ds4 As New DataSet
-                        da2.Fill(ds4, wsstrSQL)
-                        HomeForm.WSDataGridView.DataSource = ds4.Tables(0)
+                                    and ac.type = " & 0 & ";"
 
-                        '\\\\\\\\\\\\\\\\ TERMINA DE CARGAR HORARIO DE TRABAJO \\\\\\\\\\\\
+                        'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
 
+                        ' connection.Close()
+                        Dim da3 As New SqlDataAdapter(SSstrSQL, Connection)
+                        Dim ds3 As New DataSet
+                        da2.Fill(ds3, SSstrSQL)
+                        HomeForm.StudSchDataGridView.DataSource = ds3.Tables(0)
+                        '\\\\\\\\\\\\\\\\ TERMINA DE CARGAR HORARIO DE ESTUDIO \\\\\\\\\\\\
                         LoginErrorLabel.Visible = False
-
 
 
                     Catch ex As SqlException
@@ -324,19 +324,13 @@ Public Class LoginForm
                             Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
                             Dim ds2 As New DataSet
                             da2.Fill(ds2, HWstrSQL)
-                            HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
+                            HomeForm.StudSchDataGridView.DataSource = ds2.Tables(0)
                             '\\\\\\\\\\\\\ TERMINA DE CARGAR LAS TAREAS \\\\\\\\\\\\\\\\\\\\\\\\\\\
 
                             '//////// CARGA HORARIO DE ESTUDIO //////////////
-
-                            '\\\\\\\\\\\\\\\\ TERMINA DE CARGAR HORARIO DE ESTUDIO \\\\\\\\\\\\
-
-                            '//////// CARGA HORARIO DE TRABAJO //////////////
-
                             Connection.Open()
-                            '///// CARGA LA TABLA DE HORARIO DE TRABAJO //////
                             'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
-                            Dim wsstrSQL As String = "select ac.color, ac.name, sc.day, sc.startTime, sc.endTime, s.idActivity
+                            Dim SSstrSQL As String = "select ac.color, ac.name, sc.day, sc.startTime, sc.endTime, ac.idActivity
                                     from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod =" & period.Id_Period & "
@@ -344,11 +338,18 @@ Public Class LoginForm
                                     and k.idStudent =" & user.Id_User & "
                                     and ac.idActivity = a.idActivity
                                     and a.idSchedule = sc.idSchedule
-                                    and ac.type = " & 1 & " ;"
-                            Dim da4 As New SqlDataAdapter(wsstrSQL, Connection)
-                            Dim ds4 As New DataSet
-                            da2.Fill(ds4, wsstrSQL)
-                            HomeForm.WSDataGridView.DataSource = ds4.Tables(0)
+                                    and ac.type = " & 0 & ";"
+
+                            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+                            ' connection.Close()
+                            Dim da3 As New SqlDataAdapter(SSstrSQL, Connection)
+                            Dim ds3 As New DataSet
+                            da2.Fill(ds3, SSstrSQL)
+                            HomeForm.StudSchDataGridView.DataSource = ds3.Tables(0)
+                            '\\\\\\\\\\\\\\\\ TERMINA DE CARGAR HORARIO DE ESTUDIO \\\\\\\\\\\\
+
+                            '//////// CARGA HORARIO DE TRABAJO //////////////
 
                             '\\\\\\\\\\\\\\\\ TERMINA DE CARGAR HORARIO DE TRABAJO \\\\\\\\\\\\
 
