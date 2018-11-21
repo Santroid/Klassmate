@@ -111,6 +111,23 @@ Public Class HomeForm
 
         Next
         SSdgv.ClearSelection()
+
+        'le cambia los colores a las celdas de horario de trabajo de acuerdo a la base de datos
+        Dim WSdgv As DataGridView = WSDataGridView
+        For i As Integer = 0 To WSdgv.Rows.Count - 1
+
+            Dim cellColor As String = WSdgv.Rows(i).Cells(0).Value
+            'MsgBox(cellColor)
+            WSdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+        Next
+        For i As Integer = 0 To WSdgv.Rows.Count - 1
+
+            Dim cellColor As String = WSdgv.Rows(i).Cells(1).Value
+            WSdgv.Rows(i).Cells(0).Value = ""
+
+        Next
+        WSdgv.ClearSelection()
     End Sub
 
     Private Sub AddHomeButton_Click(sender As Object, e As EventArgs)

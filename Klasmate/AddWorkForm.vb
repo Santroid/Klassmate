@@ -520,23 +520,23 @@ Public Class AddWorkForm
             Disconnect()
         End Try
 
-        Try
-            Connect()
+        ' Try
+        Connect()
             insertQuery = "INSERT INTO ActivityHasSchedule(idSchedule, idActivity) values (@idSchedule, @idActivity)"
             command = New SqlCommand(insertQuery, ConnectionBD.Connection)
-            reader = command.ExecuteReader
-            reader.Read()
+        'reader = command.ExecuteReader
+        'reader.Read()
 
-            With command 'le asigna los valores a los espacios en la tabla
+        With command 'le asigna los valores a los espacios en la tabla
                 .Parameters.AddWithValue("@idSchedule", IdSch)
                 .Parameters.AddWithValue("@idActivity", Work.Id_WorkSch)
             End With
             command.ExecuteNonQuery()
-        Catch ex As Exception
-            ' MsgBox("No fue posible registrar el horario de trabajo 5" + ex.Message)
-        Finally
-            Disconnect()
-        End Try
+        ' Catch ex As Exception
+        ' MsgBox("No fue posible registrar el horario de trabajo 5" + ex.Message)
+        'Finally
+        Disconnect()
+        'End Try
 
 
 
@@ -649,50 +649,53 @@ Public Class AddWorkForm
 
         '\\\\\\\\\ TERMINA DE AGREGAR UN HORARIO DE TRABAJO A LA BASE DE DATOS Y LIMPIA LOS CAMPOS PARA AGREGAR OTRO \\\\\\\\\\\\
 
-        'Connection.Open()
-        ''///// CARGA LA TABLA DE TAREAS//////
-        ''aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
-        'Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
-        '                            from Subject s, Period p, Task t
-        '                            where p.idPeriod =" & Integer.Parse(IdPeriodLabel.Text) & "
-        '                            and p.idPeriod = s.idPeriod
-        '                            and s.idSubject = " & selectedCoursId & "
-        '                            and s.idSubject = t.idSubject
-        '                            and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
-        '                            ;"
-        'Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
-        'Dim ds2 As New DataSet
-        ''If ColorCounterLabel.Text = " " Then
-        'Call CType(HomeForm.WSDataGridView.DataSource, DataTable).Rows.Clear()
-        ''End If
-        ''da2.Fill(ds2, HWstrSQL)
-        ''HomeworkDataGridView.DataSource = ds2.Tables(0)
+        Try
+            Connection.Open()
+            'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+            Dim WSstrSQL As String = "select ac.color, ac.name, sc.day, sc.startTime, sc.endTime, ac.idActivity
+                                    from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
+                                    where k.idStudent = p.idStudent
+                                    and p.idPeriod =" & Integer.Parse(HomeForm.IdPeriodLabel.Text) & "
+                                    and k.idStudent = ac.idStudent
+                                    and k.idStudent =" & User.IdUser & "
+                                    and ac.idActivity = a.idActivity
+                                    and a.idSchedule = sc.idSchedule
+                                    and ac.type = " & 1 & ";"
+
+            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+            ' connection.Close()
+            Dim da4 As New SqlDataAdapter(WSstrSQL, Connection)
+            Dim ds4 As New DataSet
+            Call CType(HomeForm.WSDataGridView.DataSource, DataTable).Rows.Clear()
+            da4.Fill(ds4, WSstrSQL)
+            HomeForm.WSDataGridView.DataSource = ds4.Tables(0)
 
 
+            'le cambia los colores a las celdas de horario de estudio de acuerdo a la base de datos
+            Dim WSdgv As DataGridView = HomeForm.WSDataGridView
+            For i As Integer = 0 To WSdgv.Rows.Count - 1
 
-        ''Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+                Dim cellColor As String = WSdgv.Rows(i).Cells(0).Value
+                'MsgBox(cellColor)
+                WSdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
 
-        '' connection.Close()
+            Next
+            For i As Integer = 0 To WSdgv.Rows.Count - 1
 
-        'da2.Fill(ds2, HWstrSQL)
-        'HomeworkDataGridView.DataSource = ds2.Tables(0)
-        ''le cambia los colores a las celdas de tareas de acuerdo a la base de datos
-        'Dim hwdgv As DataGridView = HomeworkDataGridView
-        'For i As Integer = 0 To hwdgv.Rows.Count - 1
+                Dim cellColor As String = WSdgv.Rows(i).Cells(1).Value
+                WSdgv.Rows(i).Cells(0).Value = ""
 
-        '    Dim cellColor As String = hwdgv.Rows(i).Cells(0).Value
-        '    'MsgBox(cellColor)
-        '    hwdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+            Next
+            WSdgv.ClearSelection()
 
-        'Next
-        'For i As Integer = 0 To hwdgv.Rows.Count - 1
 
-        '    Dim cellColor As String = hwdgv.Rows(i).Cells(1).Value
-        '    hwdgv.Rows(i).Cells(0).Value = ""
-
-        'Next
-        'hwdgv.ClearSelection()
-        'Connection.Close()
+            Connection.Close()
+        Catch ex As SqlException
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "General Error")
+        End Try
 
     End Sub
 
