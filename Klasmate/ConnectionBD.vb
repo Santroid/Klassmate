@@ -5,14 +5,16 @@
     Public Connection As New SqlClient.SqlConnection(StringDao)
 
     Sub Connect()
-        If Connection.State = ConnectionState.Open Then
-        Else
+        If Connection.State = ConnectionState.Closed Then
             Connection.Open()
         End If
     End Sub
 
     Sub Disconnect()
-        Connection.Close()
+        If Connection.State = ConnectionState.Open Then
+            Connection.Close()
+        End If
+
     End Sub
 
 End Module

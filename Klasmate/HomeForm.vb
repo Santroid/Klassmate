@@ -444,8 +444,7 @@ Public Class HomeForm
                                     and p.idPeriod = s.idPeriod
                                     and s.idSubject = " & selectedCoursId & "
                                     and s.idSubject = t.idSubject
-                                    and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
-                                    ;"
+                                    and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & ";"
         Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
         Dim ds2 As New DataSet
         'If ColorCounterLabel.Text = " " Then
