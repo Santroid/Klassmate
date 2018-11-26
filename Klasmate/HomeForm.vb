@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Net.Mail
 
 Public Class HomeForm
     Private Sub ProgressBar1_Click(sender As Object, e As EventArgs) Handles ProgressBar1.Click
@@ -6,6 +7,7 @@ Public Class HomeForm
     End Sub
 
     Private Sub HomeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        AlarmTimer.Enabled = True
         'Dim user As New User
         Dim period As New Period
         ' Dim sch As New ScheduleRegisterForm
@@ -128,6 +130,66 @@ Public Class HomeForm
 
         Next
         WSdgv.ClearSelection()
+
+        '////PARA ENVIAR NOTIFICACION DE TAREAS PENDIENTES AL CORREO///////////////
+        Dim Notification As String = ""
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            'Dim cellColor As String = hwdgv.Rows(i).Cells(0).Value
+            Dim now As DateTime = DateTime.Now
+            'MsgBox(hwdgv.Rows(i).Cells(2).Value.AddDays(-1))
+            If (now.Date = hwdgv.Rows(i).Cells(2).Value.AddDays(-1)) Then
+                Notification = Notification & "Falta 1 dia para entregar la tarea " & hwdgv.Rows(i).Cells(1).Value & vbCrLf
+            ElseIf (now.Date = hwdgv.Rows(i).Cells(2).Value.AddDays(-3)) Then
+                Notification = Notification & "Faltan 3 dias para entregar la tarea " & hwdgv.Rows(i).Cells(1).Value & vbCrLf
+            ElseIf (now.Date = hwdgv.Rows(i).Cells(2).Value.AddDays(-7)) Then
+                Notification = Notification & "Faltan 7 dias para entregar la tarea " & hwdgv.Rows(i).Cells(1).Value & vbCrLf
+            End If
+
+        Next
+
+        If Notification <> "" Then
+            'create the mail message
+            Dim mail As New MailMessage()
+            'Dim connection As SqlConnection
+            Dim command As SqlCommand
+            Dim selectQuery
+            'aquí conectamos con la base de datos
+            connection = New SqlConnection(connectionString)
+            selectQuery = "SELECT email FROM KMProfile WHERE idStudent=" & Integer.Parse(IdUserLabel.Text) & ""
+
+            command = New SqlCommand(selectQuery, connection)
+            'abriendo la conexión
+            connection.Open()
+
+
+            Dim reader As SqlDataReader = command.ExecuteReader
+            reader.Read()
+            Dim email As String = reader.Item("email")
+            'set the addresses
+            mail.From = New MailAddress("klassmate.soporte@gmail.com")
+            mail.[To].Add(email)
+
+            'set the content
+            mail.Subject = "Klassmate | Notificacion de tarea pendiente"
+            mail.Body = Notification
+
+            'set the server
+            Dim smtp As New SmtpClient("smtp.gmail.com")
+            smtp.Port = 587
+            smtp.EnableSsl = True
+            smtp.Credentials = New System.Net.NetworkCredential("klassmate.soporte@gmail.com", "sajero123")
+
+            'send the message
+            smtp.Send(mail)
+            reader.Close()
+            connection.Close()
+        End If
+        '\\\\\\\\\\ TERMINA DE ENVIAR NOTIFICAION DE TAREAS PENDIENTES AL CORREO \\\\\\\\\\\\\\\\
+
+
+
+
     End Sub
 
     Private Sub AddHomeButton_Click(sender As Object, e As EventArgs)
@@ -442,7 +504,6 @@ Public Class HomeForm
 
     Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
         OptionsHomePanel.Hide()
-        EditHomeWorkPanel.Show()
     End Sub
 
     '///////ESTO ES PARA QUE SOLO SALGAN LAS TAREAS SEGUN EL CURSO QUE ESCOGA EL USUARIO//////////////////
@@ -550,35 +611,101 @@ Public Class HomeForm
         CleanHWSelButton.Visible = False
     End Sub
 
-    Private Sub CancelEHWButton_Click(sender As Object, e As EventArgs) Handles CancelEHWButton.Click
-        EditHomeWorkPanel.Hide()
-    End Sub
+    '///////// ENVIA RECORDATORIO DE HORA DE ESTUDIAR AL CORREO ////////////////////
+    Private Sub AlarmTimer_Tick(sender As Object, e As EventArgs) Handles AlarmTimer.Tick
 
-    Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
-        OptionsHomePanel.Hide()
-        EditCourseForm.Show()
-    End Sub
+        Dim connection As SqlConnection
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        Dim selectQuery
+        Dim mail As New MailMessage()
+        Dim command As SqlCommand
 
-    Private Sub EditHomeWorkPanel_VisibleChanged(sender As Object, e As EventArgs) Handles EditHomeWorkPanel.VisibleChanged
 
-        Dim hmdgv As DataGridView = HomeworkDataGridView
-        'LIMPIA EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
-        If CoursAddHWPanelComboBox.Items.Count > 0 Then
-            Dim HomeWorkCount As Integer = SelectHomeWorkComboBox.Items.Count - 1
+        Dim Reminder As String = ""
+        Dim SSdgv As DataGridView = StudSchDataGridView
+        Dim myTime = #05:00:00 AM#
+        Dim OneHour As New TimeSpan(0, 1, 0, 0)
+        Dim Minute30 As New TimeSpan(0, 0, 30, 0)
+        Dim Minute5 As New TimeSpan(0, 0, 5, 0)
+        'MsgBox(Now.TimeOfDay.ToString)
+        'MsgBox(Now.TimeOfDay.Subtract(OneHour).ToString)
 
-            While HomeWorkCount >= 0
 
-                CoursAddHWPanelComboBox.Items.RemoveAt(HomeWorkCount)
-                HomeWorkCount = HomeWorkCount - 1
-            End While
-        End If
-        'VUELVE A LLENAR EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
-        For i As Integer = 0 To hmdgv.Rows.Count - 1
+        For i As Integer = 0 To SSdgv.Rows.Count - 1
 
-            Dim Course As String = hmdgv.Rows(i).Cells(1).Value
-            SelectHomeWorkComboBox.Items.Add(Course)
+            'Dim cellColor As String = hwdgv.Rows(i).Cells(0).Value
+            Dim now As DateTime = DateTime.Now
+            Dim questionSpan As TimeSpan = SSdgv.Rows(i).Cells(3).Value
+            Dim question As DateTime = #1/1/2018 12:00:00 AM# + questionSpan
+            ' MsgBox(question)
+            Dim compare1 As DateTime = question.Subtract(OneHour)
+            Dim compare2 As DateTime = question.Subtract(Minute30)
+            Dim compare3 As DateTime = question.Subtract(Minute5)
+
+            Dim WeekDayQuestion As DayOfWeek
+            Dim WeekDay As String = SSdgv.Rows(i).Cells(2).Value
+            Select Case WeekDay
+                Case "Lunes"
+                    WeekDayQuestion = 1
+                Case "Martes"
+                    WeekDayQuestion = 2
+                Case "Miercoles"
+                    WeekDayQuestion = 3
+                Case "Jueves"
+                    WeekDayQuestion = 4
+                Case "Viernes"
+                    WeekDayQuestion = 5
+                Case "Sabado"
+                    WeekDayQuestion = 6
+                Case "Domingo"
+                    WeekDayQuestion = 0
+
+            End Select
+
+            'MsgBox(now.Hour + 1, 0, 0)
+            If (now.TimeOfDay.Hours = compare1.Hour AndAlso now.TimeOfDay.Minutes = compare1.Minute AndAlso now.Date.DayOfWeek = WeekDayQuestion) Then
+                Reminder = Reminder & "Falta 1 hora para empezar a estudiar " & SSdgv.Rows(i).Cells(1).Value & vbCrLf
+            ElseIf (now.TimeOfDay.Hours = compare2.Hour AndAlso now.TimeOfDay.Minutes = compare2.Minute AndAlso now.Date.DayOfWeek = WeekDayQuestion) Then
+                Reminder = Reminder & "Faltan 30 minutos para empezar a estudiar " & SSdgv.Rows(i).Cells(1).Value & vbCrLf
+            ElseIf (now.TimeOfDay.Hours = compare3.Hour AndAlso now.TimeOfDay.Minutes = compare3.Minute AndAlso now.Date.DayOfWeek = WeekDayQuestion) Then
+                Reminder = Reminder & "Faltan 5 minutos para empezar a estudiar " & SSdgv.Rows(i).Cells(1).Value & vbCrLf
+            End If
 
         Next
 
+        'create the mail message
+        If Reminder <> "" Then
+            connection = New SqlConnection(connectionString)
+            selectQuery = "SELECT email FROM KMProfile WHERE idStudent=" & Integer.Parse(IdUserLabel.Text) & ""
+
+            Command = New SqlCommand(selectQuery, Connection)
+            'abriendo la conexión
+            Connection.Open()
+
+
+            Dim reader As SqlDataReader = Command.ExecuteReader
+            reader.Read()
+            Dim email As String = reader.Item("email")
+            'set the addresses
+            mail.From = New MailAddress("klassmate.soporte@gmail.com")
+            mail.[To].Add(email)
+
+            'set the content
+            mail.Subject = "Klassmate | Alarma de hora de estudio"
+            mail.Body = Reminder
+
+            'set the server
+            Dim smtp As New SmtpClient("smtp.gmail.com")
+            smtp.Port = 587
+            smtp.EnableSsl = True
+            smtp.Credentials = New System.Net.NetworkCredential("klassmate.soporte@gmail.com", "sajero123")
+
+            'send the message
+            smtp.Send(mail)
+
+            reader.Close()
+            connection.Close()
+        End If
+        '\\\\\\\\\\\\\\\\ TERMINA DE ENVIAR RECORDATORIO DE HORA DE ESTUDIAR AL CORREO \\\\\\\\\\\\\\\\\\\\
     End Sub
 End Class
