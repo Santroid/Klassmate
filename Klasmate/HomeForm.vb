@@ -442,6 +442,7 @@ Public Class HomeForm
 
     Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
         OptionsHomePanel.Hide()
+        EditHomeWorkPanel.Show()
     End Sub
 
     '///////ESTO ES PARA QUE SOLO SALGAN LAS TAREAS SEGUN EL CURSO QUE ESCOGA EL USUARIO//////////////////
@@ -549,5 +550,35 @@ Public Class HomeForm
         CleanHWSelButton.Visible = False
     End Sub
 
+    Private Sub CancelEHWButton_Click(sender As Object, e As EventArgs) Handles CancelEHWButton.Click
+        EditHomeWorkPanel.Hide()
+    End Sub
 
+    Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
+        OptionsHomePanel.Hide()
+        EditCourseForm.Show()
+    End Sub
+
+    Private Sub EditHomeWorkPanel_VisibleChanged(sender As Object, e As EventArgs) Handles EditHomeWorkPanel.VisibleChanged
+
+        Dim hmdgv As DataGridView = HomeworkDataGridView
+        'LIMPIA EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
+        If CoursAddHWPanelComboBox.Items.Count > 0 Then
+            Dim HomeWorkCount As Integer = SelectHomeWorkComboBox.Items.Count - 1
+
+            While HomeWorkCount >= 0
+
+                CoursAddHWPanelComboBox.Items.RemoveAt(HomeWorkCount)
+                HomeWorkCount = HomeWorkCount - 1
+            End While
+        End If
+        'VUELVE A LLENAR EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
+        For i As Integer = 0 To hmdgv.Rows.Count - 1
+
+            Dim Course As String = hmdgv.Rows(i).Cells(1).Value
+            SelectHomeWorkComboBox.Items.Add(Course)
+
+        Next
+
+    End Sub
 End Class

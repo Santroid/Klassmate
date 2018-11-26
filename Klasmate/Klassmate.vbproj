@@ -104,6 +104,12 @@
     </Compile>
     <Compile Include="ConnectionBD.vb" />
     <Compile Include="Course.vb" />
+    <Compile Include="EditCourseForm.Designer.vb">
+      <DependentUpon>EditCourseForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EditCourseForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="EditScheduleForm.Designer.vb">
       <DependentUpon>EditScheduleForm.vb</DependentUpon>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConfirmationForm.resx">
       <DependentUpon>ConfirmationForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCourseForm.resx">
+      <DependentUpon>EditCourseForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditScheduleForm.resx">
       <DependentUpon>EditScheduleForm.vb</DependentUpon>

@@ -22,10 +22,10 @@ Partial Class HomeForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.AddHomePanel = New System.Windows.Forms.Panel()
         Me.HomeworkAddHomeLabel = New System.Windows.Forms.Label()
@@ -34,6 +34,7 @@ Partial Class HomeForm
         Me.CourseAddHomeLabel = New System.Windows.Forms.Label()
         Me.TermAddHomeLabel = New System.Windows.Forms.Label()
         Me.OptionsHomePanel = New System.Windows.Forms.Panel()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.ExitHomeLabel = New System.Windows.Forms.Label()
@@ -91,15 +92,27 @@ Partial Class HomeForm
         Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.WSDataGridView = New System.Windows.Forms.DataGridView()
-        Me.IdUserLabel = New System.Windows.Forms.Label()
-        Me.HWcolorcoutnerLabel = New System.Windows.Forms.Label()
-        Me.CleanHWSelButton = New System.Windows.Forms.Button()
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdUserLabel = New System.Windows.Forms.Label()
+        Me.HWcolorcoutnerLabel = New System.Windows.Forms.Label()
+        Me.CleanHWSelButton = New System.Windows.Forms.Button()
+        Me.EditHomeWorkPanel = New System.Windows.Forms.Panel()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.SelectHomeWorkComboBox = New System.Windows.Forms.ComboBox()
+        Me.CancelEHWButton = New System.Windows.Forms.Button()
+        Me.DeleteButton = New System.Windows.Forms.Button()
+        Me.SaveButton = New System.Windows.Forms.Button()
+        Me.DDayDateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.CourseEditHomeworkComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.nameLabel = New System.Windows.Forms.Label()
+        Me.NameEditHomeWorkTextBox = New System.Windows.Forms.TextBox()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
@@ -108,6 +121,7 @@ Partial Class HomeForm
         CType(Me.HomeworkDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.StudSchDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WSDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.EditHomeWorkPanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'ProgressBar1
@@ -197,6 +211,7 @@ Partial Class HomeForm
         'OptionsHomePanel
         '
         Me.OptionsHomePanel.BackColor = System.Drawing.Color.Gray
+        Me.OptionsHomePanel.Controls.Add(Me.Label11)
         Me.OptionsHomePanel.Controls.Add(Me.Label6)
         Me.OptionsHomePanel.Controls.Add(Me.Label5)
         Me.OptionsHomePanel.Controls.Add(Me.ExitHomeLabel)
@@ -205,9 +220,23 @@ Partial Class HomeForm
         Me.OptionsHomePanel.Location = New System.Drawing.Point(1121, 57)
         Me.OptionsHomePanel.Margin = New System.Windows.Forms.Padding(4)
         Me.OptionsHomePanel.Name = "OptionsHomePanel"
-        Me.OptionsHomePanel.Size = New System.Drawing.Size(132, 154)
+        Me.OptionsHomePanel.Size = New System.Drawing.Size(132, 184)
         Me.OptionsHomePanel.TabIndex = 5
         Me.OptionsHomePanel.Visible = False
+        '
+        'Label11
+        '
+        Me.Label11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label11.AutoSize = True
+        Me.Label11.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Label11.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Label11.Location = New System.Drawing.Point(27, 71)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(93, 17)
+        Me.Label11.TabIndex = 5
+        Me.Label11.Text = "Editar Cursos"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label6
         '
@@ -229,7 +258,7 @@ Partial Class HomeForm
         Me.Label5.AutoSize = True
         Me.Label5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.Label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label5.Location = New System.Drawing.Point(29, 68)
+        Me.Label5.Location = New System.Drawing.Point(36, 97)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(87, 17)
@@ -243,7 +272,7 @@ Partial Class HomeForm
         Me.ExitHomeLabel.AutoSize = True
         Me.ExitHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ExitHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.ExitHomeLabel.Location = New System.Drawing.Point(75, 124)
+        Me.ExitHomeLabel.Location = New System.Drawing.Point(77, 153)
         Me.ExitHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ExitHomeLabel.Name = "ExitHomeLabel"
         Me.ExitHomeLabel.Size = New System.Drawing.Size(36, 17)
@@ -257,7 +286,7 @@ Partial Class HomeForm
         Me.ProfileEditHomeLabel.AutoSize = True
         Me.ProfileEditHomeLabel.Cursor = System.Windows.Forms.Cursors.Hand
         Me.ProfileEditHomeLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.ProfileEditHomeLabel.Location = New System.Drawing.Point(31, 95)
+        Me.ProfileEditHomeLabel.Location = New System.Drawing.Point(39, 125)
         Me.ProfileEditHomeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ProfileEditHomeLabel.Name = "ProfileEditHomeLabel"
         Me.ProfileEditHomeLabel.Size = New System.Drawing.Size(81, 17)
@@ -404,7 +433,7 @@ Partial Class HomeForm
         Me.AddHomeWorkPanel.Controls.Add(Me.Label4)
         Me.AddHomeWorkPanel.Controls.Add(Me.Label3)
         Me.AddHomeWorkPanel.Controls.Add(Me.Label2)
-        Me.AddHomeWorkPanel.Location = New System.Drawing.Point(904, 308)
+        Me.AddHomeWorkPanel.Location = New System.Drawing.Point(55, 288)
         Me.AddHomeWorkPanel.Margin = New System.Windows.Forms.Padding(4)
         Me.AddHomeWorkPanel.Name = "AddHomeWorkPanel"
         Me.AddHomeWorkPanel.Size = New System.Drawing.Size(337, 313)
@@ -611,9 +640,9 @@ Partial Class HomeForm
         '
         Me.nameSubject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.nameSubject.DataPropertyName = "nameSubject"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.nameSubject.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.nameSubject.DefaultCellStyle = DataGridViewCellStyle5
         Me.nameSubject.FillWeight = 80.0!
         Me.nameSubject.HeaderText = "Nombre del Curso"
         Me.nameSubject.Name = "nameSubject"
@@ -731,9 +760,9 @@ Partial Class HomeForm
         '
         Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.DataGridViewTextBoxColumn2.DataPropertyName = "nameTask"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle6
         Me.DataGridViewTextBoxColumn2.FillWeight = 80.0!
         Me.DataGridViewTextBoxColumn2.HeaderText = "Nombre de Tarea"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
@@ -791,9 +820,9 @@ Partial Class HomeForm
         '
         Me.DataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.DataGridViewTextBoxColumn8.DataPropertyName = "name"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn8.DefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridViewTextBoxColumn8.FillWeight = 50.0!
         Me.DataGridViewTextBoxColumn8.HeaderText = "Horario de Estudio"
         Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
@@ -855,38 +884,6 @@ Partial Class HomeForm
         Me.WSDataGridView.Size = New System.Drawing.Size(527, 197)
         Me.WSDataGridView.TabIndex = 16
         '
-        'IdUserLabel
-        '
-        Me.IdUserLabel.AutoSize = True
-        Me.IdUserLabel.Location = New System.Drawing.Point(631, 36)
-        Me.IdUserLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.IdUserLabel.Name = "IdUserLabel"
-        Me.IdUserLabel.Size = New System.Drawing.Size(84, 17)
-        Me.IdUserLabel.TabIndex = 17
-        Me.IdUserLabel.Text = "IdUserLabel"
-        '
-        'HWcolorcoutnerLabel
-        '
-        Me.HWcolorcoutnerLabel.AutoSize = True
-        Me.HWcolorcoutnerLabel.Location = New System.Drawing.Point(407, 14)
-        Me.HWcolorcoutnerLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.HWcolorcoutnerLabel.Name = "HWcolorcoutnerLabel"
-        Me.HWcolorcoutnerLabel.Size = New System.Drawing.Size(145, 17)
-        Me.HWcolorcoutnerLabel.TabIndex = 18
-        Me.HWcolorcoutnerLabel.Text = "HWcolorcoutnerLabel"
-        Me.HWcolorcoutnerLabel.Visible = False
-        '
-        'CleanHWSelButton
-        '
-        Me.CleanHWSelButton.Location = New System.Drawing.Point(713, 375)
-        Me.CleanHWSelButton.Margin = New System.Windows.Forms.Padding(4)
-        Me.CleanHWSelButton.Name = "CleanHWSelButton"
-        Me.CleanHWSelButton.Size = New System.Drawing.Size(144, 31)
-        Me.CleanHWSelButton.TabIndex = 19
-        Me.CleanHWSelButton.Text = "Limpiar Seleccion"
-        Me.CleanHWSelButton.UseVisualStyleBackColor = True
-        Me.CleanHWSelButton.Visible = False
-        '
         'DataGridViewTextBoxColumn13
         '
         Me.DataGridViewTextBoxColumn13.DataPropertyName = "color"
@@ -901,9 +898,9 @@ Partial Class HomeForm
         '
         Me.DataGridViewTextBoxColumn14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.DataGridViewTextBoxColumn14.DataPropertyName = "name"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn14.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn14.DefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewTextBoxColumn14.FillWeight = 50.0!
         Me.DataGridViewTextBoxColumn14.HeaderText = "Horario de trabajo"
         Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
@@ -946,11 +943,158 @@ Partial Class HomeForm
         Me.DataGridViewTextBoxColumn18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.DataGridViewTextBoxColumn18.Visible = False
         '
+        'IdUserLabel
+        '
+        Me.IdUserLabel.AutoSize = True
+        Me.IdUserLabel.Location = New System.Drawing.Point(631, 36)
+        Me.IdUserLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.IdUserLabel.Name = "IdUserLabel"
+        Me.IdUserLabel.Size = New System.Drawing.Size(84, 17)
+        Me.IdUserLabel.TabIndex = 17
+        Me.IdUserLabel.Text = "IdUserLabel"
+        '
+        'HWcolorcoutnerLabel
+        '
+        Me.HWcolorcoutnerLabel.AutoSize = True
+        Me.HWcolorcoutnerLabel.Location = New System.Drawing.Point(407, 14)
+        Me.HWcolorcoutnerLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.HWcolorcoutnerLabel.Name = "HWcolorcoutnerLabel"
+        Me.HWcolorcoutnerLabel.Size = New System.Drawing.Size(145, 17)
+        Me.HWcolorcoutnerLabel.TabIndex = 18
+        Me.HWcolorcoutnerLabel.Text = "HWcolorcoutnerLabel"
+        Me.HWcolorcoutnerLabel.Visible = False
+        '
+        'CleanHWSelButton
+        '
+        Me.CleanHWSelButton.Location = New System.Drawing.Point(713, 375)
+        Me.CleanHWSelButton.Margin = New System.Windows.Forms.Padding(4)
+        Me.CleanHWSelButton.Name = "CleanHWSelButton"
+        Me.CleanHWSelButton.Size = New System.Drawing.Size(144, 31)
+        Me.CleanHWSelButton.TabIndex = 19
+        Me.CleanHWSelButton.Text = "Limpiar Seleccion"
+        Me.CleanHWSelButton.UseVisualStyleBackColor = True
+        Me.CleanHWSelButton.Visible = False
+        '
+        'EditHomeWorkPanel
+        '
+        Me.EditHomeWorkPanel.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.EditHomeWorkPanel.Controls.Add(Me.Label10)
+        Me.EditHomeWorkPanel.Controls.Add(Me.SelectHomeWorkComboBox)
+        Me.EditHomeWorkPanel.Controls.Add(Me.CancelEHWButton)
+        Me.EditHomeWorkPanel.Controls.Add(Me.DeleteButton)
+        Me.EditHomeWorkPanel.Controls.Add(Me.SaveButton)
+        Me.EditHomeWorkPanel.Controls.Add(Me.DDayDateTimePicker1)
+        Me.EditHomeWorkPanel.Controls.Add(Me.Label9)
+        Me.EditHomeWorkPanel.Controls.Add(Me.CourseEditHomeworkComboBox)
+        Me.EditHomeWorkPanel.Controls.Add(Me.Label8)
+        Me.EditHomeWorkPanel.Controls.Add(Me.nameLabel)
+        Me.EditHomeWorkPanel.Controls.Add(Me.NameEditHomeWorkTextBox)
+        Me.EditHomeWorkPanel.Location = New System.Drawing.Point(726, 141)
+        Me.EditHomeWorkPanel.Name = "EditHomeWorkPanel"
+        Me.EditHomeWorkPanel.Size = New System.Drawing.Size(388, 366)
+        Me.EditHomeWorkPanel.TabIndex = 22
+        Me.EditHomeWorkPanel.Visible = False
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(31, 25)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(197, 17)
+        Me.Label10.TabIndex = 12
+        Me.Label10.Text = "Elija la tarea que desee editar"
+        '
+        'SelectHomeWorkComboBox
+        '
+        Me.SelectHomeWorkComboBox.FormattingEnabled = True
+        Me.SelectHomeWorkComboBox.Location = New System.Drawing.Point(31, 48)
+        Me.SelectHomeWorkComboBox.Name = "SelectHomeWorkComboBox"
+        Me.SelectHomeWorkComboBox.Size = New System.Drawing.Size(218, 24)
+        Me.SelectHomeWorkComboBox.TabIndex = 11
+        '
+        'CancelEHWButton
+        '
+        Me.CancelEHWButton.Location = New System.Drawing.Point(255, 299)
+        Me.CancelEHWButton.Name = "CancelEHWButton"
+        Me.CancelEHWButton.Size = New System.Drawing.Size(106, 28)
+        Me.CancelEHWButton.TabIndex = 10
+        Me.CancelEHWButton.Text = "Cancelar"
+        Me.CancelEHWButton.UseVisualStyleBackColor = True
+        '
+        'DeleteButton
+        '
+        Me.DeleteButton.Location = New System.Drawing.Point(143, 299)
+        Me.DeleteButton.Name = "DeleteButton"
+        Me.DeleteButton.Size = New System.Drawing.Size(106, 28)
+        Me.DeleteButton.TabIndex = 9
+        Me.DeleteButton.Text = "Eliminar"
+        Me.DeleteButton.UseVisualStyleBackColor = True
+        '
+        'SaveButton
+        '
+        Me.SaveButton.Location = New System.Drawing.Point(31, 299)
+        Me.SaveButton.Name = "SaveButton"
+        Me.SaveButton.Size = New System.Drawing.Size(106, 28)
+        Me.SaveButton.TabIndex = 8
+        Me.SaveButton.Text = "Guardar"
+        Me.SaveButton.UseVisualStyleBackColor = True
+        '
+        'DDayDateTimePicker1
+        '
+        Me.DDayDateTimePicker1.Location = New System.Drawing.Point(31, 247)
+        Me.DDayDateTimePicker1.Name = "DDayDateTimePicker1"
+        Me.DDayDateTimePicker1.Size = New System.Drawing.Size(329, 22)
+        Me.DDayDateTimePicker1.TabIndex = 7
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(28, 229)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(121, 17)
+        Me.Label9.TabIndex = 6
+        Me.Label9.Text = "Fecha de Entrega"
+        '
+        'CourseEditHomeworkComboBox
+        '
+        Me.CourseEditHomeworkComboBox.FormattingEnabled = True
+        Me.CourseEditHomeworkComboBox.Location = New System.Drawing.Point(31, 181)
+        Me.CourseEditHomeworkComboBox.Name = "CourseEditHomeworkComboBox"
+        Me.CourseEditHomeworkComboBox.Size = New System.Drawing.Size(329, 24)
+        Me.CourseEditHomeworkComboBox.TabIndex = 5
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(28, 163)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(45, 17)
+        Me.Label8.TabIndex = 4
+        Me.Label8.Text = "Curso"
+        '
+        'nameLabel
+        '
+        Me.nameLabel.AutoSize = True
+        Me.nameLabel.Location = New System.Drawing.Point(25, 95)
+        Me.nameLabel.Name = "nameLabel"
+        Me.nameLabel.Size = New System.Drawing.Size(58, 17)
+        Me.nameLabel.TabIndex = 2
+        Me.nameLabel.Text = "Nombre"
+        '
+        'NameEditHomeWorkTextBox
+        '
+        Me.NameEditHomeWorkTextBox.Location = New System.Drawing.Point(31, 114)
+        Me.NameEditHomeWorkTextBox.Name = "NameEditHomeWorkTextBox"
+        Me.NameEditHomeWorkTextBox.Size = New System.Drawing.Size(329, 22)
+        Me.NameEditHomeWorkTextBox.TabIndex = 1
+        '
         'HomeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1252, 661)
+        Me.Controls.Add(Me.EditHomeWorkPanel)
+        Me.Controls.Add(Me.AddHomeWorkPanel)
         Me.Controls.Add(Me.CleanHWSelButton)
         Me.Controls.Add(Me.HWcolorcoutnerLabel)
         Me.Controls.Add(Me.IdUserLabel)
@@ -961,7 +1105,6 @@ Partial Class HomeForm
         Me.Controls.Add(Me.OptionsHomePanel)
         Me.Controls.Add(Me.AddHomePanel)
         Me.Controls.Add(Me.ProgressBar1)
-        Me.Controls.Add(Me.AddHomeWorkPanel)
         Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.HomeworkDataGridView)
         Me.Controls.Add(Me.StudSchDataGridView)
@@ -984,6 +1127,8 @@ Partial Class HomeForm
         CType(Me.HomeworkDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.StudSchDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.WSDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.EditHomeWorkPanel.ResumeLayout(False)
+        Me.EditHomeWorkPanel.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1063,4 +1208,17 @@ Partial Class HomeForm
     Friend WithEvents DataGridViewTextBoxColumn16 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn17 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn18 As DataGridViewTextBoxColumn
+    Friend WithEvents EditHomeWorkPanel As Panel
+    Friend WithEvents Label10 As Label
+    Friend WithEvents SelectHomeWorkComboBox As ComboBox
+    Friend WithEvents CancelEHWButton As Button
+    Friend WithEvents DeleteButton As Button
+    Friend WithEvents SaveButton As Button
+    Friend WithEvents DDayDateTimePicker1 As DateTimePicker
+    Friend WithEvents Label9 As Label
+    Friend WithEvents CourseEditHomeworkComboBox As ComboBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents nameLabel As Label
+    Friend WithEvents NameEditHomeWorkTextBox As TextBox
+    Friend WithEvents Label11 As Label
 End Class
