@@ -178,7 +178,7 @@ Public Class HomeForm
         command = New SqlCommand(selectQuery, ConnectionBD.Connection)
 
         'ejecuta el lector de la base de datos
-        Dim reader As SqlDataReader = Command.ExecuteReader
+        Dim reader As SqlDataReader = command.ExecuteReader
 
         If reader.HasRows Then
             reader.Read()
