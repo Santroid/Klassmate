@@ -925,7 +925,7 @@ Public Class HomeForm
         Next
         hwdgv.ClearSelection()
         connection.Close()
-
+        '
         SelectCourseComboBox.SelectedIndex = -1
         NameEHWTextBox.Text = ""
         CourseEHWComboBox.SelectedIndex = -1
