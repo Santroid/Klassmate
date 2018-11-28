@@ -115,6 +115,10 @@ Partial Class HomeForm
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
@@ -318,7 +322,7 @@ Partial Class HomeForm
         'DeleteProfileButton
         '
         Me.DeleteProfileButton.Location = New System.Drawing.Point(97, 216)
-        Me.DeleteProfileButton.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.DeleteProfileButton.Margin = New System.Windows.Forms.Padding(2)
         Me.DeleteProfileButton.Name = "DeleteProfileButton"
         Me.DeleteProfileButton.Size = New System.Drawing.Size(75, 23)
         Me.DeleteProfileButton.TabIndex = 9
@@ -491,7 +495,7 @@ Partial Class HomeForm
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
         Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape8, Me.LineShape7, Me.RectangleShape3, Me.LineShape3, Me.LineShape2, Me.LineShape1, Me.RectangleShape1})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(939, 537)
+        Me.ShapeContainer1.Size = New System.Drawing.Size(939, 606)
         Me.ShapeContainer1.TabIndex = 8
         Me.ShapeContainer1.TabStop = False
         '
@@ -587,7 +591,7 @@ Partial Class HomeForm
         Me.CourseDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.CourseDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.CourseDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.color, Me.nameSubject, Me.CourseDays, Me.CourseStartTme, Me.CourseEndTime, Me.CourseID})
-        Me.CourseDataGridView.Location = New System.Drawing.Point(3, 75)
+        Me.CourseDataGridView.Location = New System.Drawing.Point(3, 120)
         Me.CourseDataGridView.MultiSelect = False
         Me.CourseDataGridView.Name = "CourseDataGridView"
         Me.CourseDataGridView.ReadOnly = True
@@ -702,7 +706,7 @@ Partial Class HomeForm
         Me.HomeworkDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.HomeworkDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.HomeworkDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn6})
-        Me.HomeworkDataGridView.Location = New System.Drawing.Point(414, 75)
+        Me.HomeworkDataGridView.Location = New System.Drawing.Point(414, 120)
         Me.HomeworkDataGridView.MultiSelect = False
         Me.HomeworkDataGridView.Name = "HomeworkDataGridView"
         Me.HomeworkDataGridView.ReadOnly = True
@@ -761,7 +765,7 @@ Partial Class HomeForm
         Me.StudSchDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.StudSchDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.StudSchDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12})
-        Me.StudSchDataGridView.Location = New System.Drawing.Point(3, 362)
+        Me.StudSchDataGridView.Location = New System.Drawing.Point(3, 428)
         Me.StudSchDataGridView.MultiSelect = False
         Me.StudSchDataGridView.Name = "StudSchDataGridView"
         Me.StudSchDataGridView.ReadOnly = True
@@ -838,7 +842,7 @@ Partial Class HomeForm
         Me.WSDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.WSDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.WSDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15, Me.DataGridViewTextBoxColumn16, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn18})
-        Me.WSDataGridView.Location = New System.Drawing.Point(414, 362)
+        Me.WSDataGridView.Location = New System.Drawing.Point(414, 428)
         Me.WSDataGridView.MultiSelect = False
         Me.WSDataGridView.Name = "WSDataGridView"
         Me.WSDataGridView.ReadOnly = True
@@ -952,7 +956,7 @@ Partial Class HomeForm
         Me.EditHomeWorkPanel.Controls.Add(Me.Label8)
         Me.EditHomeWorkPanel.Controls.Add(Me.Label9)
         Me.EditHomeWorkPanel.Controls.Add(Me.Label10)
-        Me.EditHomeWorkPanel.Location = New System.Drawing.Point(515, 128)
+        Me.EditHomeWorkPanel.Location = New System.Drawing.Point(698, 305)
         Me.EditHomeWorkPanel.Name = "EditHomeWorkPanel"
         Me.EditHomeWorkPanel.Size = New System.Drawing.Size(253, 318)
         Me.EditHomeWorkPanel.TabIndex = 20
@@ -983,7 +987,7 @@ Partial Class HomeForm
         '
         Me.SelectCourseComboBox.FormattingEnabled = True
         Me.SelectCourseComboBox.Location = New System.Drawing.Point(28, 71)
-        Me.SelectCourseComboBox.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.SelectCourseComboBox.Margin = New System.Windows.Forms.Padding(2)
         Me.SelectCourseComboBox.Name = "SelectCourseComboBox"
         Me.SelectCourseComboBox.Size = New System.Drawing.Size(195, 21)
         Me.SelectCourseComboBox.TabIndex = 11
@@ -1055,11 +1059,55 @@ Partial Class HomeForm
         Me.Label10.TabIndex = 0
         Me.Label10.Text = "Nombre"
         '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.Label13.Location = New System.Drawing.Point(157, 95)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(80, 25)
+        Me.Label13.TabIndex = 21
+        Me.Label13.Text = "Cursos"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.Label14.Location = New System.Drawing.Point(553, 92)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(79, 25)
+        Me.Label14.TabIndex = 22
+        Me.Label14.Text = "Tareas"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.Label15.Location = New System.Drawing.Point(96, 400)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(190, 25)
+        Me.Label15.TabIndex = 23
+        Me.Label15.Text = "Horario de Estudio"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.Label16.Location = New System.Drawing.Point(502, 401)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(191, 25)
+        Me.Label16.TabIndex = 24
+        Me.Label16.Text = "Horario de Trabajo"
+        '
         'HomeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(939, 537)
+        Me.ClientSize = New System.Drawing.Size(939, 606)
         Me.Controls.Add(Me.EditHomeWorkPanel)
         Me.Controls.Add(Me.CleanHWSelButton)
         Me.Controls.Add(Me.HWcolorcoutnerLabel)
@@ -1077,7 +1125,11 @@ Partial Class HomeForm
         Me.Controls.Add(Me.StudSchDataGridView)
         Me.Controls.Add(Me.WSDataGridView)
         Me.Controls.Add(Me.CourseDataGridView)
+        Me.Controls.Add(Me.Label15)
+        Me.Controls.Add(Me.Label16)
+        Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.ShapeContainer1)
+        Me.Controls.Add(Me.Label13)
         Me.Name = "HomeForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inicio"
@@ -1188,4 +1240,8 @@ Partial Class HomeForm
     Friend WithEvents EditCourseLabel As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents Label11 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label16 As Label
 End Class
