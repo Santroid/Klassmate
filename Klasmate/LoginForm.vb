@@ -171,12 +171,12 @@ Public Class LoginForm
                                     and p.idPeriod = s.idPeriod
                                     and s.idSubject = t.idSubject
                                     and p.idStudent =" & user.Id_User & "
-                                    ;"
+                                    and t.status = " & 1 & ";"
 
-                            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+                        'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
 
-                            ' connection.Close()
-                            Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
+                        ' connection.Close()
+                        Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
                             Dim ds2 As New DataSet
                             da2.Fill(ds2, HWstrSQL)
                         HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
@@ -344,7 +344,7 @@ Public Class LoginForm
                                     and p.idPeriod = s.idPeriod
                                     and s.idSubject = t.idSubject
                                     and p.idStudent =" & user.Id_User & "
-                                    ;"
+                                    and t.status = " & 1 & ";"
 
                             'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
 
