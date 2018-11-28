@@ -732,7 +732,8 @@ Public Class HomeForm
             SelectCourseComboBox.Items.Add(HomeWork)
 
         Next
-        '
+
+        'segundo combobox
         Dim cdgv As DataGridView = CourseDataGridView
         'LIMPIA EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
         If CourseEHWComboBox.Items.Count > 0 Then
@@ -752,10 +753,26 @@ Public Class HomeForm
 
         Next
 
+        'tercer combobox
+
+        If EditHomeWorkPanel.Visible = True Then
+            StatusComboBox.Items.Add("Pendiente")
+            StatusComboBox.Items.Add("Completado")
+            StatusComboBox.Text = "Pendiente"
+        Else
+            StatusComboBox.Items.Clear()
+        End If
+
+
     End Sub
 
     Private Sub CancelEHWButton_Click(sender As Object, e As EventArgs) Handles CancelEHWButton.Click
         EditHomeWorkPanel.Hide()
+
+        SelectCourseComboBox.SelectedIndex = -1
+        NameEHWTextBox.Text = ""
+        CourseEHWComboBox.SelectedIndex = -1
+        EHWDateTimePicker.Value = Now.Date
     End Sub
 
     Private Sub SelectCourseComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SelectCourseComboBox.SelectedIndexChanged
@@ -829,8 +846,13 @@ Public Class HomeForm
         Connect()
 
         Dim selectQuery
+        Dim status As Integer
 
-
+        If StatusComboBox.Text = "Pendiente" Then
+            status = 1
+        ElseIf StatusComboBox.Text = "Completado" Then
+            status = 2
+        End If
 
         'ESTO ES PARA QUE LA TAREA TENGA EL MISMO COLOR QUE EL CURSO
         selectQuery = "SELECT color FROM Subject WHERE idSubject= " & idhw & " "
@@ -845,7 +867,7 @@ Public Class HomeForm
         reader.Close()
 
         'declaramos la sentencia de SELECT para seleccionar de la BD
-        updateQuery = "UPDATE Task SET nameTask=@nameTask, idSubject=@idSubject, duedate=@duedate, color=@color 
+        updateQuery = "UPDATE Task SET nameTask=@nameTask, idSubject=@idSubject, duedate=@duedate, color=@color, status=@status
         WHERE idTask = " & Integer.Parse(HomeworkDataGridView.Rows(cont).Cells(3).Value) & " "
         command = New SqlCommand(updateQuery, ConnectionBD.Connection)
 
@@ -854,6 +876,7 @@ Public Class HomeForm
             .Parameters.AddWithValue("@idSubject", Integer.Parse(idhw))
             .Parameters.AddWithValue("@duedate", EHWDateTimePicker.Value)
             .Parameters.AddWithValue("@color", SubColor)
+            .Parameters.AddWithValue("@status", status)
 
 
         End With
@@ -865,6 +888,7 @@ Public Class HomeForm
         connection.Close()
 
         MsgBox("Cambios realizados con exito")
+        EditHomeWorkPanel.Hide()
 
         connection.Open()
         '///// CARGA LA TABLA DE TAREAS//////
@@ -901,11 +925,54 @@ Public Class HomeForm
         hwdgv.ClearSelection()
         connection.Close()
 
+        SelectCourseComboBox.SelectedIndex = -1
+        NameEHWTextBox.Text = ""
+        CourseEHWComboBox.SelectedIndex = -1
+        EHWDateTimePicker.Value = Now.Date
+
 
 
     End Sub
 
     Private Sub AddHomeWorkPanel_Paint(sender As Object, e As PaintEventArgs) Handles AddHomeWorkPanel.Paint
+
+    End Sub
+
+    Private Sub DeleteButton_Click(sender As Object, e As EventArgs) Handles DeleteButton.Click
+
+        Dim cont As Integer = SelectCourseComboBox.SelectedIndex
+
+        Dim connection As SqlConnection
+        Dim command As New SqlCommand
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+
+
+
+        Dim updateQuery As String
+        updateQuery = "UPDATE Task SET status=@status WHERE idTask= " & Integer.Parse(HomeworkDataGridView.Rows(cont).Cells(3).Value) & " "
+        command = New SqlCommand(updateQuery, connection)
+
+        With command
+            .Parameters.AddWithValue("@status", 0)
+        End With
+
+
+        connection.Open()
+        command.ExecuteNonQuery()
+        command.Dispose()
+        connection.Close()
+        MsgBox("tarea borrada")
+
+        EditHomeWorkPanel.Hide()
+
+        SelectCourseComboBox.SelectedIndex = -1
+        NameEHWTextBox.Text = ""
+        CourseEHWComboBox.SelectedIndex = -1
+        EHWDateTimePicker.Value = Now.Date
+
 
     End Sub
 End Class
