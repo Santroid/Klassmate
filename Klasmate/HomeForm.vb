@@ -504,6 +504,7 @@ Public Class HomeForm
 
     Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
         OptionsHomePanel.Hide()
+        EditHomeWorkPanel.Show()
     End Sub
 
     '///////ESTO ES PARA QUE SOLO SALGAN LAS TAREAS SEGUN EL CURSO QUE ESCOGA EL USUARIO//////////////////
@@ -678,12 +679,12 @@ Public Class HomeForm
             connection = New SqlConnection(connectionString)
             selectQuery = "SELECT email FROM KMProfile WHERE idStudent=" & Integer.Parse(IdUserLabel.Text) & ""
 
-            Command = New SqlCommand(selectQuery, Connection)
+            command = New SqlCommand(selectQuery, connection)
             'abriendo la conexión
-            Connection.Open()
+            connection.Open()
 
 
-            Dim reader As SqlDataReader = Command.ExecuteReader
+            Dim reader As SqlDataReader = command.ExecuteReader
             reader.Read()
             Dim email As String = reader.Item("email")
             'set the addresses
@@ -707,5 +708,204 @@ Public Class HomeForm
             connection.Close()
         End If
         '\\\\\\\\\\\\\\\\ TERMINA DE ENVIAR RECORDATORIO DE HORA DE ESTUDIAR AL CORREO \\\\\\\\\\\\\\\\\\\\
+    End Sub
+
+    Private Sub EditHomeWorkPanel_VisibleChanged(sender As Object, e As EventArgs) Handles EditHomeWorkPanel.VisibleChanged
+        AddHomeWorkPanel.Left = 210
+        AddHomeWorkPanel.Top = 125
+        Dim dgv As DataGridView = HomeworkDataGridView
+        'LIMPIA EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
+        If SelectCourseComboBox.Items.Count > 0 Then
+            Dim HomeWorkCount As Integer = SelectCourseComboBox.Items.Count - 1
+
+            While HomeWorkCount >= 0
+                'CoursAddHWPanelComboBox.SelectedIndex = i
+                SelectCourseComboBox.Items.RemoveAt(HomeWorkCount)
+                HomeWorkCount = HomeWorkCount - 1
+            End While
+        End If
+        'VUELVE A LLENAR EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
+        For i As Integer = 0 To dgv.Rows.Count - 1
+
+            Dim HomeWork As String = dgv.Rows(i).Cells(1).Value
+
+            SelectCourseComboBox.Items.Add(HomeWork)
+
+        Next
+
+        Dim cdgv As DataGridView = CourseDataGridView
+        'LIMPIA EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
+        If CourseEHWComboBox.Items.Count > 0 Then
+            Dim courseCount As Integer = CourseEHWComboBox.Items.Count - 1
+
+            While courseCount >= 0
+                'CoursAddHWPanelComboBox.SelectedIndex = i
+                CourseEHWComboBox.Items.RemoveAt(courseCount)
+                courseCount = courseCount - 1
+            End While
+        End If
+        'VUELVE A LLENAR EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
+        For i As Integer = 0 To cdgv.Rows.Count - 1
+
+            Dim Course As String = cdgv.Rows(i).Cells(1).Value
+            CourseEHWComboBox.Items.Add(Course)
+
+        Next
+
+    End Sub
+
+    Private Sub CancelEHWButton_Click(sender As Object, e As EventArgs) Handles CancelEHWButton.Click
+        EditHomeWorkPanel.Hide()
+    End Sub
+
+    Private Sub SelectCourseComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SelectCourseComboBox.SelectedIndexChanged
+
+        Dim cont As Integer = SelectCourseComboBox.SelectedIndex
+
+        Dim connection As SqlConnection
+        Dim command As SqlCommand
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        Dim selectQuery
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+
+        Connect()
+
+        'declaramos la sentencia de SELECT para seleccionar de la BD
+        selectQuery = "SELECT t.nameTask, s.nameSubject, t.duedate FROM Task t, Subject s
+        WHERE idTask= " & Integer.Parse(HomeworkDataGridView.Rows(cont).Cells(3).Value) & " 
+        and t.idSubject = s.idSubject"
+        command = New SqlCommand(selectQuery, ConnectionBD.Connection)
+
+        'ejecuta el lector de la base de datos
+        Dim reader As SqlDataReader = command.ExecuteReader
+
+        If reader.HasRows Then
+            reader.Read()
+            Me.NameEHWTextBox.Text = reader.Item("nameTask").ToString
+            Me.CourseEHWComboBox.Text = reader.Item("nameSubject").ToString
+            Me.EHWDateTimePicker.Value = reader.Item("duedate").ToString
+
+
+
+        End If
+        Disconnect()
+
+    End Sub
+
+    Private Sub EditCourseLabel_Click(sender As Object, e As EventArgs) Handles EditCourseLabel.Click
+
+        OptionsHomePanel.Hide()
+        EditCourseForm.Show()
+
+    End Sub
+
+    Private Sub SaveHWAButton_Click(sender As Object, e As EventArgs) Handles SaveHWAButton.Click
+
+        Dim cont As Integer = SelectCourseComboBox.SelectedIndex
+
+        Dim connection As SqlConnection
+        Dim command As SqlCommand
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        Dim updateQuery
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+
+        Connect()
+        Dim idhw As Integer = 0
+        '// agarra el idSubject del curso escogido en el combobox
+        Dim dgv As DataGridView = CourseDataGridView
+        For i As Integer = 0 To dgv.Rows.Count - 1
+            If dgv.Rows(i).Cells(1).Value = CourseEHWComboBox.Text Then
+                idhw = dgv.Rows(i).Cells(5).Value
+
+                i = dgv.Rows.Count - 1
+            End If
+
+        Next
+
+        Connect()
+
+        Dim selectQuery
+
+
+
+        'ESTO ES PARA QUE LA TAREA TENGA EL MISMO COLOR QUE EL CURSO
+        selectQuery = "SELECT color FROM Subject WHERE idSubject= " & idhw & " "
+        command = New SqlCommand(selectQuery, ConnectionBD.Connection)
+
+        'ejecuta el lector de la base de datos
+        Dim reader As SqlDataReader = command.ExecuteReader
+
+        reader.Read()
+        Dim SubColor As String = reader.Item("color").ToString
+        connection.Close()
+        reader.Close()
+
+        'declaramos la sentencia de SELECT para seleccionar de la BD
+        updateQuery = "UPDATE Task SET nameTask=@nameTask, idSubject=@idSubject, duedate=@duedate, color=@color 
+        WHERE idTask = " & Integer.Parse(HomeworkDataGridView.Rows(cont).Cells(3).Value) & " "
+        command = New SqlCommand(updateQuery, ConnectionBD.Connection)
+
+        With command
+            .Parameters.AddWithValue("@nameTask", NameEHWTextBox.Text)
+            .Parameters.AddWithValue("@idSubject", Integer.Parse(idhw))
+            .Parameters.AddWithValue("@duedate", EHWDateTimePicker.Value)
+            .Parameters.AddWithValue("@color", SubColor)
+
+
+        End With
+
+
+        connection.Open()
+        command.ExecuteNonQuery()
+        command.Dispose()
+        connection.Close()
+
+        MsgBox("Cambios realizados con exito")
+
+        connection.Open()
+        '///// CARGA LA TABLA DE TAREAS//////
+        'aca se escoge solo el color, nombre de la tarea, dia de entregaque le pertenecen al usuario y al mismo periodo
+        Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
+                                    from Subject s, Period p, Task t
+                                    where p.idPeriod =" & Integer.Parse(IdPeriodLabel.Text) & "
+                                    and p.idPeriod = s.idPeriod
+                                    and s.idSubject = t.idSubject
+                                    and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
+                                    ;"
+        Dim da2 As New SqlDataAdapter(HWstrSQL, connection)
+        Dim ds2 As New DataSet
+        'If ColorCounterLabel.Text = " " Then
+        Call CType(HomeworkDataGridView.DataSource, DataTable).Rows.Clear()
+
+        da2.Fill(ds2, HWstrSQL)
+        HomeworkDataGridView.DataSource = ds2.Tables(0)
+        'le cambia los colores a las celdas de tareas de acuerdo a la base de datos
+        Dim hwdgv As DataGridView = HomeworkDataGridView
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(0).Value
+            'MsgBox(cellColor)
+            hwdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+        Next
+        For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+            Dim cellColor As String = hwdgv.Rows(i).Cells(1).Value
+            hwdgv.Rows(i).Cells(0).Value = ""
+
+        Next
+        hwdgv.ClearSelection()
+        connection.Close()
+
+
+
+    End Sub
+
+    Private Sub AddHomeWorkPanel_Paint(sender As Object, e As PaintEventArgs) Handles AddHomeWorkPanel.Paint
+
     End Sub
 End Class

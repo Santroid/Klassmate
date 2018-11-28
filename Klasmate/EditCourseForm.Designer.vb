@@ -22,7 +22,7 @@ Partial Class EditCourseForm
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.EditCourseComboBox = New System.Windows.Forms.ComboBox()
         Me.IdUserLabel = New System.Windows.Forms.Label()
         Me.DTLabel = New System.Windows.Forms.Label()
         Me.DTDateTimePicker = New System.Windows.Forms.DateTimePicker()
@@ -56,21 +56,21 @@ Partial Class EditCourseForm
         Me.SaveCourseButton = New System.Windows.Forms.Button()
         Me.ColorCoursSRComboBox = New System.Windows.Forms.ComboBox()
         Me.label1 = New System.Windows.Forms.Label()
-        Me.DayCoursSRCheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.NameCoursSRTextBox = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.DayCoursSRCheckedListBox = New System.Windows.Forms.CheckedListBox()
         Me.SuspendLayout()
         '
-        'ComboBox1
+        'EditCourseComboBox
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(286, 19)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(231, 24)
-        Me.ComboBox1.TabIndex = 198
+        Me.EditCourseComboBox.FormattingEnabled = True
+        Me.EditCourseComboBox.Location = New System.Drawing.Point(286, 19)
+        Me.EditCourseComboBox.Name = "EditCourseComboBox"
+        Me.EditCourseComboBox.Size = New System.Drawing.Size(231, 24)
+        Me.EditCourseComboBox.TabIndex = 198
         '
         'IdUserLabel
         '
@@ -446,19 +446,6 @@ Partial Class EditCourseForm
         Me.label1.TabIndex = 165
         Me.label1.Text = "  L  K  M  J  V  S  D"
         '
-        'DayCoursSRCheckedListBox
-        '
-        Me.DayCoursSRCheckedListBox.CheckOnClick = True
-        Me.DayCoursSRCheckedListBox.ColumnWidth = 13
-        Me.DayCoursSRCheckedListBox.FormattingEnabled = True
-        Me.DayCoursSRCheckedListBox.Items.AddRange(New Object() {"", "", "", "", "", "", ""})
-        Me.DayCoursSRCheckedListBox.Location = New System.Drawing.Point(286, 86)
-        Me.DayCoursSRCheckedListBox.Margin = New System.Windows.Forms.Padding(4)
-        Me.DayCoursSRCheckedListBox.MultiColumn = True
-        Me.DayCoursSRCheckedListBox.Name = "DayCoursSRCheckedListBox"
-        Me.DayCoursSRCheckedListBox.Size = New System.Drawing.Size(129, 21)
-        Me.DayCoursSRCheckedListBox.TabIndex = 160
-        '
         'Label7
         '
         Me.Label7.AutoSize = True
@@ -509,12 +496,26 @@ Partial Class EditCourseForm
         Me.Label4.TabIndex = 159
         Me.Label4.Text = "Editar cursos"
         '
+        'DayCoursSRCheckedListBox
+        '
+        Me.DayCoursSRCheckedListBox.CheckOnClick = True
+        Me.DayCoursSRCheckedListBox.ColumnWidth = 13
+        Me.DayCoursSRCheckedListBox.FormattingEnabled = True
+        Me.DayCoursSRCheckedListBox.Items.AddRange(New Object() {"", "", "", "", "", "", ""})
+        Me.DayCoursSRCheckedListBox.Location = New System.Drawing.Point(280, 88)
+        Me.DayCoursSRCheckedListBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.DayCoursSRCheckedListBox.MultiColumn = True
+        Me.DayCoursSRCheckedListBox.Name = "DayCoursSRCheckedListBox"
+        Me.DayCoursSRCheckedListBox.Size = New System.Drawing.Size(129, 21)
+        Me.DayCoursSRCheckedListBox.TabIndex = 1
+        '
         'EditCourseForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(716, 370)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.DayCoursSRCheckedListBox)
+        Me.Controls.Add(Me.EditCourseComboBox)
         Me.Controls.Add(Me.IdUserLabel)
         Me.Controls.Add(Me.DTLabel)
         Me.Controls.Add(Me.DTDateTimePicker)
@@ -548,7 +549,6 @@ Partial Class EditCourseForm
         Me.Controls.Add(Me.SaveCourseButton)
         Me.Controls.Add(Me.ColorCoursSRComboBox)
         Me.Controls.Add(Me.label1)
-        Me.Controls.Add(Me.DayCoursSRCheckedListBox)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.NameCoursSRTextBox)
         Me.Controls.Add(Me.Label6)
@@ -561,7 +561,7 @@ Partial Class EditCourseForm
 
     End Sub
 
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents EditCourseComboBox As ComboBox
     Friend WithEvents IdUserLabel As Label
     Friend WithEvents DTLabel As Label
     Friend WithEvents DTDateTimePicker As DateTimePicker
@@ -595,10 +595,10 @@ Partial Class EditCourseForm
     Friend WithEvents SaveCourseButton As Button
     Friend WithEvents ColorCoursSRComboBox As ComboBox
     Friend WithEvents label1 As Label
-    Friend WithEvents DayCoursSRCheckedListBox As CheckedListBox
     Friend WithEvents Label7 As Label
     Friend WithEvents NameCoursSRTextBox As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents DayCoursSRCheckedListBox As CheckedListBox
 End Class
