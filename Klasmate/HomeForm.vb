@@ -411,7 +411,7 @@ Public Class HomeForm
                                     and p.idPeriod = s.idPeriod
                                     and s.idSubject = t.idSubject
                                     and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
-                                    ;"
+                                    and t.status = " & 1 & ";"
         Dim da2 As New SqlDataAdapter(HWstrSQL, connection)
         Dim ds2 As New DataSet
         'If ColorCounterLabel.Text = " " Then
@@ -524,7 +524,9 @@ Public Class HomeForm
                                     and p.idPeriod = s.idPeriod
                                     and s.idSubject = " & selectedCoursId & "
                                     and s.idSubject = t.idSubject
-                                    and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & ";"
+                                    and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
+                                    and t.status = " & 1 & ";"
+
         Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
         Dim ds2 As New DataSet
         'If ColorCounterLabel.Text = " " Then
@@ -574,7 +576,7 @@ Public Class HomeForm
                                     and p.idPeriod = s.idPeriod
                                     and s.idSubject = t.idSubject
                                     and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
-                                    ;"
+                                    and t.status = " & 1 & ";"
         Dim da2 As New SqlDataAdapter(HWstrSQL, Connection)
         Dim ds2 As New DataSet
         'If ColorCounterLabel.Text = " " Then
@@ -711,8 +713,7 @@ Public Class HomeForm
     End Sub
 
     Private Sub EditHomeWorkPanel_VisibleChanged(sender As Object, e As EventArgs) Handles EditHomeWorkPanel.VisibleChanged
-        AddHomeWorkPanel.Left = 210
-        AddHomeWorkPanel.Top = 125
+        EditHomeWorkPanel.Location = New Point((Me.Width - EditHomeWorkPanel.Width) \ 2, (Me.Height - EditHomeWorkPanel.Height) \ 2)
         Dim dgv As DataGridView = HomeworkDataGridView
         'LIMPIA EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
         If SelectCourseComboBox.Items.Count > 0 Then
@@ -899,7 +900,7 @@ Public Class HomeForm
                                     and p.idPeriod = s.idPeriod
                                     and s.idSubject = t.idSubject
                                     and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
-                                    ;"
+                                    and t.status = " & 1 & ";"
         Dim da2 As New SqlDataAdapter(HWstrSQL, connection)
         Dim ds2 As New DataSet
         'If ColorCounterLabel.Text = " " Then
