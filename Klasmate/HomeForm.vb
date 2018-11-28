@@ -732,7 +732,7 @@ Public Class HomeForm
             SelectCourseComboBox.Items.Add(HomeWork)
 
         Next
-
+        '
         Dim cdgv As DataGridView = CourseDataGridView
         'LIMPIA EL COMBOBOX CADA VEZ QUE SE HACE VISIBLE EL PANEL
         If CourseEHWComboBox.Items.Count > 0 Then
