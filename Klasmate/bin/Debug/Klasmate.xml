@@ -27,5 +27,275 @@ Klasmate
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="T:Klasmate.ProjectDBDataSet">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.ActivityDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.ActivityHasScheduleDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.KMProfileDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.PeriodDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.ScheduleDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.SubjectDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.sysdiagramsDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.TaskDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.ActivityRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.ActivityHasScheduleRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.KMProfileRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.PeriodRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.ScheduleRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.SubjectRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.sysdiagramsRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.TaskRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.ActivityRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.ActivityHasScheduleRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.KMProfileRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.PeriodRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.ScheduleRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.SubjectRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.sysdiagramsRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSet.TaskRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.ActivityTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.ActivityHasScheduleTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.KMProfileTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.PeriodTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.ScheduleTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.SubjectTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.sysdiagramsTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.TaskTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:Klasmate.ProjectDBDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(Klasmate.ProjectDBDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:Klasmate.ProjectDBDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(Klasmate.ProjectDBDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:Klasmate.ProjectDBDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(Klasmate.ProjectDBDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:Klasmate.ProjectDBDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:Klasmate.ProjectDBDataSetTableAdapters.TableAdapterManager.UpdateAll(Klasmate.ProjectDBDataSet)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:Klasmate.ProjectDBDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
+<member name="T:Klasmate.DataSet1">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Klasmate.DataSet1.DataTable1DataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Klasmate.DataSet1.DataTable1Row">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Klasmate.DataSet1.DataTable1RowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Klasmate.DataSet1TableAdapters.DataTable1TableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Klasmate.DataSet1TableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:Klasmate.DataSet1TableAdapters.TableAdapterManager.UpdateUpdatedRows(Klasmate.DataSet1,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:Klasmate.DataSet1TableAdapters.TableAdapterManager.UpdateInsertedRows(Klasmate.DataSet1,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:Klasmate.DataSet1TableAdapters.TableAdapterManager.UpdateDeletedRows(Klasmate.DataSet1,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:Klasmate.DataSet1TableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:Klasmate.DataSet1TableAdapters.TableAdapterManager.UpdateAll(Klasmate.DataSet1)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:Klasmate.DataSet1TableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:Klasmate.DataSet1TableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member>
 </members>
 </doc>
