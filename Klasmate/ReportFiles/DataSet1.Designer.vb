@@ -878,9 +878,13 @@ Namespace DataSet1TableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "select distinct t.nameTask as Tarea, s.nameSubject as Curso, t.duedate as Entrega"& _ 
-                ", t.status as Estado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"from KMProfile p, Activity a, Task t, Subject s"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE p.i"& _ 
-                "dStudent = a.idStudent and t.idSubject = s.idSubject"
+            Me._commandCollection(0).CommandText = "SELECT DISTINCT t.nameTask AS Tarea, s.nameSubject AS Curso, t.duedate AS Entrega"& _ 
+                ", t.status AS Estado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Subject AS s INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "        Task AS t ON s.idSubject = t.idSubject INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
+                "    Period AS pe ON s.idPeriod = pe.idPeriod INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  KMProfile AS p INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Activity AS a ON p.idStude"& _ 
+                "nt = a.idStudent ON pe.idPeriod = a.idPeriod AND p.idStudent = 88"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Entr"& _ 
+                "ega"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

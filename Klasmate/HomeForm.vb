@@ -1039,4 +1039,8 @@ Public Class HomeForm
         reader.Close()
         connection.Close()
     End Sub
+
+    Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
+        ReportForm.Show()
+    End Sub
 End Class

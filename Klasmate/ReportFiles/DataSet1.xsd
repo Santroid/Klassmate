@@ -12,9 +12,13 @@
               <DbSource ConnectionRef="ProjectDBConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>select distinct t.nameTask as Tarea, s.nameSubject as Curso, t.duedate as Entrega, t.status as Estado
-from KMProfile p, Activity a, Task t, Subject s
-WHERE p.idStudent = a.idStudent and t.idSubject = s.idSubject</CommandText>
+                    <CommandText>SELECT DISTINCT t.nameTask AS Tarea, s.nameSubject AS Curso, t.duedate AS Entrega, t.status AS Estado
+FROM            Subject AS s INNER JOIN
+                         Task AS t ON s.idSubject = t.idSubject INNER JOIN
+                         Period AS pe ON s.idPeriod = pe.idPeriod INNER JOIN
+                         KMProfile AS p INNER JOIN
+                         Activity AS a ON p.idStudent = a.idStudent ON pe.idPeriod = a.idPeriod AND p.idStudent = 88
+ORDER BY Entrega</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
