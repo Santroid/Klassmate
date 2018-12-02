@@ -712,12 +712,11 @@ Public Class HomeForm
         '\\\\\\\\\\\\\\\\ TERMINA DE ENVIAR RECORDATORIO DE HORA DE ESTUDIAR AL CORREO \\\\\\\\\\\\\\\\\\\\
     End Sub
 
-<<<<<<< HEAD
+
     Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
         ReportForm.Show()
     End Sub
 
-=======
     Private Sub EditHomeWorkPanel_VisibleChanged(sender As Object, e As EventArgs) Handles EditHomeWorkPanel.VisibleChanged
         EditHomeWorkPanel.Location = New Point((Me.Width - EditHomeWorkPanel.Width) \ 2, (Me.Height - EditHomeWorkPanel.Height) \ 2)
         Dim dgv As DataGridView = HomeworkDataGridView
@@ -982,5 +981,5 @@ Public Class HomeForm
 
 
     End Sub
->>>>>>> d80b1d5c37da7b8630613395a96b8c18b6b33240
+
 End Class
