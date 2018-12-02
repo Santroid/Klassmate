@@ -2,60 +2,73 @@
 Imports System.Net.Mail
 
 Public Class HomeForm
-    Private Sub ProgressBar1_Click(sender As Object, e As EventArgs) Handles ProgressBar1.Click
+    Private Sub ProgressBar1_Click(sender As Object, e As EventArgs) Handles WeekProgressBar.Click
 
     End Sub
 
     Private Sub HomeForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AlarmTimer.Enabled = True
-        'Dim user As New User
-        Dim period As New Period
-        ' Dim sch As New ScheduleRegisterForm
-        'Dim LUserId As Integer = LoginForm.user.Id_User
-        'Dim RUserId As Integer = RegisterForm.user.Id_User
-        Dim connection As SqlConnection
 
-        'Dim user As User
-        'user = New User
-        'user.GetHashCode.
-        'Dim command As SqlCommand
+        ' WeekLabel.Location = New System.Drawing.Point(PictureBox1.Width / 2 - 20, PictureBox1.Height / 2 - 7)
+        WeekLabel.BringToFront()
+
+        WeekTimer.Enabled = True
+        Dim connection As SqlConnection
 
         Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
         ' Dim selectQuery
         'aquí conectamos con la base de datos
         connection = New SqlConnection(connectionString)
 
+        Dim command As SqlCommand
+        Dim selectQuery
+        'aquí conectamos con la base de datos
+
+        selectQuery = "SELECT startDate, endDate FROM Period WHERE idPeriod=" & Integer.Parse(IdPeriodLabel.Text) & ""
+
+        command = New SqlCommand(selectQuery, connection)
+        'abriendo la conexión
+        connection.Open()
 
 
-        ' User.IdUser2
-        'MsgBox("Second IdUser" & User.IdUser2)
-        '/// aca se agrega el color, nombre del curso, dia, horaInicio y horaFin al DataGridView para que el usuario lo vea en el HomeForm
-        'Try
-        '    connection.Open()
-        '    'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
-        '    Dim strSQL As String = "select s.color, s.nameSubject, sc.day, sc.startTime, sc.endTime, s.idSubject
-        '                            from Subject s, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
-        '                            where k.idStudent = p.idStudent
-        '                            and p.idPeriod = s.idPeriod
-        '                            and k.idStudent =" & LoginForm.user.Id_User & "
-        '                            and s.idSubject = a.idSubject
-        '                            and a.idSchedule = sc.idSchedule;"
+        Dim reader As SqlDataReader = command.ExecuteReader
+        reader.Read()
+        Dim startDate As Date = reader.Item("startDate")
+        Dim endDate As Date = reader.Item("endDate")
 
-        '    'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+        Dim dateNow As Date = Date.Now
+        ' Dim date2 As Date = date1.AddDays(4.0#)
 
-        '    ' connection.Close()
-        '    Dim da As New SqlDataAdapter(strSQL, connection)
-        '    Dim ds As New DataSet
-        '    da.Fill(ds, strSQL)
-        '    CourseDataGridView.DataSource = ds.Tables(0)
+        Dim spanPeriod = endDate - startDate
+        Dim spanNow = dateNow - startDate
+
+        Dim daysPeriod As Double = spanPeriod.TotalDays '=4
+        Dim daysNow As Double = spanNow.TotalDays
+
+        If WeekProgressBar.Value < 100 Then
+            WeekProgressBar.Value = (daysNow / daysPeriod) * 100
+            WeekLabel.Text = "Semana " & Math.Ceiling(daysNow / 7) & " / " & Math.Ceiling(daysPeriod / 7)
+
+        End If
+        reader.Close()
+        connection.Close()
+
+        AlarmTimer.Enabled = True
+        'Dim user As New User
+        Dim period As New Period
+        ' Dim sch As New ScheduleRegisterForm
+        'Dim LUserId As Integer = LoginForm.user.Id_User
+        'Dim RUserId As Integer = RegisterForm.user.Id_User
+
+
+        'Dim user As User
+        'user = New User
+        'user.GetHashCode.
+        'Dim command As SqlCommand
 
 
 
-        'Catch ex As SqlException
-        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "SQL Error")
-        'Catch ex As Exception
-        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "General Error")
-        'End Try
+
+
 
         'ESTO ES PARA QUE LE PONGA LOS COLORES AL DGV SOLO UNA VEZ Y NO SE REPITA
         Dim dgv As DataGridView = CourseDataGridView
@@ -152,8 +165,8 @@ Public Class HomeForm
             'create the mail message
             Dim mail As New MailMessage()
             'Dim connection As SqlConnection
-            Dim command As SqlCommand
-            Dim selectQuery
+            'Dim command As SqlCommand
+            'Dim selectQuery
             'aquí conectamos con la base de datos
             connection = New SqlConnection(connectionString)
             selectQuery = "SELECT email FROM KMProfile WHERE idStudent=" & Integer.Parse(IdUserLabel.Text) & ""
@@ -163,7 +176,7 @@ Public Class HomeForm
             connection.Open()
 
 
-            Dim reader As SqlDataReader = command.ExecuteReader
+            reader = command.ExecuteReader
             reader.Read()
             Dim email As String = reader.Item("email")
             'set the addresses
@@ -713,9 +726,9 @@ Public Class HomeForm
     End Sub
 
 
-    Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
-        ReportForm.Show()
-    End Sub
+    'Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
+    '    ReportForm.Show()
+    'End Sub
 
     Private Sub EditHomeWorkPanel_VisibleChanged(sender As Object, e As EventArgs) Handles EditHomeWorkPanel.VisibleChanged
         EditHomeWorkPanel.Location = New Point((Me.Width - EditHomeWorkPanel.Width) \ 2, (Me.Height - EditHomeWorkPanel.Height) \ 2)
@@ -982,4 +995,48 @@ Public Class HomeForm
 
     End Sub
 
+    Private Sub WeekTimer_Tick(sender As Object, e As EventArgs) Handles WeekTimer.Tick
+        WeekLabel.BringToFront()
+
+        WeekTimer.Enabled = True
+        Dim connection As SqlConnection
+
+        Dim connectionString As String = "Data Source=klassmate.database.windows.net;Initial Catalog=ProjectDB;Persist Security Info=True;User ID=klassmateAdmin;Password=Contra123"
+        ' Dim selectQuery
+        'aquí conectamos con la base de datos
+        connection = New SqlConnection(connectionString)
+
+        Dim command As SqlCommand
+        Dim selectQuery
+        'aquí conectamos con la base de datos
+
+        selectQuery = "SELECT startDate, endDate FROM Period WHERE idPeriod=" & Integer.Parse(IdPeriodLabel.Text) & ""
+
+        command = New SqlCommand(selectQuery, connection)
+        'abriendo la conexión
+        connection.Open()
+
+
+        Dim reader As SqlDataReader = command.ExecuteReader
+        reader.Read()
+        Dim startDate As Date = reader.Item("startDate")
+        Dim endDate As Date = reader.Item("endDate")
+
+        Dim dateNow As Date = Date.Now
+        ' Dim date2 As Date = date1.AddDays(4.0#)
+
+        Dim spanPeriod = endDate - startDate
+        Dim spanNow = dateNow - startDate
+
+        Dim daysPeriod As Double = spanPeriod.TotalDays '=4
+        Dim daysNow As Double = spanNow.TotalDays
+
+        If WeekProgressBar.Value < 100 Then
+            WeekProgressBar.Value = (daysNow / daysPeriod) * 100
+            WeekLabel.Text = "Semana " & Math.Ceiling(daysNow / 7) & " / " & Math.Ceiling(daysPeriod / 7)
+
+        End If
+        reader.Close()
+        connection.Close()
+    End Sub
 End Class

@@ -39,7 +39,7 @@ Public Class EditCourseForm
             .MaxDropDownItems = 8
             .DataSource = knownColors.ToList
             .SelectedIndex = 0
-            .SelectedItem = Color.AliceBlue
+            '.SelectedItem = Color.AliceBlue
 
         End With
 
@@ -104,15 +104,51 @@ Public Class EditCourseForm
         'ejecuta el lector de la base de datos
         Dim reader As SqlDataReader = command.ExecuteReader
 
-        If reader.HasRows Then
-            reader.Read()
-            Me.NameCoursSRTextBox.Text = reader.Item("nameSubject").ToString
-            Me.ColorCoursSRComboBox.SelectedItem = Color.FromName(reader.Item("color"))
+
+        reader.Read()
+        NameCoursSRTextBox.Text = reader.Item("nameSubject").ToString
+        Dim selectedColor As String = (reader.Item("color"))
+        Dim day As String = reader.Item("day")
+
+        'selecciona el color que estaba guardado previamente
+        For i As Integer = 0 To 10000
+            ColorCoursSRComboBox.SelectedIndex = i
+            If ColorCoursSRComboBox.SelectedValue = selectedColor Then
+                ColorCoursSRComboBox.SelectedIndex = i
+                i = 10000
+            End If
+        Next
+
+        'marca los dias que estaban guardados previamente
+        Select Case day
+            Case "Lunes"
+                DayCoursSRCheckedListBox.SetItemChecked(0, True)
+            Case "Martes"
+                DayCoursSRCheckedListBox.SetItemChecked(1, True)
+            Case "Miercoles"
+                DayCoursSRCheckedListBox.SetItemChecked(2, True)
+            Case "Jueves"
+                DayCoursSRCheckedListBox.SetItemChecked(3, True)
+            Case "Viernes"
+                DayCoursSRCheckedListBox.SetItemChecked(4, True)
+            Case "Sabado"
+                DayCoursSRCheckedListBox.SetItemChecked(5, True)
+            Case "Domingo"
+                DayCoursSRCheckedListBox.SetItemChecked(6, True)
+
+            Case Else
+
+        End Select
 
 
 
-        End If
         Disconnect()
+
+
+
+    End Sub
+
+    Private Sub DeleteCourseButton_Click(sender As Object, e As EventArgs) Handles DeleteCourseButton.Click
 
     End Sub
 End Class

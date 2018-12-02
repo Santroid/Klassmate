@@ -190,6 +190,7 @@ Public Class LoginForm
                                     from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod =" & period.Id_Period & "
+                                    and ac.idPeriod = p.idPeriod
                                     and k.idStudent = ac.idStudent
                                     and k.idStudent =" & user.Id_User & "
                                     and ac.idActivity = a.idActivity
@@ -214,6 +215,7 @@ Public Class LoginForm
                                     from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod =" & period.Id_Period & "
+                                    and ac.idPeriod = p.idPeriod
                                     and k.idStudent = ac.idStudent
                                     and k.idStudent =" & user.Id_User & "
                                     and ac.idActivity = a.idActivity
@@ -363,6 +365,7 @@ Public Class LoginForm
                                     from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod =" & period.Id_Period & "
+                                    and ac.idPeriod = p.idPeriod
                                     and k.idStudent = ac.idStudent
                                     and k.idStudent =" & user.Id_User & "
                                     and ac.idActivity = a.idActivity
@@ -387,6 +390,7 @@ Public Class LoginForm
                                     from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod =" & period.Id_Period & "
+                                    and ac.idPeriod = p.idPeriod
                                     and k.idStudent = ac.idStudent
                                     and k.idStudent =" & user.Id_User & "
                                     and ac.idActivity = a.idActivity

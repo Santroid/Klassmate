@@ -440,6 +440,80 @@ Public Class ScheduleRegisterForm
             dgv.ClearSelection()
             HomeForm.ColorCounterLabel.Text = " "
 
+            '///////////// ACTUALIZA LA TABLA DE HORARIO DE ESTUDIO
+            'aca se escoge solo el color, nombre del horario de estudio, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+            Dim SSstrSQL As String = "select ac.color, ac.name, sc.day, sc.startTime, sc.endTime, ac.idActivity
+                                    from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
+                                    where k.idStudent = p.idStudent
+                                    and p.idPeriod =" & Period.IdPeriod & "
+                                    and ac.idPeriod = p.idPeriod
+                                    and k.idStudent = ac.idStudent
+                                    and k.idStudent =" & IdUser & "
+                                    and ac.idActivity = a.idActivity
+                                    and a.idSchedule = sc.idSchedule
+                                    and ac.type = " & 0 & ";"
+
+            'Dim strSQL As String = "SELECT nameSubject, color FROM Subject"
+
+            ' connection.Close()
+            Dim da3 As New SqlDataAdapter(SSstrSQL, connection)
+            Dim ds3 As New DataSet
+            Call CType(HomeForm.StudSchDataGridView.DataSource, DataTable).Rows.Clear()
+            da3.Fill(ds3, SSstrSQL)
+            HomeForm.StudSchDataGridView.DataSource = ds3.Tables(0)
+
+
+            'le cambia los colores a las celdas de horario de estudio de acuerdo a la base de datos
+            Dim SSdgv As DataGridView = HomeForm.StudSchDataGridView
+            For i As Integer = 0 To SSdgv.Rows.Count - 1
+
+                Dim cellColor As String = SSdgv.Rows(i).Cells(0).Value
+                'MsgBox(cellColor)
+                SSdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+            Next
+            For i As Integer = 0 To SSdgv.Rows.Count - 1
+
+                Dim cellColor As String = SSdgv.Rows(i).Cells(1).Value
+                SSdgv.Rows(i).Cells(0).Value = ""
+
+            Next
+            SSdgv.ClearSelection()
+
+            '///////////// ACTUALIZA LA TABLA DE TAREAS
+            'aca se escoge solo el color, nombre de la tarea, dia de entregaque le pertenecen al usuario y al mismo periodo
+            Dim HWstrSQL As String = "select t.color, t.nameTask, t.duedate, t.idTask
+                                    from Subject s, Period p, Task t
+                                    where p.idPeriod =" & Period.IdPeriod & "
+                                    and p.idPeriod = s.idPeriod
+                                    and s.idSubject = t.idSubject
+                                    and p.idStudent =" & IdUser & "
+                                    and t.status = " & 1 & ";"
+            Dim da2 As New SqlDataAdapter(HWstrSQL, connection)
+            Dim ds2 As New DataSet
+            'If ColorCounterLabel.Text = " " Then
+            Call CType(HomeForm.HomeworkDataGridView.DataSource, DataTable).Rows.Clear()
+
+            da2.Fill(ds2, HWstrSQL)
+            HomeForm.HomeworkDataGridView.DataSource = ds2.Tables(0)
+            'le cambia los colores a las celdas de tareas de acuerdo a la base de datos
+            Dim hwdgv As DataGridView = HomeForm.HomeworkDataGridView
+            For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+                Dim cellColor As String = hwdgv.Rows(i).Cells(0).Value
+                'MsgBox(cellColor)
+                hwdgv.Rows(i).Cells(0).Style.BackColor = Drawing.Color.FromName(cellColor)
+
+            Next
+            For i As Integer = 0 To hwdgv.Rows.Count - 1
+
+                Dim cellColor As String = hwdgv.Rows(i).Cells(1).Value
+                hwdgv.Rows(i).Cells(0).Value = ""
+
+            Next
+            hwdgv.ClearSelection()
+
+
             Me.Close()
 
 

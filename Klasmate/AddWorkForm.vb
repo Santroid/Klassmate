@@ -656,6 +656,7 @@ Public Class AddWorkForm
                                     from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod =" & Integer.Parse(HomeForm.IdPeriodLabel.Text) & "
+                                    and ac.idPeriod = p.idPeriod
                                     and k.idStudent = ac.idStudent
                                     and k.idStudent =" & User.IdUser & "
                                     and ac.idActivity = a.idActivity

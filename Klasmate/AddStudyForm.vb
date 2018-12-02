@@ -157,6 +157,7 @@ Public Class AddStudyForm
             DayStudySRCheckedListBox.SetItemChecked(index, False)
             DayStudySRCheckedListBox.SetItemCheckState(index, CheckState.Unchecked)
         Next
+        '//LUNES//
 
         If DayStudySRCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
 
@@ -165,6 +166,8 @@ Public Class AddStudyForm
             SLILabel.Enabled = True
             SLTLabel.Enabled = True
         Else
+            SLIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SLTDateTimePicker.Value = DefaultDateTimePicker.Value
             SLIDateTimePicker.Enabled = False
             SLTDateTimePicker.Enabled = False
             SLILabel.Enabled = False
@@ -178,6 +181,8 @@ Public Class AddStudyForm
             SKILabel.Enabled = True
             SKTLabel.Enabled = True
         Else
+            SKIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SKTDateTimePicker.Value = DefaultDateTimePicker.Value
             SKIDateTimePicker.Enabled = False
             SKTDateTimePicker.Enabled = False
             SKILabel.Enabled = False
@@ -191,6 +196,8 @@ Public Class AddStudyForm
             SMILabel.Enabled = True
             SMTLabel.Enabled = True
         Else
+            SMIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SMTDateTimePicker.Value = DefaultDateTimePicker.Value
             SMIDateTimePicker.Enabled = False
             SMTDateTimePicker.Enabled = False
             SMILabel.Enabled = False
@@ -203,6 +210,8 @@ Public Class AddStudyForm
             SJILabel.Enabled = True
             SJTLabel.Enabled = True
         Else
+            SJIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SJTDateTimePicker.Value = DefaultDateTimePicker.Value
             SJIDateTimePicker.Enabled = False
             SJTDateTimePicker.Enabled = False
             SJILabel.Enabled = False
@@ -215,6 +224,8 @@ Public Class AddStudyForm
             SVILabel.Enabled = True
             SVTLabel.Enabled = True
         Else
+            SVIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SVTDateTimePicker.Value = DefaultDateTimePicker.Value
             SVIDateTimePicker.Enabled = False
             SVTDateTimePicker.Enabled = False
             SVILabel.Enabled = False
@@ -228,6 +239,8 @@ Public Class AddStudyForm
             SSILabel.Enabled = True
             SSTLabel.Enabled = True
         Else
+            SSIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SSTDateTimePicker.Value = DefaultDateTimePicker.Value
             SSIDateTimePicker.Enabled = False
             SSTDateTimePicker.Enabled = False
             SSILabel.Enabled = False
@@ -240,6 +253,8 @@ Public Class AddStudyForm
             SDILabel.Enabled = True
             SDTLabel.Enabled = True
         Else
+            SDIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SDTDateTimePicker.Value = DefaultDateTimePicker.Value
             SDIDateTimePicker.Enabled = False
             SDTDateTimePicker.Enabled = False
             SDILabel.Enabled = False
@@ -408,6 +423,7 @@ Public Class AddStudyForm
 
         Me.Hide()
         HomeForm.Show()
+        '//LUNES//
 
         If DayStudySRCheckedListBox.GetItemCheckState(0) = CheckState.Checked Then
 
@@ -416,6 +432,8 @@ Public Class AddStudyForm
             SLILabel.Enabled = True
             SLTLabel.Enabled = True
         Else
+            SLIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SLTDateTimePicker.Value = DefaultDateTimePicker.Value
             SLIDateTimePicker.Enabled = False
             SLTDateTimePicker.Enabled = False
             SLILabel.Enabled = False
@@ -429,6 +447,8 @@ Public Class AddStudyForm
             SKILabel.Enabled = True
             SKTLabel.Enabled = True
         Else
+            SKIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SKTDateTimePicker.Value = DefaultDateTimePicker.Value
             SKIDateTimePicker.Enabled = False
             SKTDateTimePicker.Enabled = False
             SKILabel.Enabled = False
@@ -442,6 +462,8 @@ Public Class AddStudyForm
             SMILabel.Enabled = True
             SMTLabel.Enabled = True
         Else
+            SMIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SMTDateTimePicker.Value = DefaultDateTimePicker.Value
             SMIDateTimePicker.Enabled = False
             SMTDateTimePicker.Enabled = False
             SMILabel.Enabled = False
@@ -454,6 +476,8 @@ Public Class AddStudyForm
             SJILabel.Enabled = True
             SJTLabel.Enabled = True
         Else
+            SJIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SJTDateTimePicker.Value = DefaultDateTimePicker.Value
             SJIDateTimePicker.Enabled = False
             SJTDateTimePicker.Enabled = False
             SJILabel.Enabled = False
@@ -466,6 +490,8 @@ Public Class AddStudyForm
             SVILabel.Enabled = True
             SVTLabel.Enabled = True
         Else
+            SVIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SVTDateTimePicker.Value = DefaultDateTimePicker.Value
             SVIDateTimePicker.Enabled = False
             SVTDateTimePicker.Enabled = False
             SVILabel.Enabled = False
@@ -479,6 +505,8 @@ Public Class AddStudyForm
             SSILabel.Enabled = True
             SSTLabel.Enabled = True
         Else
+            SSIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SSTDateTimePicker.Value = DefaultDateTimePicker.Value
             SSIDateTimePicker.Enabled = False
             SSTDateTimePicker.Enabled = False
             SSILabel.Enabled = False
@@ -491,6 +519,8 @@ Public Class AddStudyForm
             SDILabel.Enabled = True
             SDTLabel.Enabled = True
         Else
+            SDIDateTimePicker.Value = DefaultDateTimePicker.Value
+            SDTDateTimePicker.Value = DefaultDateTimePicker.Value
             SDIDateTimePicker.Enabled = False
             SDTDateTimePicker.Enabled = False
             SDILabel.Enabled = False
@@ -500,11 +530,12 @@ Public Class AddStudyForm
         '\\\\\\\\\ TERMINA DE AGREGAR UN HORARIO DE ESTUDIO A LA BASE DE DATOS Y MUESTRA LA PAGINA DE INICIO \\\\\\\\\\\\
         Try
             Connection.Open()
-            'aca se escoge solo el color, nombre del curso, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
+            'aca se escoge solo el color, nombre del horario de estudio, dia, horaInicio y horaFin que le pertenecen al usuario y al mismo periodo
             Dim SSstrSQL As String = "select ac.color, ac.name, sc.day, sc.startTime, sc.endTime, ac.idActivity
                                     from Activity ac, KMProfile k, Period p, ActivityHasSchedule a, Schedule sc
                                     where k.idStudent = p.idStudent
                                     and p.idPeriod =" & Integer.Parse(HomeForm.IdPeriodLabel.Text) & "
+                                    and ac.idPeriod = p.idPeriod
                                     and k.idStudent = ac.idStudent
                                     and k.idStudent =" & User.IdUser & "
                                     and ac.idActivity = a.idActivity
