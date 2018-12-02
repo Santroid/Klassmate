@@ -880,7 +880,7 @@ Namespace DataSet1TableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "select distinct t.nameTask as Tarea, s.nameSubject as Curso, t.duedate as Entrega"& _ 
                 ", t.status as Estado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"from KMProfile p, Activity a, Task t, Subject s"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE p.i"& _ 
-                "dStudent = a.idStudent and t.idSubject = s.idSubject "&Global.Microsoft.VisualBasic.ChrW(9)
+                "dStudent = a.idStudent and t.idSubject = s.idSubject"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
