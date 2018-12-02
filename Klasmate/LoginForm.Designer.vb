@@ -40,18 +40,18 @@ Partial Class LoginForm
         'RegisterLinkLabel
         '
         Me.RegisterLinkLabel.AutoSize = True
-        Me.RegisterLinkLabel.Location = New System.Drawing.Point(42, 186)
+        Me.RegisterLinkLabel.Location = New System.Drawing.Point(42, 200)
         Me.RegisterLinkLabel.Name = "RegisterLinkLabel"
-        Me.RegisterLinkLabel.Size = New System.Drawing.Size(64, 26)
+        Me.RegisterLinkLabel.Size = New System.Drawing.Size(59, 13)
         Me.RegisterLinkLabel.TabIndex = 3
         Me.RegisterLinkLabel.TabStop = True
-        Me.RegisterLinkLabel.Text = "¿Es nuevo?" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Regístrese"
+        Me.RegisterLinkLabel.Text = "Regístrese"
         Me.RegisterLinkLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'ForgotPasswordLinkLabel
         '
         Me.ForgotPasswordLinkLabel.AutoSize = True
-        Me.ForgotPasswordLinkLabel.Location = New System.Drawing.Point(133, 186)
+        Me.ForgotPasswordLinkLabel.Location = New System.Drawing.Point(116, 200)
         Me.ForgotPasswordLinkLabel.Name = "ForgotPasswordLinkLabel"
         Me.ForgotPasswordLinkLabel.Size = New System.Drawing.Size(119, 13)
         Me.ForgotPasswordLinkLabel.TabIndex = 4
@@ -177,7 +177,7 @@ Partial Class LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(310, 319)
+        Me.ClientSize = New System.Drawing.Size(286, 319)
         Me.Controls.Add(Me.LoginErrorLabel)
         Me.Controls.Add(Me.HWCounterLabel)
         Me.Controls.Add(Me.Label4)
@@ -193,7 +193,7 @@ Partial Class LoginForm
         Me.Controls.Add(Me.RegisterLinkLabel)
         Me.Name = "LoginForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Klassmate"
+        Me.Text = "Login"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

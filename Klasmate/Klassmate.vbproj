@@ -57,6 +57,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -158,10 +159,32 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Period.vb" />
+    <Compile Include="ProjectDBDataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectDBDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectDBDataSet1.vb">
+      <DependentUpon>ProjectDBDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RegisterForm.Designer.vb">
       <DependentUpon>RegisterForm.vb</DependentUpon>
     </Compile>
     <Compile Include="RegisterForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportFiles\DataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFiles\DataSet1.vb">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFiles\ReportForm.Designer.vb">
+      <DependentUpon>ReportForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFiles\ReportForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Schedule.vb" />
@@ -215,12 +238,19 @@
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportFiles\Report1.rdlc" />
+    <EmbeddedResource Include="ReportFiles\ReportForm.resx">
+      <DependentUpon>ReportForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ScheduleRegisterForm.resx">
       <DependentUpon>ScheduleRegisterForm.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="DataSet1.datasource" />
+    <None Include="HomeForm.datasource" />
+    <None Include="Klasmate.DataSet1TableAdapters.QueriesTableAdapter.datasource" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -233,6 +263,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ProjectDBDataSet1.xsc">
+      <DependentUpon>ProjectDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectDBDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectDBDataSet1.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectDBDataSet1.xss">
+      <DependentUpon>ProjectDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ReportFiles\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ReportFiles\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ReportFiles\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="Resources\fondo-azul-desenfocado_1107-164.jpg" />
   </ItemGroup>
   <ItemGroup>
