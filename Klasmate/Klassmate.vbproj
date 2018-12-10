@@ -103,7 +103,7 @@
     <Compile Include="ConfirmationForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConnectionBD.vb" />
+    <Compile Include="Connection BD\ConnectionBD.vb" />
     <Compile Include="Course.vb" />
     <Compile Include="EditCourseForm.Designer.vb">
       <DependentUpon>EditCourseForm.vb</DependentUpon>
