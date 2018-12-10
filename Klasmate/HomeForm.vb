@@ -425,6 +425,7 @@ Public Class HomeForm
                                     and s.idSubject = t.idSubject
                                     and p.idStudent =" & Integer.Parse(IdUserLabel.Text) & "
                                     and t.status = " & 1 & ";"
+
         Dim da2 As New SqlDataAdapter(HWstrSQL, connection)
         Dim ds2 As New DataSet
         'If ColorCounterLabel.Text = " " Then

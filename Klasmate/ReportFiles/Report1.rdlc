@@ -354,7 +354,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.47625cm</Top>
+        <Top>1.29646cm</Top>
         <Left>0.635cm</Left>
         <Height>1.2cm</Height>
         <Width>15.17771cm</Width>
@@ -364,14 +364,53 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>1 = Pendiente</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>2 = Completado</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>0.22021cm</Top>
+        <Left>13.18041cm</Left>
+        <Height>1.04097cm</Height>
+        <Width>2.6323cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>0.86458in</Height>
+    <Height>1.11458in</Height>
     <Style />
   </Body>
   <Width>6.4375in</Width>
   <Page>
     <PageHeader>
-      <Height>2.50224cm</Height>
+      <Height>2.44891cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -380,7 +419,7 @@
           <Value>reporte</Value>
           <Sizing>FitProportional</Sizing>
           <Top>0.18203cm</Top>
-          <Left>12.75708cm</Left>
+          <Left>13.70417cm</Left>
           <Height>1.97625cm</Height>
           <Width>2.10854cm</Width>
           <Style>
@@ -408,7 +447,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox7</rd:DefaultName>
-          <Top>1.05516cm</Top>
+          <Top>0.7112cm</Top>
           <Left>2.40708cm</Left>
           <Height>1.10313cm</Height>
           <Width>8.79708cm</Width>
@@ -431,7 +470,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>2.54cm</Height>
+      <Height>3.09562cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -455,8 +494,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox16</rd:DefaultName>
-          <Top>0.29916cm</Top>
-          <Left>5.02709cm</Left>
+          <Top>0.72293cm</Top>
+          <Left>5.51625cm</Left>
           <Height>1.81708cm</Height>
           <Width>1.41521cm</Width>
           <Style>
@@ -486,8 +525,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox16</rd:DefaultName>
-          <Top>0.98708cm</Top>
-          <Left>6.4423cm</Left>
+          <Top>1.41085cm</Top>
+          <Left>6.93146cm</Left>
           <Height>1.12916cm</Height>
           <Width>2.26187cm</Width>
           <ZIndex>1</ZIndex>
@@ -521,8 +560,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox16</rd:DefaultName>
-          <Top>0.29917cm</Top>
-          <Left>7.84459cm</Left>
+          <Top>0.72294cm</Top>
+          <Left>8.33374cm</Left>
           <Height>1.81708cm</Height>
           <Width>1.99729cm</Width>
           <ZIndex>2</ZIndex>
@@ -553,8 +592,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox16</rd:DefaultName>
-          <Top>0.98709cm</Top>
-          <Left>9.59493cm</Left>
+          <Top>1.41086cm</Top>
+          <Left>10.08409cm</Left>
           <Height>1.12916cm</Height>
           <Width>2.26187cm</Width>
           <ZIndex>3</ZIndex>
@@ -572,10 +611,10 @@
           <Source>Embedded</Source>
           <Value>reporte2</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.29917cm</Top>
-          <Left>1.87312cm</Left>
+          <Top>0.29919cm</Top>
+          <Left>0.635cm</Left>
           <Height>2.24083cm</Height>
-          <Width>2.87583cm</Width>
+          <Width>2.24083cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>

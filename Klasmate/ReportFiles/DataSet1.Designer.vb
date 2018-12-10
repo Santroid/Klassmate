@@ -879,12 +879,12 @@ Namespace DataSet1TableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT DISTINCT t.nameTask AS Tarea, s.nameSubject AS Curso, t.duedate AS Entrega"& _ 
-                ", t.status AS Estado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Subject AS s INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
-                "        Task AS t ON s.idSubject = t.idSubject INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
-                "    Period AS pe ON s.idPeriod = pe.idPeriod INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
-                "  KMProfile AS p INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Activity AS a ON p.idStude"& _ 
-                "nt = a.idStudent ON pe.idPeriod = a.idPeriod AND p.idStudent = 88"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Entr"& _ 
-                "ega"
+                ", t.status AS Estado"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Subject AS s CROSS JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "        Task AS t CROSS JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Period AS pe CROSS JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                         KMProfile AS p CROSS JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Act"& _ 
+                "ivity AS a"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (t.idSubject = s.idSubject) AND (pe.idPeriod = s.idPeri"& _ 
+                "od) AND (p.idStudent = a.idStudent) AND (p.idStudent = 88) AND (pe.idPeriod = 15"& _ 
+                "0)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Entrega"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
