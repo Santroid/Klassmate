@@ -13,11 +13,12 @@
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT DISTINCT t.nameTask AS Tarea, s.nameSubject AS Curso, t.duedate AS Entrega, t.status AS Estado
-FROM            Subject AS s INNER JOIN
-                         Task AS t ON s.idSubject = t.idSubject INNER JOIN
-                         Period AS pe ON s.idPeriod = pe.idPeriod INNER JOIN
-                         KMProfile AS p INNER JOIN
-                         Activity AS a ON p.idStudent = a.idStudent ON pe.idPeriod = a.idPeriod AND p.idStudent = 88 AND pe.idPeriod = 150
+FROM            Subject AS s CROSS JOIN
+                         Task AS t CROSS JOIN
+                         Period AS pe CROSS JOIN
+                         KMProfile AS p CROSS JOIN
+                         Activity AS a
+WHERE        (t.idSubject = s.idSubject) AND (pe.idPeriod = s.idPeriod) AND (p.idStudent = a.idStudent) AND (p.idStudent = 88) AND (pe.idPeriod = 150)
 ORDER BY Entrega</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -40,7 +41,7 @@ ORDER BY Entrega</CommandText>
   <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Tarea" msprop:Generator_ColumnVarNameInTable="columnTarea" msprop:Generator_ColumnPropNameInRow="Tarea" msprop:Generator_ColumnPropNameInTable="TareaColumn" msprop:Generator_UserColumnName="Tarea" minOccurs="0">
