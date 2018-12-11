@@ -883,8 +883,8 @@ Namespace DataSet1TableAdapters
                 "        Task AS t ON s.idSubject = t.idSubject INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                     "& _ 
                 "    Period AS pe ON s.idPeriod = pe.idPeriod INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
                 "  KMProfile AS p INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         Activity AS a ON p.idStude"& _ 
-                "nt = a.idStudent ON pe.idPeriod = a.idPeriod AND p.idStudent = 88"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Entr"& _ 
-                "ega"
+                "nt = a.idStudent ON pe.idPeriod = a.idPeriod AND p.idStudent = 88 AND pe.idPerio"& _ 
+                "d = 150"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Entrega"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
