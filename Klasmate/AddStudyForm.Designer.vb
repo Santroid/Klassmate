@@ -533,7 +533,7 @@ Partial Class AddStudyForm
         Me.Controls.Add(Me.Label4)
         Me.Name = "AddStudyForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "AddStudyForm"
+        Me.Text = "Agregar Horario de Estudio"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

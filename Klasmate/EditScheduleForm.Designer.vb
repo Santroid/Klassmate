@@ -916,7 +916,7 @@ Partial Class EditScheduleForm
         Me.Controls.Add(Me.Panel1)
         Me.Name = "EditScheduleForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "EditScheduleForm"
+        Me.Text = "Editar Horarios"
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         Me.Panel3.ResumeLayout(False)

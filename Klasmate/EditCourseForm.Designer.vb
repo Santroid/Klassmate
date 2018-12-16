@@ -68,7 +68,7 @@ Partial Class EditCourseForm
         '
         Me.EditCourseComboBox.FormattingEnabled = True
         Me.EditCourseComboBox.Location = New System.Drawing.Point(214, 15)
-        Me.EditCourseComboBox.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.EditCourseComboBox.Margin = New System.Windows.Forms.Padding(2)
         Me.EditCourseComboBox.Name = "EditCourseComboBox"
         Me.EditCourseComboBox.Size = New System.Drawing.Size(174, 21)
         Me.EditCourseComboBox.TabIndex = 198
@@ -516,9 +516,9 @@ Partial Class EditCourseForm
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "EditCourseForm"
-        Me.Text = "EditCourseForm"
+        Me.Text = "Editar Cursos"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

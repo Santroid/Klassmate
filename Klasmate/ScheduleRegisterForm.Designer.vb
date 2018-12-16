@@ -628,7 +628,7 @@ Partial Class ScheduleRegisterForm
         Me.Controls.Add(Me.Panel1)
         Me.Name = "ScheduleRegisterForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "ScheduleRegisterForm"
+        Me.Text = "Ingresar Periodo Lectivo y Cursos"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.AddCourseSRPanel.ResumeLayout(False)

@@ -430,7 +430,7 @@ Public Class HomeForm
         Dim ds2 As New DataSet
         'If ColorCounterLabel.Text = " " Then
         Call CType(HomeworkDataGridView.DataSource, DataTable).Rows.Clear()
-
+        'End If
         da2.Fill(ds2, HWstrSQL)
         HomeworkDataGridView.DataSource = ds2.Tables(0)
         'le cambia los colores a las celdas de tareas de acuerdo a la base de datos

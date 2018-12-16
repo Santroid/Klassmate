@@ -123,6 +123,7 @@ Partial Class HomeForm
         Me.Label16 = New System.Windows.Forms.Label()
         Me.WeekLabel = New System.Windows.Forms.Label()
         Me.WeekTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.AddHomePanel.SuspendLayout()
         Me.OptionsHomePanel.SuspendLayout()
         Me.EditProfilePanel.SuspendLayout()
@@ -136,6 +137,8 @@ Partial Class HomeForm
         '
         'WeekProgressBar
         '
+        Me.WeekProgressBar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.WeekProgressBar.ForeColor = System.Drawing.Color.Lime
         Me.WeekProgressBar.Location = New System.Drawing.Point(0, 49)
         Me.WeekProgressBar.Name = "WeekProgressBar"
@@ -338,7 +341,7 @@ Partial Class HomeForm
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(101, 33)
+        Me.Label1.Location = New System.Drawing.Point(93, 24)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(90, 20)
         Me.Label1.TabIndex = 8
@@ -413,6 +416,7 @@ Partial Class HomeForm
         'AddHomeWorkPanel
         '
         Me.AddHomeWorkPanel.BackColor = System.Drawing.SystemColors.ButtonShadow
+        Me.AddHomeWorkPanel.Controls.Add(Me.Label17)
         Me.AddHomeWorkPanel.Controls.Add(Me.CoursAddHWPanelComboBox)
         Me.AddHomeWorkPanel.Controls.Add(Me.CancelHWAddButton)
         Me.AddHomeWorkPanel.Controls.Add(Me.SaveHWAddButton)
@@ -700,6 +704,7 @@ Partial Class HomeForm
         Me.IdPeriodLabel.Size = New System.Drawing.Size(72, 13)
         Me.IdPeriodLabel.TabIndex = 13
         Me.IdPeriodLabel.Text = "IdPeriodLabel"
+        Me.IdPeriodLabel.Visible = False
         '
         'HomeworkDataGridView
         '
@@ -922,6 +927,7 @@ Partial Class HomeForm
         Me.IdUserLabel.Size = New System.Drawing.Size(64, 13)
         Me.IdUserLabel.TabIndex = 17
         Me.IdUserLabel.Text = "IdUserLabel"
+        Me.IdUserLabel.Visible = False
         '
         'HWcolorcoutnerLabel
         '
@@ -963,7 +969,7 @@ Partial Class HomeForm
         Me.EditHomeWorkPanel.Controls.Add(Me.Label8)
         Me.EditHomeWorkPanel.Controls.Add(Me.Label9)
         Me.EditHomeWorkPanel.Controls.Add(Me.Label10)
-        Me.EditHomeWorkPanel.Location = New System.Drawing.Point(484, 46)
+        Me.EditHomeWorkPanel.Location = New System.Drawing.Point(147, 74)
         Me.EditHomeWorkPanel.Name = "EditHomeWorkPanel"
         Me.EditHomeWorkPanel.Size = New System.Drawing.Size(290, 352)
         Me.EditHomeWorkPanel.TabIndex = 20
@@ -1001,7 +1007,7 @@ Partial Class HomeForm
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(79, 15)
+        Me.Label11.Location = New System.Drawing.Point(94, 21)
         Me.Label11.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(96, 20)
@@ -1100,11 +1106,11 @@ Partial Class HomeForm
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Label14.Location = New System.Drawing.Point(553, 92)
+        Me.Label14.Location = New System.Drawing.Point(486, 92)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(79, 25)
+        Me.Label14.Size = New System.Drawing.Size(193, 25)
         Me.Label14.TabIndex = 22
-        Me.Label14.Text = "Tareas"
+        Me.Label14.Text = "Tareas Pendientes"
         '
         'Label15
         '
@@ -1144,11 +1150,24 @@ Partial Class HomeForm
         '
         Me.WeekTimer.Interval = 86400000
         '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(71, 10)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(111, 20)
+        Me.Label17.TabIndex = 13
+        Me.Label17.Text = "Agregar Tarea"
+        '
         'HomeForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(939, 606)
+        Me.Controls.Add(Me.AddHomeWorkPanel)
+        Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.WeekLabel)
         Me.Controls.Add(Me.EditHomeWorkPanel)
         Me.Controls.Add(Me.CleanHWSelButton)
@@ -1161,8 +1180,6 @@ Partial Class HomeForm
         Me.Controls.Add(Me.OptionsHomePanel)
         Me.Controls.Add(Me.AddHomePanel)
         Me.Controls.Add(Me.WeekProgressBar)
-        Me.Controls.Add(Me.AddHomeWorkPanel)
-        Me.Controls.Add(Me.EditProfilePanel)
         Me.Controls.Add(Me.HomeworkDataGridView)
         Me.Controls.Add(Me.StudSchDataGridView)
         Me.Controls.Add(Me.WSDataGridView)
@@ -1290,4 +1307,5 @@ Partial Class HomeForm
     Friend WithEvents DeleteButton As Button
     Friend WithEvents WeekLabel As Label
     Friend WithEvents WeekTimer As Timer
+    Friend WithEvents Label17 As Label
 End Class

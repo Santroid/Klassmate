@@ -533,7 +533,7 @@ Partial Class AddWorkForm
         Me.Controls.Add(Me.Label4)
         Me.Name = "AddWorkForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "AddWorkForm"
+        Me.Text = "Agregar Horario de Trabajo"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

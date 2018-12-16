@@ -533,7 +533,7 @@ Partial Class AddCourseForm
         Me.Controls.Add(Me.Label4)
         Me.Name = "AddCourseForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "AddCourseForm"
+        Me.Text = "Agregar Curso"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

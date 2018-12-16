@@ -97,7 +97,7 @@ Partial Class ForgotPasswordForm
         Me.Controls.Add(Me.EmailForgotPassTextBox)
         Me.Name = "ForgotPasswordForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Klassmate"
+        Me.Text = "Recuperación de contraseña"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
